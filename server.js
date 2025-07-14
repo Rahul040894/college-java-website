@@ -11,7 +11,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // === 2. MIDDLEWARE ===
-app.use(cors());
+const corsOptions = {
+    origin: 'https://rahuljavaskit.online', // Replace with your actual domain
+    optionsSuccessStatus: 200 // For legacy browser support
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // === 3. DATABASE CONNECTION ===
