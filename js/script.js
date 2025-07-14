@@ -32,9 +32,48 @@ document.addEventListener('DOMContentLoaded', () => {
         loadTestList();
     }
 
-    async function loadTestList() {
-        // ... this function remains the same
+   // In js/script.js
+
+async function loadTestList() {
+    // A timer to update the message if it's taking too long
+    const longLoadTimer = setTimeout(() => {
+        if (testListContainer) {
+            testListContainer.innerHTML = '<p class="text-info">The server is waking up, this can take up to a minute. Please be patient...</p>';
+        }
+    }, 8000); // After 8 seconds
+
+    try {
+        const response = await fetch(`${liveServerUrl}/api/tests`);
+        clearTimeout(longLoadTimer); // The server was awake! Stop the timer.
+
+        if (!response.ok) {
+            throw new Error(`Server responded with status: ${response.status}`);
+        }
+
+        const tests = await response.json();
+
+        if (tests.length === 0) {
+            testListContainer.innerHTML = '<p>No tests have been added yet.</p>';
+            return;
+        }
+
+        testListContainer.innerHTML = ''; // Clear "Loading..."
+        tests.forEach(test => {
+            const testLink = document.createElement('a');
+            testLink.href = `mcq-test.html?test=${test.name}`;
+            testLink.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center';
+            testLink.innerHTML = `<strong>${test.name.replace(/-/g, ' ').toUpperCase()}</strong><span class="badge bg-primary rounded-pill">${test.questionCount} Questions</span>`;
+            testListContainer.appendChild(testLink);
+        });
+
+    } catch (error) {
+        clearTimeout(longLoadTimer); // Also clear the timer on error
+        console.error('Failed to load test list:', error);
+        if (testListContainer) {
+            testListContainer.innerHTML = '<p class="text-danger">Could not load tests. The server might be busy. Please try refreshing the page in a moment.</p>';
+        }
     }
+}
     async function startTest(testName) {
         // ... this function remains the same
     }

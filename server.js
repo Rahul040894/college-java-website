@@ -11,11 +11,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // === 2. MIDDLEWARE ===
+// In server.js
+
+// === THIS IS THE FINAL, MORE ROBUST CORS CONFIGURATION ===
 const corsOptions = {
-    origin: 'https://rahuljavaskit.online', // Your live domain
-    optionsSuccessStatus: 200
+    origin: 'https://rahuljavaskit.online',
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Explicitly allow common methods
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 };
 app.use(cors(corsOptions));
+// ========================================================
 app.use(express.json());
 
 // === 3. DATABASE CONNECTION ===
