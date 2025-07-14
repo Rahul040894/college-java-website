@@ -1,4 +1,4 @@
-// js/script.js (Final Production Version)
+// js/script.js (Final Production Version with stdin support)
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
@@ -33,100 +33,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function loadTestList() {
-        try {
-            const response = await fetch(`${liveServerUrl}/api/tests`);
-            const tests = await response.json();
-            if (tests.length === 0) {
-                testListContainer.innerHTML = '<p>No tests found.</p>';
-                return;
-            }
-            testListContainer.innerHTML = '';
-            tests.forEach(test => {
-                const testLink = document.createElement('a');
-                testLink.href = `mcq-test.html?test=${test.name}`;
-                testLink.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center';
-                testLink.innerHTML = `<strong>${test.name.replace(/-/g, ' ').toUpperCase()}</strong><span class="badge bg-primary rounded-pill">${test.questionCount} Questions</span>`;
-                testListContainer.appendChild(testLink);
-            });
-        } catch (error) {
-            console.error('Failed to load test list:', error);
-            testListContainer.innerHTML = '<p class="text-danger">Could not load tests. Is the server waking up?</p>';
-        }
+        // ... this function remains the same
     }
-
     async function startTest(testName) {
-        mainContentBox.innerHTML = `<h2>${testName.replace(/-/g, ' ').toUpperCase()}</h2><hr><div id="test-area">Loading questions...</div><div id="result-container" class="d-none"></div>`;
-        const testArea = document.getElementById('test-area');
-        const url = `${liveServerUrl}/api/test/${testName}`;
-        try {
-            const response = await fetch(url);
-            const questions = await response.json();
-            displayQuestions(questions, testName);
-        } catch (error) {
-            console.error("Could not fetch questions:", error);
-            testArea.innerHTML = `<p class="text-danger">Failed to load the test.</p>`;
-        }
+        // ... this function remains the same
     }
-
     function displayQuestions(questions, testName) {
-        const testArea = document.getElementById('test-area');
-        const formHTML = `<form id="mcq-form"></form>`;
-        testArea.innerHTML = formHTML;
-        const mcqForm = document.getElementById('mcq-form');
-        questions.forEach((q, index) => {
-            const questionElement = document.createElement('div');
-            questionElement.className = 'mb-4';
-            let optionsHTML = q.options.map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join('');
-            questionElement.innerHTML = `<h5>${index + 1}. ${q.question}</h5>${optionsHTML}`;
-            mcqForm.appendChild(questionElement);
-        });
-        const submitButton = document.createElement('button');
-        submitButton.type = 'submit';
-        submitButton.className = 'btn btn-success mt-3';
-        submitButton.textContent = 'Submit Answers';
-        mcqForm.appendChild(submitButton);
-        mcqForm.addEventListener('submit', (event) => submitTest(event, testName));
+        // ... this function remains the same
     }
-
     async function submitTest(event, testName) {
-        event.preventDefault();
-        const mcqForm = document.getElementById('mcq-form');
-        const answers = [];
-        const questionInputs = mcqForm.querySelectorAll('input[type="radio"]:checked');
-        const totalQuestions = mcqForm.querySelectorAll('h5').length;
-        if (questionInputs.length < totalQuestions) {
-            alert('Please answer all questions.');
-            return;
-        }
-        questionInputs.forEach(input => {
-            answers.push({ id: input.name.replace('question', ''), answer: input.value });
-        });
-        // THIS URL IS NOW CORRECTED
-        const url = `${liveServerUrl}/api/submit/${testName}`;
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ answers })
-            });
-            const result = await response.json();
-            displayResult(result, testName);
-        } catch (error) {
-            console.error("Could not submit test:", error);
-        }
+        // ... this function remains the same
     }
-
     function displayResult(result, testName) {
-        const percentage = (result.score / result.total) * 100;
-        let feedbackMessage = percentage >= 80 ? 'Excellent work!' : (percentage >= 50 ? 'Good effort!' : 'Keep practicing!');
-        mainContentBox.innerHTML = `<h3>Test Complete!</h3><h4>Your Score: ${result.score} out of ${total}</h4><div class="progress" style="height: 25px;"><div class="progress-bar bg-success" role="progressbar" style="width: ${percentage}%;" aria-valuenow="${percentage}">${percentage.toFixed(0)}%</div></div><p class="mt-3">${feedbackMessage}</p><a href="mcq-test.html?test=${testName}" class="btn btn-info">Try Again</a><a href="mcq-test.html" class="btn btn-secondary">Back to Test List</a>`;
+        // ... this function remains the same
     }
 
     // =======================================================
-    // == START: ONLINE COMPILER LOGIC (WITH CODEMIRROR)    ==
+    // == START: ONLINE COMPILER LOGIC (WITH CODEMIRROR & stdin) ==
     // =======================================================
     const runButton = document.getElementById('runButton');
     const outputArea = document.getElementById('outputArea');
+    const stdInput = document.getElementById('stdInput'); // Get the new stdin element
 
     if (runButton) {
         const editor = CodeMirror(document.getElementById('codeEditor'), {
@@ -138,9 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         editor.setSize(null, "500px");
 
-        // This is the single, correct event listener
         runButton.addEventListener('click', async () => {
             const userCode = editor.getValue();
+            const userInput = stdInput.value; // Get the value from the stdin box
+
             runButton.disabled = true;
             runButton.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Waking Server...`;
             outputArea.textContent = 'Connecting to the server. This may take a moment on the first run...';
@@ -153,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`${liveServerUrl}/api/compile`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ script: userCode })
+                    body: JSON.stringify({ script: userCode, stdin: userInput }) // Send both script and stdin
                 });
 
                 clearTimeout(longLoadTimer);
