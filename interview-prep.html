@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Preparation - Java Course</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header and Navbar -->
+    <div class="top-bar"></div>
+    <header class="main-header">
+        <div class="container py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- College Info -->
+                <div class="d-flex align-items-center">
+                    <img src="images/logo.png" alt="College Logo" class="main-logo">
+                    <div class="college-title">
+                        <p class="society-name mb-0">Sri Raghavendra Educational Institutions Society</p>
+                        <h1 class="institute-name">Sri Krishna Institute of Technology</h1>
+                        <p class="affiliation mb-0">(Approved by AICTE, Affiliated to VTU, Karnataka)</p>
+                    </div>
+                </div>
+                <!-- Personal Branding -->
+                <div class="personal-branding d-none d-md-flex">
+                    <div class="instructor-info">
+                        <p class="instructor-name mb-0">Rahul Kumar</p>
+                        <p class="instructor-title mb-0">Assistant Professor</p>
+                    </div>
+                    <img src="images/profile.jpg" alt="Your Profile Picture" class="profile-pic">
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="notes.html">Module-wise Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pyq.html">University PYQs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="compiler.html">Java Online Compiler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mcq-test.html">MCQ Tests</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="interview-prep.html">Company-Wise Interview Prep</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End of Header and Navbar -->
+
+    <!-- Main Content Area for Interview Prep -->
+    <main class="py-5">
+        <div class="container">
+            <div class="content-box">
+                <h2>Company-Wise Interview Preparation</h2>
+                <p>A curated list of frequently asked Java and technical questions for top tech companies. Click a category to see the questions.</p>
+                <hr>
+
+                <div class="accordion" id="mainInterviewAccordion">
+
+                    <!-- ===== ACCORDION ITEM 1: IT SERVICE COMPANIES ===== -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingServices">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseServices" aria-expanded="true" aria-controls="collapseServices">
+                                <strong>IT Service Companies (Infosys, TCS, Wipro, HCL, etc.)</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseServices" class="accordion-collapse collapse show" aria-labelledby="headingServices" data-bs-parent="#mainInterviewAccordion">
+                            <div class="accordion-body">
+                                <p>These companies typically focus on strong fundamentals in Core Java, OOPs, and basic concepts across the Java ecosystem.</p>
+                                <!-- Nested Accordion for Topics -->
+                                <div class="accordion" id="servicesTopicsAccordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="servicesHeading1"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#servicesCollapse1">Core Java & OOPs</button></h2>
+                                        <div id="servicesCollapse1" class="accordion-collapse collapse" data-bs-parent="#servicesTopicsAccordion">
+                                            <div class="accordion-body">
+                                                <h5>Q: What is Java? What are its main features?</h5>
+                                                <p><strong>Answer:</strong> Java is a high-level, object-oriented, platform-independent programming language. Main features include: Simple, Secure, Portable, Robust, Multithreaded, and Architecture-Neutral.</p>
+                                                <h5>Q: Why is Java platform independent?</h5>
+                                                <p><strong>Answer:</strong> Java code is compiled into bytecode, which can run on any machine with a Java Virtual Machine (JVM), regardless of the underlying hardware or OS.</p>
+                                                <h5>Q: Is Java a pure object-oriented language? Why/Why not?</h5>
+                                                <p><strong>Answer:</strong> No, because it supports primitive data types (like `int`, `float`, etc.), which are not objects.</p>
+                                                <h5>Q: Explain OOPs concepts in Java.</h5>
+                                                <p><strong>Answer:</strong><br><b>Encapsulation:</b> Wrapping data and code together.<br><b>Inheritance:</b> Acquiring properties from another class.<br><b>Polymorphism:</b> Many forms (method overloading/overriding).<br><b>Abstraction:</b> Hiding details, showing only essentials.</p>
+                                                <h5>Q: Difference between `==` and `equals()`?</h5>
+                                                <p><strong>Answer:</strong> `==` checks for reference (memory address) equality, while `equals()` checks for value/content equality (if overridden).</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="servicesHeading2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#servicesCollapse2">Data Types, Variables, and Arrays</button></h2>
+                                        <div id="servicesCollapse2" class="accordion-collapse collapse" data-bs-parent="#servicesTopicsAccordion">
+                                            <div class="accordion-body">
+                                                <h5>Q: List all primitive data types in Java.</h5>
+                                                <p><strong>Answer:</strong> `byte`, `short`, `int`, `long`, `float`, `double`, `char`, and `boolean`.</p>
+                                                <h5>Q: What is the default value of int, float, boolean, and object reference?</h5>
+                                                <p><strong>Answer:</strong> For instance variables, the defaults are: `int`: 0, `float`: 0.0f, `boolean`: false, object reference: `null`.</p>
+                                                <h5>Q: What is an array? How do you declare and initialize one?</h5>
+                                                <p><strong>Answer:</strong> An array is a collection of similar data types with a fixed size.<br>Declaration: `int[] arr = new int[5];`<br>Initialization: `int[] arr2 = {1, 2, 3, 4, 5};`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="servicesHeading3"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#servicesCollapse3">Control Structures & Exception Handling</button></h2>
+                                        <div id="servicesCollapse3" class="accordion-collapse collapse" data-bs-parent="#servicesTopicsAccordion">
+                                            <div class="accordion-body">
+                                                <h5>Q: What are the different control statements in Java?</h5>
+                                                <p><strong>Answer:</strong> Selection (`if`, `switch`), Iteration (`for`, `while`, `do-while`), and Jump (`break`, `continue`, `return`).</p>
+                                                <h5>Q: Write a program to print numbers from 1 to 10 using a for loop.</h5>
+                                                <pre><code>for (int i = 1; i <= 10; i++) {
+    System.out.println(i);
+}</code></pre>
+                                                <h5>Q: What is exception handling and why is it needed?</h5>
+                                                <p><strong>Answer:</strong> Exception handling is a mechanism to manage runtime errors, maintaining the normal flow of the program. It uses `try`, `catch`, `finally`, `throw`, and `throws` keywords.</p>
+                                                <h5>Q: Difference between checked and unchecked exceptions?</h5>
+                                                <p><strong>Answer:</strong> Checked exceptions are checked at compile time (e.g., `IOException`) and must be handled. Unchecked exceptions are checked at runtime (e.g., `NullPointerException`) and handling is optional.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="accordion-item">
+                                        <h2 class="accordion-header" id="servicesHeading4"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#servicesCollapse4">Collections, Multithreading & Advanced Concepts</button></h2>
+                                        <div id="servicesCollapse4" class="accordion-collapse collapse" data-bs-parent="#servicesTopicsAccordion">
+                                            <div class="accordion-body">
+                                                <h5>Q: Difference between ArrayList and LinkedList?</h5>
+                                                <p><strong>Answer:</strong> `ArrayList` is faster for random access (get/set) but slower for insertions/deletions. `LinkedList` is faster for insertions/deletions but slower for random access.</p>
+                                                <h5>Q: What is a HashMap? How does it work?</h5>
+                                                <p><strong>Answer:</strong> `HashMap` stores key-value pairs. It uses the key's `hashCode()` to find a bucket and stores the entry. Collisions are handled by storing entries in a linked list or, in Java 8+, a balanced tree.</p>
+                                                <h5>Q: What is multithreading? How is it achieved in Java?</h5>
+                                                <p><strong>Answer:</strong> Multithreading is the concurrent execution of two or more threads. It is achieved by either extending the `Thread` class or implementing the `Runnable` interface.</p>
+                                                <h5>Q: Difference between a process and a thread?</h5>
+                                                <p><strong>Answer:</strong> A process is an independent program with its own memory space. A thread is a lightweight sub-process that shares memory with other threads in the same process.</p>
+                                                <h5>Q: What is synchronization?</h5>
+                                                <p><strong>Answer:</strong> Synchronization is a mechanism that controls the access of multiple threads to any shared resource, preventing data inconsistency and thread-interference.</p>
+                                                <h5>Q: What is serialization?</h5>
+                                                <p><strong>Answer:</strong> Serialization is the process of converting an object's state into a byte stream, which can then be saved to a file or sent over a network. The `Serializable` interface must be implemented.</p>
+                                                <h5>Q: What is the use of the `transient` keyword?</h5>
+                                                <p><strong>Answer:</strong> The `transient` keyword is used to mark a member variable to not be serialized when it is persisted to streams of bytes.</p>
+                                                <h5>Q: What is the difference between final, finally, and finalize?</h5>
+                                                <p><strong>Answer:</strong><br><b>`final`</b>: A keyword used to make variables constant, methods non-overridable, and classes non-inheritable.<br><b>`finally`</b>: A block that always executes after a `try-catch` block, used for resource cleanup.<br><b>`finalize`</b>: A method called by the garbage collector just before an object is destroyed (deprecated).</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="servicesHeading5"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#servicesCollapse5">Java 8 & Enterprise Java (J2EE)</button></h2>
+                                        <div id="servicesCollapse5" class="accordion-collapse collapse" data-bs-parent="#servicesTopicsAccordion">
+                                            <div class="accordion-body">
+                                                <h5>Q: What are lambda expressions?</h5>
+                                                <p><strong>Answer:</strong> Lambda expressions are anonymous functions that can be used to implement a method defined in a functional interface, leading to more concise code.</p>
+                                                <h5>Q: What is the Stream API?</h5>
+                                                <p><strong>Answer:</strong> The Stream API is used to process collections of objects in a functional style. It allows for operations like `filter`, `map`, and `reduce` to be chained together.</p>
+                                                <h5>Q: What is the Optional class?</h5>
+                                                <p><strong>Answer:</strong> `Optional` is a container object which may or may not contain a non-null value. It's used to avoid `NullPointerException` and promote better API design.</p>
+                                                <h5>Q: What are the main components of J2EE?</h5>
+                                                <p><strong>Answer:</strong> Key components include Servlets, JavaServer Pages (JSP), Enterprise JavaBeans (EJB), Java Database Connectivity (JDBC), Java Message Service (JMS), etc.</p>
+                                                <h5>Q: What is Hibernate?</h5>
+                                                <p><strong>Answer:</strong> Hibernate is an Object-Relational Mapping (ORM) framework that simplifies database interactions by mapping Java objects to database tables.</p>
+                                                <h5>Q: What is a servlet?</h5>
+                                                <p><strong>Answer:</strong> A servlet is a Java class that extends the capabilities of a server. It is used to handle HTTP requests and generate dynamic responses in a web application.</p>
+                                                <h5>Q: What is connection pooling?</h5>
+                                                <p><strong>Answer:</strong> Connection pooling is a technique of creating and managing a pool of database connections that can be reused, which significantly improves performance and resource management.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== ACCORDION ITEM 2: PRODUCT-BASED COMPANIES ===== -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingProducts">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
+                                <strong>Product-Based Companies (Flipkart, Zoho, Amazon, etc.)</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseProducts" class="accordion-collapse collapse" aria-labelledby="headingProducts" data-bs-parent="#mainInterviewAccordion">
+                            <div class="accordion-body">
+                               <p>These companies focus heavily on Data Structures, Algorithms, system design, and deep conceptual understanding of how things work internally.</p>
+                               <!-- Nested Accordion for Topics -->
+                               <div class="accordion" id="productTopicsAccordion">
+                                   <div class="accordion-item">
+                                        <h2 class="accordion-header" id="productHeading1"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#productCollapse1">Coding & Design</button></h2>
+                                        <div id="productCollapse1" class="accordion-collapse collapse" data-bs-parent="#productTopicsAccordion">
+                                            <div class="accordion-body">
+                                                <h5>Q: Implement a thread-safe singleton class in Java.</h5>
+                                                <p><strong>Answer:</strong> The double-checked locking pattern is a common and efficient way to achieve this.</p>
+                                                <pre><code>public class Singleton {
+    private static volatile Singleton instance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (instance == null) { // First check
+            synchronized (Singleton.class) {
+                if (instance == null) { // Second check
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}</code></pre>
+                                                <h5>Q: How do you design a thread-safe LRU Cache?</h5>
+                                                <p><strong>Answer:</strong> A common approach is to use a `LinkedHashMap` configured in access-order mode and override its `removeEldestEntry` method. To make it thread-safe, you can wrap it using `Collections.synchronizedMap()` or handle synchronization manually.</p>
+                                                <h5>Q: Explain the producer-consumer problem in Java.</h5>
+                                                <p><strong>Answer:</strong> This is a classic concurrency problem where one or more "producer" threads generate data and one or more "consumer" threads consume it, using a shared buffer. It can be solved using `wait()` and `notify()`/`notifyAll()` for synchronization, or more easily and robustly using a `BlockingQueue` from the `java.util.concurrent` package.</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div class="accordion-item">
+                                        <h2 class="accordion-header" id="productHeading2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#productCollapse2">Performance, Memory & Miscellaneous</button></h2>
+                                        <div id="productCollapse2" class="accordion-collapse collapse" data-bs-parent="#productTopicsAccordion">
+                                            <div class="accordion-body">
+                                                <h5>Q: How does garbage collection work in Java?</h5>
+                                                <p><strong>Answer:</strong> The JVM's Garbage Collector (GC) automatically reclaims memory by destroying objects that are no longer reachable from any live threads. Common GC algorithms include Mark-and-Sweep. The heap is often divided into generations (Young and Old) to optimize collection, an approach known as Generational GC.</p>
+                                                <h5>Q: How do you detect and prevent memory leaks in Java?</h5>
+                                                <p><strong>Answer:</strong> Memory leaks occur when objects are no longer needed but are still referenced, preventing the GC from reclaiming them. They can be detected using profiling tools like JProfiler or VisualVM. Prevention involves nullifying object references when they're no longer needed, closing resources in `finally` blocks, and using `WeakReference` for cache implementations.</p>
+                                                <h5>Q: What is the use of the `volatile` keyword?</h5>
+                                                <p><strong>Answer:</strong> The `volatile` keyword ensures that changes to a variable made by one thread are immediately visible to other threads. It prevents issues related to CPU caching of variable values.</p>
+                                                <h5>Q: What is the difference between `sleep()` and `wait()`?</h5>
+                                                <p><strong>Answer:</strong> `Thread.sleep()` is a static method that pauses the current thread for a specified time but **does not** release any locks it holds. `object.wait()` is an instance method that makes the current thread wait and **does** release the lock on the object it was called on, allowing other threads to acquire the lock.</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ===== ACCORDION ITEM 3: COMMON CODING QUESTIONS ===== -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingCoding">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCoding" aria-expanded="false" aria-controls="collapseCoding">
+                                <strong>Common Coding Questions (All Companies)</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseCoding" class="accordion-collapse collapse" aria-labelledby="headingCoding" data-bs-parent="#mainInterviewAccordion">
+                            <div class="accordion-body">
+                                <p>Be prepared to write code on a whiteboard or in a shared editor for these types of problems.</p>
+                                <ul>
+                                    <li>Reverse a string without using built-in reverse functions.</li>
+                                    <li>Find the first non-repeating character in a string. (Hint: Use a HashMap or a character count array).</li>
+                                    <li>Detect if a cycle exists in a singly linked list. (Hint: Use the slow and fast pointer approach).</li>
+                                    <li>Implement a thread-safe singleton pattern. (See example above).</li>
+                                    <li>Implement the producer-consumer problem using `wait()` and `notify()`.</li>
+                                    <li>Write a program that can result in a deadlock and explain how to avoid it. (Hint: Involves two or more threads acquiring locks on two or more resources in a different order).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- JavaScript Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

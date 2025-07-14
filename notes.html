@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module-wise Notes - Java Course</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Green Bar -->
+    <div class="top-bar"></div>
+
+    <!-- Main Header Section -->
+    <header class="main-header">
+        <div class="container py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <img src="images/logo.png" alt="College Logo" class="main-logo">
+                    <div class="college-title">
+                        <p class="society-name mb-0">Sri Raghavendra Educational Institutions Society</p>
+                        <h1 class="institute-name">Sri Krishna Institute of Technology</h1>
+                        <p class="affiliation mb-0">(Approved by AICTE, Affiliated to VTU, Karnataka)</p>
+                    </div>
+                </div>
+                <div class="personal-branding d-none d-md-flex">
+                    <div class="instructor-info">
+                        <p class="instructor-name mb-0">Rahul Kumar</p>
+                        <p class="instructor-title mb-0">Assistant Professor</p>
+                    </div>
+                    <img src="images/profile.jpg" alt="Your Profile Picture" class="profile-pic">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="notes.html">Module-wise Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pyq.html">University PYQs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="compiler.html">Java Online Compiler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mcq-test.html">MCQ Tests</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="interview-prep.html">Company-Wise Interview Prep</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area for Notes -->
+    <main class="py-5">
+        <div class="container">
+            <div class="content-box">
+                <h2>Module-wise Course Notes</h2>
+                <p>Click on any module title to expand the notes for that topic. The content is directly available here for easy access and searching.</p>
+                <hr>
+
+                <div class="accordion" id="notesAccordion">
+
+                    <!-- ===== MODULE 1 ===== -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <strong>Module 1: An Overview of Java, Data Types, Variables, and Arrays</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#notesAccordion">
+                            <div class="accordion-body">
+                                <h5>An Overview of Java</h5>
+                                <p><strong>Object-Oriented Programming (OOP):</strong> Java is fundamentally an object-oriented language. This means it organizes software design around data, or objects, rather than functions and logic. The main principles are Encapsulation, Inheritance, Polymorphism, and Abstraction.</p>
+                                
+                                <h5>A First Simple Program</h5>
+                                <p>Every Java application begins with a `main()` method. The `System.out.println()` method is used to print output to the console.</p>
+                                <pre><code>class Example {
+    // A Java program begins with a call to main().
+    public static void main(String[] args) {
+        System.out.println("This is a simple Java program.");
+    }
+}</code></pre>
+
+                                <h5>A Second Short Program</h5>
+                                <p>This example demonstrates declaring a variable and using it.</p>
+                                <pre><code>class Example2 {
+    public static void main(String[] args) {
+        int myVar; // declare a variable
+        myVar = 1024; // assign it a value
+
+        System.out.println("myVar contains " + myVar);
+    }
+}</code></pre>
+                                
+                                <h5>Two Control Statements</h5>
+                                <p>The `if` statement allows for conditional execution, and the `for` loop allows for repeated execution.</p>
+                                <pre><code>// Demonstrate an if statement and a for loop.
+class IfForExample {
+    public static void main(String[] args) {
+        int x, y;
+        y = 20;
+
+        // Loop from 0 to 9
+        for(x = 0; x < 10; x++) {
+            System.out.println("This is x: " + x);
+            System.out.println("This is y: " + y);
+            
+            // An if statement inside the loop
+            if (x == 5) {
+                System.out.println("x has reached 5!");
+            }
+            
+            y = y - 2;
+        }
+    }
+}</code></pre>
+
+                                <h5>Using Blocks of Code</h5>
+                                <p>A block of code is a group of two or more statements enclosed in curly braces `{}`. It creates a new local scope.</p>
+
+                                <h5>Lexical Issues</h5>
+                                <p>These are the low-level rules that define how a Java program is written. They include:</p>
+                                <ul>
+                                    <li><strong>Whitespace:</strong> Java is a free-form language. Spaces, tabs, and newlines don't affect the code's meaning, but are used for readability.</li>
+                                    <li><strong>Identifiers:</strong> Names given to classes, methods, and variables.</li>
+                                    <li><strong>Literals:</strong> Constant values, like `100`, `19.7`, `'X'`, or `"Hello"`.</li>
+                                    <li><strong>Comments:</strong> `//` for single-line, `/* ... */` for multi-line.</li>
+                                    <li><strong>Separators:</strong> Characters like `()`, `{}`, `[]`, `;`, `,`, `.`.</li>
+                                    <li><strong>Keywords:</strong> Reserved words like `public`, `class`, `int`, `for`, etc.</li>
+                                </ul>
+                                
+                                <h5>The Java Class Libraries</h5>
+                                <p>Java is powerful because of its extensive Application Programming Interface (API), also known as the class libraries. These are pre-written classes that provide a vast amount of functionality, such as I/O, networking, and data structures.</p>
+
+                                <h5>Data Types, Variables, and Arrays</h5>
+                                <p><strong>Java Is a Strongly Typed Language:</strong> Every variable must have a declared type, and the compiler checks for type compatibility.</p>
+                                
+                                <h5>The Primitive Types</h5>
+                                <ul>
+                                    <li><strong>Integers:</strong> `byte` (8-bit), `short` (16-bit), `int` (32-bit), `long` (64-bit).</li>
+                                    <li><strong>Floating-Point Types:</strong> `float` (32-bit), `double` (64-bit).</li>
+                                    <li><strong>Characters:</strong> `char` (16-bit Unicode).</li>
+                                    <li><strong>Booleans:</strong> `boolean` (represents `true` or `false`).</li>
+                                </ul>
+
+                                <h5>A Closer Look at Literals</h5>
+                                <p>Integer literals are `int` by default (e.g., `10`). To specify a `long`, append `L` (e.g., `10L`). Floating-point literals are `double` by default (e.g., `10.5`). To specify a `float`, append `F` (e.g., `10.5F`).</p>
+
+                                <h5>Variables</h5>
+                                <p>A variable is a named memory location. It's declared with a type and an identifier, like `int count;`.</p>
+
+                                <h5>Type Conversion and Casting</h5>
+                                <p>Casting allows you to convert a value from one type to another. It's required when converting from a larger type to a smaller type (a "narrowing conversion").</p>
+                                <pre><code>double d = 100.04;
+long l = (long)d; // Explicit cast to long (loses fractional part)
+int i = (int)l;   // Explicit cast to int</code></pre>
+
+                                <h5>Automatic Type Promotion in Expressions</h5>
+                                <p>In an expression, Java automatically promotes smaller types (like `byte` and `short`) to `int` before the calculation is performed. If one operand is `long`, `float`, or `double`, the whole expression is promoted to that type.</p>
+
+                                <h5>Arrays</h5>
+                                <p>An array is a collection of a fixed number of elements of the same type. They are declared, created, and then initialized.</p>
+                                <pre><code>// Declare, create, and initialize a one-dimensional array
+int[] monthDays = new int[12];
+monthDays[0] = 31; // January
+monthDays[1] = 28; // February
+// ...and so on.
+
+// A two-dimensional array
+int[][] twoD = new int[4][5];</code></pre>
+
+                                <h5>A Few Words About Strings</h5>
+                                <p>In Java, `String` is not a primitive type. It is a class. `String` objects are immutable, meaning once created, their contents cannot be changed.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== MODULE 2 ===== -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <strong>Module 2: Operators and Control Statements</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#notesAccordion">
+                            <div class="accordion-body">
+                                <h5>Operators</h5>
+                                <ul>
+                                    <li><strong>Arithmetic Operators:</strong> `+`, `-`, `*`, `/`, `%` (modulus), `++` (increment), `--` (decrement).</li>
+                                    <li><strong>The Bitwise Operators:</strong> Work on the individual bits of their operands. `&` (AND), `|` (OR), `^` (XOR), `~` (NOT), `>>` (right shift), `<<` (left shift), `>>>` (unsigned right shift).</li>
+                                    <li><strong>Relational Operators:</strong> `==`, `!=`, `>`, `<`, `>=`, `<=`. They produce a `boolean` result.</li>
+                                    <li><strong>Boolean Logical Operators:</strong> `&` (logical AND), `|` (logical OR), `^` (logical XOR), `||` (short-circuit OR), `&&` (short-circuit AND), `!` (logical NOT).</li>
+                                    <li><strong>The Assignment Operator:</strong> The `=` operator. Compound assignments also exist, like `+=`, `-=`, `*=`, etc.</li>
+                                    <li><strong>The `?` Operator:</strong> The ternary operator, a shorthand for an if-then-else statement. `variable = expression ? value_if_true : value_if_false;`</li>
+                                </ul>
+
+                                <h5>Operator Precedence</h5>
+                                <p>Determines the order in which operators are evaluated. For example, multiplication and division are performed before addition and subtraction.</p>
+
+                                <h5>Using Parentheses</h5>
+                                <p>Parentheses `()` are used to alter the normal precedence of operators. They raise the precedence of the operations within them. It's good practice to use them for clarity even when not strictly necessary.</p>
+
+                                <h5>Control Statements</h5>
+                                <ul>
+                                    <li><strong>Java’s Selection Statements:</strong>
+                                        <ul>
+                                            <li>`if`: Executes code if a condition is true. Can be followed by `else if` and `else`.</li>
+                                            <li>`switch`: Selects from a set of discrete values (cases). Works with `byte`, `short`, `char`, `int`, `enum`, and `String`.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Iteration Statements:</strong>
+                                        <ul>
+                                            <li>`while`: Repeats a block of code while a condition is true. The condition is checked at the start.</li>
+                                            <li>`do-while`: Repeats a block of code while a condition is true. The condition is checked at the end, so the loop always executes at least once.</li>
+                                            <li>`for`: A compact loop for iterating a specific number of times. Includes initialization, condition, and iteration expressions.</li>
+                                            <li>`for-each`: A special `for` loop for iterating over arrays or collections.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Jump Statements:</strong>
+                                        <ul>
+                                            <li>`break`: Exits a loop or a `switch` statement immediately.</li>
+                                            <li>`continue`: Skips the current iteration of a loop and proceeds to the next.</li>
+                                            <li>`return`: Exits from the current method.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <pre><code>// Example of switch and for-each loop
+class ControlExample {
+    public static void main(String[] args) {
+        // Switch statement
+        int month = 4;
+        String monthString;
+        switch (month) {
+            case 1:  monthString = "January"; break;
+            case 2:  monthString = "February"; break;
+            case 3:  monthString = "March"; break;
+            case 4:  monthString = "April"; break;
+            default: monthString = "Invalid month"; break;
+        }
+        System.out.println(monthString);
+
+        // For-each loop
+        int[] nums = { 1, 2, 3, 4, 5 };
+        int sum = 0;
+        for(int x : nums) { // for each int x in nums
+            sum += x;
+        }
+        System.out.println("Sum of nums is: " + sum);
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== MODULE 3 ===== -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <strong>Module 3: Classes, Methods, and Inheritance</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#notesAccordion">
+                            <div class="accordion-body">
+                                <h5>Introducing Classes</h5>
+                                <p><strong>Class Fundamentals:</strong> A class is a template or blueprint for creating objects. It defines state (fields/variables) and behavior (methods).</p>
+                                <p><strong>Declaring Objects:</strong> You declare a variable of the class type, then use the `new` keyword to allocate memory and create an instance (an object).</p>
+                                <p><strong>Assigning Object Reference Variables:</strong> `Box myBox = new Box();` Here, `myBox` doesn't hold the object itself, but a reference (memory address) to the object.</p>
+
+                                <h5>Introducing Methods & Constructors</h5>
+                                <p><strong>Methods:</strong> A method is a block of code that performs a specific task. It provides a way to access and manipulate an object's state.</p>
+                                <p><strong>Constructors:</strong> A special method that is called when an object is created. It's used to initialize the object's state. It has the same name as the class and no return type.</p>
+                                <p><strong>The `this` Keyword:</strong> Inside a method, `this` is a reference to the current object—the object whose method was called. It's often used to distinguish between instance variables and parameters with the same name.</p>
+                                <pre><code>class Box {
+    double width;
+    double height;
+    
+    // Constructor using 'this'
+    Box(double width, double height) {
+        this.width = width; // 'this.width' is the instance variable
+        this.height = height; // 'width' is the parameter
+    }
+
+    // Method to calculate volume
+    double volume() {
+        return width * height;
+    }
+}</code></pre>
+
+                                <h5>Garbage Collection and `finalize()`</h5>
+                                <p><strong>Garbage Collection:</strong> The automatic process in Java for reclaiming the memory of objects that are no longer referenced. You do not need to manually deallocate memory.</p>
+                                <p><strong>The `finalize()` Method:</strong> This method is called by the garbage collector just before an object is reclaimed. **Note: `finalize()` is deprecated and its use is strongly discouraged.** Modern alternatives like `try-with-resources` should be used for resource management.</p>
+                                
+                                <h5>A Closer Look at Methods and Classes</h5>
+                                <ul>
+                                    <li><strong>Overloading Methods:</strong> Creating multiple methods with the same name but different parameters (either different number of parameters or different types).</li>
+                                    <li><strong>Using Objects as Parameters:</strong> You can pass objects to methods just like any other data type.</li>
+                                    <li><strong>Returning Objects:</strong> Methods can also return objects.</li>
+                                    <li><strong>Recursion:</strong> A method that calls itself.</li>
+                                    <li><strong>Introducing Access Control:</strong> Keywords that set the visibility of members. `public` (accessible everywhere), `private` (accessible only within its own class), `protected` (accessible within its package and by subclasses).</li>
+                                    <li><strong>Understanding `static`:</strong> A `static` member belongs to the class itself, not to any single object instance. All objects of the class share the same static variable.</li>
+                                    <li><strong>Introducing `final`:</strong> A `final` variable is a constant. A `final` method cannot be overridden. A `final` class cannot be inherited.</li>
+                                </ul>
+                                
+                                <h5>Inheritance</h5>
+                                <p><strong>Inheritance:</strong> The process where one class (subclass) acquires the properties of another (superclass) using the `extends` keyword.</p>
+                                <p><strong>Using `super`:</strong> The `super` keyword is used to refer to the immediate superclass. It can be used to call the superclass's constructor (`super()`) or to call a superclass method (`super.methodName()`).</p>
+                                <p><strong>Method Overriding:</strong> A subclass provides a specific implementation of a method that is already defined in its superclass.</p>
+                                <p><strong>Dynamic Method Dispatch:</strong> The mechanism by which a call to an overridden method is resolved at runtime, rather than compile time. This is how polymorphism is implemented in Java.</p>
+                                <p><strong>Using Abstract Classes:</strong> A class declared with the `abstract` keyword cannot be instantiated. It can have abstract methods (methods without a body) that must be implemented by its concrete subclasses.</p>
+                                <p><strong>The `Object` Class:</strong> The root of the class hierarchy. Every class in Java is a direct or indirect subclass of `Object`.</p>
+                                <pre><code>// Superclass
+abstract class Figure {
+    double dim1;
+    double dim2;
+    Figure(double a, double b) { dim1 = a; dim2 = b; }
+    // area is now an abstract method
+    abstract double area();
+}
+
+// Subclass
+class Rectangle extends Figure {
+    Rectangle(double a, double b) {
+        super(a, b); // call superclass constructor
+    }
+    // override area for rectangle
+    double area() {
+        System.out.println("Inside Area for Rectangle.");
+        return dim1 * dim2;
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ===== MODULE 4 ===== -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <strong>Module 4: Packages, Interfaces, and Exception Handling</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#notesAccordion">
+                            <div class="accordion-body">
+                                <h5>Packages and Interfaces</h5>
+                                <p><strong>Packages:</strong> A way to group related classes and interfaces, preventing naming conflicts. Corresponds to the directory structure.</p>
+                                <p><strong>Access Protection:</strong> Packages add another layer of access control. A member with no explicit access modifier (default access) is visible only to classes within the same package.</p>
+                                <p><strong>Importing Packages:</strong> The `import` keyword is used to bring classes from a package into the current namespace, e.g., `import java.util.ArrayList;`.</p>
+                                <p><strong>Interfaces:</strong> A reference type in Java. It is a collection of abstract methods. A class `implements` an interface, thereby inheriting the abstract methods of the interface. An interface is a "contract" that a class agrees to follow.</p>
+                                <pre><code>// An interface definition
+interface Drivable {
+    void drive(); // abstract method (no body)
+    void stop();
+}
+
+// A class implementing the interface
+class Vehicle implements Drivable {
+    @Override
+    public void drive() {
+        System.out.println("Vehicle is driving.");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("Vehicle has stopped.");
+    }
+}</code></pre>
+
+                                <h5>Exception Handling</h5>
+                                <p><strong>Exception-Handling Fundamentals:</strong> An exception is an event that disrupts the normal flow of the program. Exception handling allows you to manage these errors gracefully using `try`, `catch`, and `finally` blocks.</p>
+                                <p><strong>Exception Types:</strong> All exceptions are subclasses of the `Throwable` class. `Exception` is for user-recoverable conditions. `Error` is for serious problems that are not expected to be caught (e.g., `OutOfMemoryError`).</p>
+                                <p><strong>Using `try` and `catch`:</strong> The `try` block encloses the code that might throw an exception. The `catch` block "catches" the exception and executes code to handle it.</p>
+                                <p><strong>`throw`, `throws`, `finally`:</strong>
+                                    <ul>
+                                        <li>`throw`: Used to manually throw an exception.</li>
+                                        <li>`throws`: Declares that a method might throw a particular type of exception.</li>
+                                        <li>`finally`: A block of code that is always executed, whether an exception is thrown or not. Used for cleanup tasks like closing files.</li>
+                                    </ul>
+                                </p>
+                                <p><strong>Creating Your Own Exception Subclasses:</strong> You can create custom exceptions by extending the `Exception` class. This is useful for handling application-specific errors.</p>
+                                <pre><code>// A method that uses try-catch-finally
+public void processFile(String fileName) {
+    FileReader reader = null; // Declare outside try
+    try {
+        reader = new FileReader(fileName);
+        // ... code to read from the file ...
+        System.out.println("File processed.");
+    } catch (FileNotFoundException e) {
+        System.err.println("Error: File not found - " + e.getMessage());
+    } finally {
+        // This block always executes
+        System.out.println("Finally block executed.");
+        if (reader != null) {
+            try {
+                reader.close(); // Close the file
+            } catch (IOException e) {
+                System.err.println("Error closing file.");
+            }
+        }
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== MODULE 5 ===== -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                <strong>Module 5: Enumerations, I/O, Applets & String Handling</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#notesAccordion">
+                            <div class="accordion-body">
+                                <h5>Enumerations, Type Wrappers, and Other Topics</h5>
+                                <p><strong>Enumerations (`enum`):</strong> A special data type that enables for a variable to be a set of predefined constants.</p>
+                                <p><strong>Type Wrappers:</strong> Classes that "wrap" a primitive type into an object. E.g., `Integer` for `int`, `Double` for `double`. This allows primitives to be used in contexts where objects are required, like collections. The automatic conversion between primitives and their wrapper classes is called autoboxing and unboxing.</p>
+                                
+                                <h5>I/O Basics</h5>
+                                <p><strong>Reading Console Input:</strong> Typically done using the `Scanner` class from `java.util`.</p>
+                                <p><strong>Writing Console Output:</strong> Using `System.out.println()` or `System.out.print()`.</p>
+                                <p><strong>Reading and Writing Files:</strong> Can be done using classes like `FileReader`, `FileWriter`, or more modern approaches with `java.nio.file.Files`.</p>
+                                <pre><code>import java.util.Scanner;
+
+class ConsoleIO {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        System.out.println("Hello, " + name + "!");
+        scanner.close();
+    }
+}</code></pre>
+                                
+                                <h5>Applet Fundamentals</h5>
+                                <p><strong>Important Note:</strong> Applets are a legacy, deprecated technology for running Java code in web browsers. They are no longer supported by modern browsers and are not used in new development. Modern web applications use JavaScript frameworks (like React, Angular) for the front-end and Java frameworks (like Spring Boot) for the back-end. This information is provided for historical and syllabus completion purposes.</p>
+
+                                <h5>Other Topics & Modifiers</h5>
+                                <ul>
+                                    <li><strong>`transient` and `volatile`:</strong> `transient` prevents a field from being serialized. `volatile` indicates that a variable's value may be modified by different threads.</li>
+                                    <li><strong>`instanceof`:</strong> An operator that tests if an object is an instance of a specified type (a class, subclass, or interface).</li>
+                                    <li><strong>`strictfp`:</strong> A keyword that restricts floating-point calculations to ensure portability.</li>
+                                    <li><strong>`native`:</strong> A keyword that indicates a method is implemented in another language, typically C or C++.</li>
+                                    <li><strong>`assert`:</strong> A keyword used to test assumptions in your code. Can be enabled or disabled at runtime.</li>
+                                    <li><strong>`static import`:</strong> Allows members (fields and methods) of a class to be used without specifying the class name.</li>
+                                </ul>
+
+                                <h5>String Handling</h5>
+                                <p>The `String` class provides numerous methods for manipulating strings.</p>
+                                <ul>
+                                    <li><strong>Constructors/Literals:</strong> `String s = "hello";` is most common.</li>
+                                    <li><strong>`length()`:</strong> Returns the number of characters.</li>
+                                    <li><strong>Character Extraction:</strong> `charAt()`, `getChars()`, `getBytes()`.</li>
+                                    <li><strong>String Comparison:</strong> `equals()` (case-sensitive), `equalsIgnoreCase()` (case-insensitive), `compareTo()`.</li>
+                                    <li><strong>Searching Strings:</strong> `indexOf()`, `lastIndexOf()`.</li>
+                                    <li><strong>Modifying a String:</strong> `substring()`, `concat()`, `replace()`, `trim()`. Note: These methods return a *new* string because `String` is immutable.</li>
+                                </ul>
+                                <h5>`StringBuffer` and `StringBuilder`</h5>
+                                <p>These classes are used when you need a mutable (modifiable) string. `StringBuilder` is faster but not thread-safe. `StringBuffer` is thread-safe and should be used in multi-threaded environments.</p>
+                                <pre><code>// Example of StringBuilder
+StringBuilder sb = new StringBuilder("Hello");
+sb.append(" World"); // Modifies the existing object
+sb.insert(5, ", Java");
+System.out.println(sb.toString()); // Prints "Hello, Java World"</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ================== END OF ACCORDION ================== -->
+
+            </div>
+        </div>
+    </main>
+    
+    <!-- JavaScript Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

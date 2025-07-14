@@ -1,0 +1,35 @@
+{
+  "name": "oop-concepts",
+  "questions": [
+    {
+      "question": "Which principle is about bundling data and methods that work on the data within one unit?",
+      "options": [
+        "Inheritance",
+        "Encapsulation",
+        "Polymorphism",
+        "Abstraction"
+      ],
+      "answer": "Encapsulation"
+    },
+    {
+      "question": "The ability of an object to take on many forms is known as?",
+      "options": [
+        "Inheritance",
+        "Encapsulation",
+        "Polymorphism",
+        "Abstraction"
+      ],
+      "answer": "Polymorphism"
+    },
+    {
+      "question": "In Java, which keyword is used to inherit the properties of a class?",
+      "options": [
+        "extends",
+        "implements",
+        "super",
+        "this"
+      ],
+      "answer": "extends"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+/* === General Body & Font Styles === */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* A standard fallback color */
+}
+
+/* === NEW: Rule for Full-Screen Background Pages === */
+body.full-bg {
+    background-color: #333; /* Dark fallback color for when images are loading */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    /* This transition is the key to the smooth fade effect */
+    transition: background-image 1.5s ease-in-out;
+}
+
+
+/* === Header Styles === */
+.top-bar {
+    background-color: #009933;
+    height: 10px;
+}
+
+.main-header {
+    /* CHANGED: From solid white to semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.main-logo {
+    max-height: 90px;
+    margin-right: 20px;
+}
+
+.college-title .society-name,
+.college-title .affiliation {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.college-title .institute-name {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #003366;
+    margin: 0;
+}
+
+
+/* === Navbar Styles === */
+.navbar {
+    /* CHANGED: From a solid color to a semi-transparent version */
+    background-color: rgba(10, 77, 104, 0.9); /* Dark teal with 90% opacity */
+    width: 100%;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+    font-weight: 500;
+    padding: 1rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f8f9fa; 
+}
+
+.navbar-nav .nav-link.active {
+    color: #ffffff;
+    font-weight: 700;
+    border-bottom: 3px solid #ffffff;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* === Main Content Area === */
+/* CHANGED: This rule is now just for spacing, not for the background */
+#main-content {
+    width: 100%;
+    padding: 4rem 0;
+    /* All background properties have been moved to body.full-bg */
+}
+
+/* The "floating" white card for content */
+.content-box {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+
+/* Styling for the PDF download list */
+.list-group-item {
+    font-size: 1.1rem; /* Make the text a little bigger */
+    font-weight: 500;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.list-group-item:hover {
+    transform: scale(1.02); /* Slightly enlarges the item on hover */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Adds a subtle shadow on hover */
+    z-index: 10; /* Ensures the hovered item appears on top of others */
+}
+
+/* === Personal Branding Styles === */
+
+/* The main container for your branding info */
+.personal-branding {
+    align-items: center; /* Vertically aligns text and image */
+}
+
+/* The circular profile picture */
+.profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* This is what makes the image round */
+    object-fit: cover; /* Prevents the image from being squished */
+    margin-left: 15px; /* Adds some space between your name and picture */
+    border: 3px solid #0a4d68; /* A nice border matching the navbar color */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* The container for your name and title */
+.instructor-info {
+    text-align: right;
+    color: #333;
+}
+
+/* Your name */
+.instructor-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Your title/designation */
+.instructor-title {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* === Styling for Code Blocks in Notes === */
+
+/* The <pre> tag is a container that preserves whitespace */
+pre {
+    background-color: #2d2d2d; /* A dark background */
+    color: #f8f8f2; /* Light text for contrast */
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto; /* Adds a horizontal scrollbar if code is too wide */
+    font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap; /* Allows long lines to wrap */
+}
+
+/* The <code> tag holds the actual code */
+pre code {
+    background-color: transparent; /* The code tag itself should be transparent */
+    color: inherit;
+    padding: 0;
+}
