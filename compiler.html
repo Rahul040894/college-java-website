@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <!-- Header and Navbar (Consistent with other pages) -->
+    <!-- Header and Navbar -->
     <div class="top-bar"></div>
     <header class="main-header">
         <div class="container py-3">
@@ -72,13 +72,10 @@
                     <!-- Left side: Code and Input -->
                     <div class="col-lg-8">
                         <h5>Your Code:</h5>
-                        <!-- THIS IS THE SINGLE, CORRECT DIV FOR THE CODE EDITOR -->
                         <div id="codeEditor" class="mb-3"></div>
-
                         <h5>Standard Input (stdin):</h5>
                         <textarea id="stdInput" class="form-control" rows="5" placeholder="Enter any input your program needs here..."></textarea>
                     </div>
-
                     <!-- Right side: Output -->
                     <div class="col-lg-4">
                         <h5>Output:</h5>
@@ -97,15 +94,22 @@
         </div>
     </main>
     
-    <!-- JavaScript Files & Toast Notification Element -->
+    <!-- ========== THE SINGLE, CORRECT BLOCK FOR JAVASCRIPT & TOAST ========== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+
     <div class="toast-container position-fixed top-0 end-0 p-3">
         <div id="copyPasteToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header"><strong class="me-auto">Feature Disabled</strong><button type="button" class="btn-close" data-bs-dismiss="toast"></button></div>
-            <div class="toast-body">Copy-paste is disabled to encourage manual coding practice.</div>
+            <div class="toast-header">
+                <strong class="me-auto">Feature Disabled</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Copy-paste is disabled to encourage manual coding practice.
+            </div>
         </div>
     </div>
+    <!-- ======================================================================= -->
 
 </body>
 </html>
