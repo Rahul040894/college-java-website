@@ -1,10 +1,12 @@
-// js/live-test.js (Final Corrected Version)
+// js/live-test.js (The Final, Stabilized Production Version)
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Configuration ---
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     const testName = 'final-exam-java';
     const testDurationMinutes = 30;
 
+    // --- Element Selectors ---
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
     const completeContainer = document.getElementById('complete-container');
@@ -15,10 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const examForm = document.getElementById('exam-form');
     let timerInterval;
 
-    entryForm.addEventListener('submit', async (e) => {
+    // --- Event Listeners ---
+    if (entryForm) {
+        entryForm.addEventListener('submit', handleStartTest);
+    }
+
+    // --- Main Functions ---
+
+    async function handleStartTest(e) {
         e.preventDefault();
-        const studentName = document.getElementById('studentName').value.trim();
-        const studentId = document.getElementById('studentId').value.trim();
+        const studentNameInput = document.getElementById('studentName');
+        const studentIdInput = document.getElementById('studentId');
+        const studentName = studentNameInput.value.trim();
+        const studentId = studentIdInput.value.trim();
         
         if (!studentName || !studentId) {
             showError("Please fill in all fields.");
@@ -45,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             startBtn.disabled = false;
             startBtn.innerHTML = 'Start Test';
         }
-    });
+    }
 
     function startTest(questions, name, id) {
         entryContainer.classList.add('d-none');
@@ -62,10 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         questions.forEach((q, index) => {
             const questionElement = document.createElement('div');
             questionElement.className = 'mb-4';
-            
-            // THE FIX IS HERE: Corrected from 'options..map' to 'options.map'
             let optionsHTML = q.options.map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join('');
-            
             questionElement.innerHTML = `<h5>${index + 1}. ${q.question.replace(/\n/g, '<br>')}</h5>${optionsHTML}`;
             examForm.appendChild(questionElement);
         });
@@ -79,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     async function handleSubmission(e) {
-        if(e) e.preventDefault();
+        if (e) e.preventDefault();
         clearInterval(timerInterval);
         
         const submitBtn = document.getElementById('submitBtn');
@@ -117,13 +125,17 @@ document.addEventListener('DOMContentLoaded', () => {
             let seconds = timeLeft % 60;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             
-            timerElement.textContent = `Time Left: ${minutes}:${seconds}`;
+            if (timerElement) {
+                timerElement.textContent = `Time Left: ${minutes}:${seconds}`;
+            }
             
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
-                timerElement.textContent = 'Time Up!';
-                timerElement.classList.remove('bg-danger');
-                timerElement.classList.add('bg-warning');
+                if (timerElement) {
+                    timerElement.textContent = 'Time Up!';
+                    timerElement.classList.remove('bg-danger');
+                    timerElement.classList.add('bg-warning');
+                }
                 handleSubmission();
             }
             timeLeft--;
