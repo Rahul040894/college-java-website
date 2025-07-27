@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <!-- Header and Navbar (This will be the updated version) -->
+    <!-- Header and Navbar (Consistent with other pages) -->
     <div class="top-bar"></div>
     <header class="main-header">
         <div class="container py-3">
@@ -47,8 +47,7 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="notes.html">Module-wise Notes</a></li>
                     <li class="nav-item"><a class="nav-link" href="pyq.html">University PYQs</a></li>
-                    <!-- We will add the new link here in the next action -->
-                    <li class="nav-item"><a class="nav-link" href="coding.html">Coding Problems</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="coding.html">Coding Problems</a></li>
                     <li class="nav-item"><a class="nav-link" href="compiler.html">Java Online Compiler</a></li>
                     <li class="nav-item"><a class="nav-link" href="mcq-test.html">MCQ Tests</a></li>
                 </ul>
@@ -77,8 +76,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
     
-    <!-- Toast Notification Element (for submissions) -->
-    <div class="toast-container position-fixed top-0 end-0 p-3">
+    <!-- Toast Notification Elements -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100">
+        <!-- Toast for successful submission -->
         <div id="submissionToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-success text-white">
                 <strong class="me-auto">Success!</strong>
@@ -86,6 +86,16 @@
             </div>
             <div class="toast-body">
                 Your code has been submitted successfully.
+            </div>
+        </div>
+        <!-- THIS IS THE NEW TOAST for copy-paste blocking -->
+        <div id="copyPasteToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Feature Disabled</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                Copy-paste is disabled to encourage manual coding practice.
             </div>
         </div>
     </div>

@@ -1,23 +1,58 @@
 [
   {
-    "title": "Reverse a String",
-    "description": "Write a Java method that takes a string as input and returns the string reversed. You should not use any built-in reverse methods.",
-    "exampleInput": "hello",
-    "exampleOutput": "olleh",
-    "topic": "Strings"
+    "title": "Palindrome Checker",
+    "description": "Write a Java method that checks if a given string is a palindrome. A palindrome is a word, phrase, or sequence that reads the same forwards and backward. Your check should be case-insensitive and should ignore all non-alphanumeric characters (punctuation, spaces, etc.).",
+    "exampleInput": "Example 1: \"Racecar\"\nExample 2: \"hello\"\nExample 3: \"A man, a plan, a canal: Panama\"",
+    "exampleOutput": "Example 1: true\nExample 2: false\nExample 3: true",
+    "topic": "Strings / Algorithms",
+    "difficulty": "Easy"
   },
   {
-    "title": "Check for Palindrome",
-    "description": "Write a Java method that checks if a given string is a palindrome. A palindrome is a word that reads the same forwards and backward. The check should be case-insensitive.",
-    "exampleInput": "Madam",
-    "exampleOutput": "true",
-    "topic": "Strings"
+    "title": "Recursive Fibonacci Sequence",
+    "description": "Write a recursive Java method to find the Nth number in the Fibonacci sequence. The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones. The sequence starts with 0 and 1.\n\nBase Cases: F(0) = 0, F(1) = 1.\nRecursive Relation: F(N) = F(N-1) + F(N-2) for N > 1.",
+    "exampleInput": "N = 7",
+    "exampleOutput": "13 (The sequence is 0, 1, 1, 2, 3, 5, 8, 13...)",
+    "topic": "Recursion / Algorithms",
+    "difficulty": "Medium"
   },
   {
-    "title": "Find the Maximum Element in an Array",
-    "description": "Write a Java method that finds the largest integer in an array of integers. Return 0 if the array is empty.",
-    "exampleInput": "[1, 5, 2, 9, 3]",
-    "exampleOutput": "9",
-    "topic": "Arrays"
+    "title": "Rotate Array Left by K Positions",
+    "description": "Write a Java method that rotates an array of integers to the left by a specified number of positions, `k`. In a left rotation, each element of the array is shifted one unit to the left, and the first element of the array becomes the last element.",
+    "exampleInput": "Array = [1, 2, 3, 4, 5, 6, 7], k = 3",
+    "exampleOutput": "[4, 5, 6, 7, 1, 2, 3]",
+    "topic": "Arrays",
+    "difficulty": "Easy"
+  },
+  {
+    "title": "Implement Insertion Sort",
+    "description": "Write a Java method to sort an array of integers using the Insertion Sort algorithm. Insertion sort iterates through an input array and removes one element per iteration, finds the place the element belongs in the array, and then places it there.",
+    "exampleInput": "[12, 11, 13, 5, 6]",
+    "exampleOutput": "[5, 6, 11, 12, 13]",
+    "topic": "Sorting / Algorithms",
+    "difficulty": "Medium"
+  },
+  {
+    "title": "Print a Mirrored Number Pattern",
+    "description": "Given an integer N, write a Java program that prints a specific two-part, mirrored number and space pattern as shown in the example. Pay close attention to the number sequences and the spacing.",
+    "exampleInput": "N = 5",
+    "exampleOutput": "<pre><code>1\n12\n123\n1234\n12345\n    54321\n    5432\n    543\n    54\n    5</code></pre>",
+    "topic": "Loops / Patterns",
+    "difficulty": "Medium"
+  },
+  {
+    "title": "Singly Linked List Insertion",
+    "description": "Your task is to implement the insertion methods for a Singly Linked List from scratch. You will need to create a `Node` class and a `SinglyLinkedList` class. Implement the following two methods:\n\n1.  `insertAtBeginning(int data)`: Adds a new node with the given data to the front of the list.\n2.  `insertAtEnd(int data)`: Adds a new node with the given data to the end of the list.",
+    "exampleInput": "Operations: insertAtBeginning(10), insertAtEnd(20), insertAtBeginning(5)",
+    "exampleOutput": "Final List: 5 -> 10 -> 20",
+    "topic": "Linked Lists / Data Structures",
+    "difficulty": "Medium"
+  },
+  {
+    "title": "Doubly Linked List Deletion",
+    "description": "Your task is to implement the deletion method for a Doubly Linked List from scratch. You will need a `Node` class (with `next` and `prev` pointers) and a `DoublyLinkedList` class. Implement the following method:\n\n`deleteAtPosition(int position)`: Deletes the node at the given position (0-indexed). Handle edge cases like deleting the head, the tail, or a node from an empty/invalid list.",
+    "exampleInput": "List: 10 <-> 20 <-> 30 <-> 40. Operation: deleteAtPosition(2)",
+    "exampleOutput": "Final List: 10 <-> 20 <-> 40",
+    "topic": "Linked Lists / Data Structures",
+    "difficulty": "Medium"
   }
 ]
