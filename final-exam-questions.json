@@ -1,0 +1,21 @@
+{
+  "testName": "final-exam-java",
+  "questions": [
+    {
+      "question": "What is the main purpose of the JVM?",
+      "options": ["To compile Java code", "To provide a platform-independent execution environment", "To write Java code", "To manage the database"],
+      "answer": "To provide a platform-independent execution environment"
+    },
+    {
+      "question": "Which of these keywords is used to prevent a method from being overridden?",
+      "options": ["static", "private", "abstract", "final"],
+      "answer": "final"
+    },
+    {
+      "question": "What does the 'static' keyword mean when applied to a variable?",
+      "options": ["The variable's value cannot be changed", "The variable belongs to the class, not an instance", "The variable can only be accessed by subclasses", "The variable is automatically initialized"],
+      "answer": "The variable belongs to the class, not an instance"
+    }
+    
+  ]
+}
