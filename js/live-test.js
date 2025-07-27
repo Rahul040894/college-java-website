@@ -1,9 +1,11 @@
-// js/live-test.js
+// js/live-test.js (Final Version with 30 Minute Timer)
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     const testName = 'final-exam-java'; // The name of our test
-    const testDurationMinutes = 90;
+    // ========== THIS IS THE TIMER CHANGE ==========
+    const testDurationMinutes = 30;
+    // ============================================
 
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         questions.forEach((q, index) => {
             const questionElement = document.createElement('div');
             questionElement.className = 'mb-4';
-            let optionsHTML = q.options.map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join('');
+            let optionsHTML = q.options..map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join('');
             questionElement.innerHTML = `<h5>${index + 1}. ${q.question}</h5>${optionsHTML}`;
             examForm.appendChild(questionElement);
         });
@@ -77,13 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     async function handleSubmission(e) {
         if(e) e.preventDefault();
-        clearInterval(timerInterval); // Stop the timer
+        clearInterval(timerInterval);
         
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.disabled = true;
         submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Submitting...`;
         
-        // Disable all radio buttons
         examForm.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
 
         const answers = [];
@@ -122,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 timerElement.textContent = 'Time Up!';
                 timerElement.classList.remove('bg-danger');
                 timerElement.classList.add('bg-warning');
-                handleSubmission(); // Auto-submit
+                handleSubmission();
             }
             timeLeft--;
         }, 1000);
