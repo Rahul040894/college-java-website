@@ -1,4 +1,4 @@
-// js/script.js (Final Production Version with All Features)
+// js/script.js (The Final, Polished Production Version)
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
@@ -22,27 +22,64 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Online Compiler Logic ---
     const runButton = document.getElementById('runButton');
-    if (runButton) { /* This block is for the main compiler.html page */ const editor = CodeMirror(document.getElementById('codeEditor'), { value: `public class MyClass {\n    public static void main(String args[]) {\n        System.out.println("Hello, World!");\n    }\n}`, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true }); editor.setSize(null, "500px"); const toastElement = document.getElementById('copyPasteToast'); if (toastElement) { const copyPasteToast = new bootstrap.Toast(toastElement); const handleDisabledAction = (event) => { event.preventDefault(); copyPasteToast.show(); }; editor.on('paste', (instance, event) => handleDisabledAction(event)); editor.on('copy', (instance, event) => handleDisabledAction(event)); editor.on('cut', (instance, event) => handleDisabledAction(event)); editor.getWrapperElement().addEventListener('contextmenu', handleDisabledAction); } const stdInput = document.getElementById('stdInput'); const outputArea = document.getElementById('outputArea'); runButton.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = stdInput.value; runButton.disabled = true; runButton.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Waking Server...`; outputArea.textContent = 'Connecting to the server...'; const longLoadTimer = setTimeout(() => { outputArea.textContent = 'Server is waking up. Please be patient...'; }, 8000); try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, stdin: userInput }) }); clearTimeout(longLoadTimer); const result = await response.json(); if (result.error) { outputArea.textContent = result.error; } else if (result.output) { outputArea.textContent = result.output; } else { outputArea.textContent = "Execution finished, no output."; } } catch (error) { clearTimeout(longLoadTimer); outputArea.textContent = 'Could not connect. Please try again.'; } finally { runButton.disabled = false; runButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg> Run Code`; } }); }
+    if (runButton) { const editor = CodeMirror(document.getElementById('codeEditor'), { value: `public class MyClass {\n    public static void main(String args[]) {\n        System.out.println("Hello, World!");\n    }\n}`, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true }); editor.setSize(null, "500px"); const toastElement = document.getElementById('copyPasteToast'); if (toastElement) { const copyPasteToast = new bootstrap.Toast(toastElement); const handleDisabledAction = (event) => { event.preventDefault(); copyPasteToast.show(); }; editor.on('paste', (instance, event) => handleDisabledAction(event)); editor.on('copy', (instance, event) => handleDisabledAction(event)); editor.on('cut', (instance, event) => handleDisabledAction(event)); editor.getWrapperElement().addEventListener('contextmenu', handleDisabledAction); } const stdInput = document.getElementById('stdInput'); const outputArea = document.getElementById('outputArea'); runButton.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = stdInput.value; runButton.disabled = true; runButton.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Waking Server...`; outputArea.textContent = 'Connecting to the server...'; const longLoadTimer = setTimeout(() => { outputArea.textContent = 'Server is waking up. Please be patient...'; }, 8000); try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, stdin: userInput }) }); clearTimeout(longLoadTimer); const result = await response.json(); if (result.error) { outputArea.textContent = result.error; } else if (result.output) { outputArea.textContent = result.output; } else { outputArea.textContent = "Execution finished, no output."; } } catch (error) { clearTimeout(longLoadTimer); outputArea.textContent = 'Could not connect. Please try again.'; } finally { runButton.disabled = false; runButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg> Run Code`; } }); }
 
     // --- Coding Problems Logic ---
     const codingContainer = document.getElementById('coding-container');
     if (codingContainer) { loadProblemList(); }
     async function loadProblemList() { codingContainer.innerHTML = `<p>Loading coding problems...</p>`; try { const response = await fetch(`${liveServerUrl}/api/coding-problems`); const problems = await response.json(); if (problems.length === 0) { codingContainer.innerHTML = '<p>No coding problems have been added yet.</p>'; return; } codingContainer.innerHTML = `<h2>Coding Problems</h2><p>Select a problem to start coding.</p><hr><div class="list-group" id="problem-list"></div>`; const problemList = document.getElementById('problem-list'); problems.forEach(problem => { const problemLink = document.createElement('a'); problemLink.href = '#'; problemLink.className = 'list-group-item list-group-item-action'; problemLink.innerHTML = `<strong>${problem.title}</strong><span class="badge bg-secondary rounded-pill float-end">${problem.topic}</span>`; problemLink.onclick = (e) => { e.preventDefault(); loadSingleProblem(problem._id); }; problemList.appendChild(problemLink); }); } catch (error) { console.error('Failed to load problem list:', error); codingContainer.innerHTML = '<p class="text-danger">Could not load problems.</p>'; } }
-    async function loadSingleProblem(problemId) { codingContainer.innerHTML = `<p>Loading problem...</p>`; try { const response = await fetch(`${liveServerUrl}/api/coding-problems/${problemId}`); const problem = await response.json(); codingContainer.innerHTML = `<button id="backToListBtn" class="btn btn-sm btn-outline-secondary mb-3">← Back to Problem List</button><h3>${problem.title}</h3><p>${problem.description.replace(/\n/g, '<br>')}</p><hr><h5>Example:</h5><pre><strong>Input:</strong>\n${problem.exampleInput}\n\n<strong>Output:</strong>\n${problem.exampleOutput}</pre><hr><div class="row"><div class="col-lg-8"><h5>Your Solution:</h5><div id="codeEditor" class="mb-3"></div><h5>Standard Input (for testing):</h5><textarea id="stdInput" class="form-control" rows="3"></textarea></div><div class="col-lg-4"><h5>Test Output:</h5><pre id="outputArea" class="bg-dark text-white p-3 rounded" style="min-height: 300px; overflow-y: auto;"></pre></div></div><div class="mt-3"><button id="runCodeBtn" class="btn btn-success">Run Code</button> <button id="submitCodeBtn" class="btn btn-primary">Submit Final Code</button></div><div class="mt-3"><label for="studentIdInput" class="form-label">Enter Your Student ID to Submit:</label><input type="text" id="studentIdInput" class="form-control w-50"></div>`; document.getElementById('backToListBtn').onclick = loadProblemList; 
-        
-        // Initialize CodeMirror and disable copy-paste
-        const editor = CodeMirror(document.getElementById('codeEditor'), { value: `public class Solution {\n    // Note: The class name must be 'Solution' for the code to run correctly.\n    public static void main(String args[]) {\n        // Your solution here\n    }\n}`, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true });
-        editor.setSize(null, "400px");
-        
-        const toastElement = document.getElementById('copyPasteToast');
-        if(toastElement) { const copyPasteToast = new bootstrap.Toast(toastElement); const handleDisabledAction = (event) => { event.preventDefault(); copyPasteToast.show(); }; editor.on('paste', (instance, event) => handleDisabledAction(event)); editor.on('copy', (instance, event) => handleDisabledAction(event)); editor.on('cut', (instance, event) => handleDisabledAction(event)); editor.getWrapperElement().addEventListener('contextmenu', handleDisabledAction); }
-
-        const runCodeBtn = document.getElementById('runCodeBtn'); const submitCodeBtn = document.getElementById('submitCodeBtn'); const outputArea = document.getElementById('outputArea'); const stdInput = document.getElementById('stdInput'); const studentIdInput = document.getElementById('studentIdInput'); const submissionToast = new bootstrap.Toast(document.getElementById('submissionToast')); 
-        
-        runCodeBtn.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = stdInput.value; runCodeBtn.disabled = true; submitCodeBtn.disabled = true; runCodeBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Running...`; outputArea.textContent = 'Executing...'; try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, stdin: userInput }) }); const result = await response.json(); if(result.output) { outputArea.textContent = result.output; } else if (result.error) { outputArea.textContent = result.error; } } catch (error) { outputArea.textContent = "Error connecting to compiler."; } finally { runCodeBtn.disabled = false; submitCodeBtn.disabled = false; runCodeBtn.innerHTML = `Run Code`; } }); 
-        
-        submitCodeBtn.addEventListener('click', async () => { const studentId = studentIdInput.value.trim(); if (!studentId) { alert('Please enter your Student ID to submit.'); return; } const submittedCode = editor.getValue(); submitCodeBtn.disabled = true; runCodeBtn.disabled = true; submitCodeBtn.textContent = 'Submitting...'; try { const submitResponse = await fetch(`${liveServerUrl}/api/coding-problems/submit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, problemId, submittedCode }) }); if (!submitResponse.ok) throw new Error('Submission failed.'); submissionToast.show(); setTimeout(loadProblemList, 2000); } catch (error) { alert('An error occurred during submission.'); submitCodeBtn.disabled = false; runCodeBtn.disabled = false; submitCodeBtn.textContent = 'Submit Final Code'; } }); 
-        
+    
+    async function loadSingleProblem(problemId) { 
+        codingContainer.innerHTML = `<p>Loading problem...</p>`; 
+        try { 
+            const response = await fetch(`${liveServerUrl}/api/coding-problems/${problemId}`); 
+            const problem = await response.json(); 
+            
+            // This is the HTML template that builds the problem view.
+            // I've updated the label in this one specific line.
+            codingContainer.innerHTML = `
+                <button id="backToListBtn" class="btn btn-sm btn-outline-secondary mb-3">← Back to Problem List</button>
+                <h3>${problem.title}</h3>
+                <p>${problem.description.replace(/\n/g, '<br>')}</p><hr>
+                <h5>Example:</h5>
+                <pre><strong>Input:</strong>\n${problem.exampleInput}\n\n<strong>Output:</strong>\n${problem.exampleOutput}</pre><hr>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h5>Your Solution:</h5>
+                        <div id="codeEditor" class="mb-3"></div>
+                        <h5>Standard Input (for testing):</h5>
+                        <textarea id="stdInput" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5>Test Output:</h5>
+                        <pre id="outputArea" class="bg-dark text-white p-3 rounded" style="min-height: 300px; overflow-y: auto;"></pre>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button id="runCodeBtn" class="btn btn-success">Run Code</button> 
+                    <button id="submitCodeBtn" class="btn btn-primary">Submit Final Code</button>
+                </div>
+                <div class="mt-3">
+                    <!-- ========== THIS IS THE ONLY CHANGE ========== -->
+                    <label for="studentIdInput" class="form-label">Enter Your USN Number to Submit:</label>
+                    <!-- ============================================= -->
+                    <input type="text" id="studentIdInput" class="form-control w-50">
+                </div>`; 
+            
+            document.getElementById('backToListBtn').onclick = loadProblemList; 
+            
+            const editor = CodeMirror(document.getElementById('codeEditor'), { value: `public class Solution {\n    // Note: The class name must be 'Solution' for the code to run correctly.\n    public static void main(String args[]) {\n        // Your solution here\n    }\n}`, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true }); 
+            editor.setSize(null, "400px"); 
+            
+            const toastElement = document.getElementById('copyPasteToast');
+            if(toastElement) { const copyPasteToast = new bootstrap.Toast(toastElement); const handleDisabledAction = (event) => { event.preventDefault(); copyPasteToast.show(); }; editor.on('paste', (instance, event) => handleDisabledAction(event)); editor.on('copy', (instance, event) => handleDisabledAction(event)); editor.on('cut', (instance, event) => handleDisabledAction(event)); editor.getWrapperElement().addEventListener('contextmenu', handleDisabledAction); }
+            
+            const runCodeBtn = document.getElementById('runCodeBtn'); const submitCodeBtn = document.getElementById('submitCodeBtn'); const outputArea = document.getElementById('outputArea'); const stdInput = document.getElementById('stdInput'); const studentIdInput = document.getElementById('studentIdInput'); const submissionToast = new bootstrap.Toast(document.getElementById('submissionToast')); 
+            
+            runCodeBtn.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = stdInput.value; runCodeBtn.disabled = true; submitCodeBtn.disabled = true; runCodeBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Running...`; outputArea.textContent = 'Executing...'; try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, stdin: userInput }) }); const result = await response.json(); if(result.output) { outputArea.textContent = result.output; } else if (result.error) { outputArea.textContent = result.error; } } catch (error) { outputArea.textContent = "Error connecting to compiler."; } finally { runCodeBtn.disabled = false; submitCodeBtn.disabled = false; runCodeBtn.innerHTML = `Run Code`; } }); 
+            
+            submitCodeBtn.addEventListener('click', async () => { const studentId = studentIdInput.value.trim(); if (!studentId) { alert('Please enter your USN Number to submit.'); return; } const submittedCode = editor.getValue(); submitCodeBtn.disabled = true; runCodeBtn.disabled = true; submitCodeBtn.textContent = 'Submitting...'; try { const submitResponse = await fetch(`${liveServerUrl}/api/coding-problems/submit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, problemId, submittedCode }) }); if (!submitResponse.ok) throw new Error('Submission failed.'); submissionToast.show(); setTimeout(loadProblemList, 2000); } catch (error) { alert('An error occurred during submission.'); submitCodeBtn.disabled = false; runCodeBtn.disabled = false; submitCodeBtn.textContent = 'Submit Final Code'; } }); 
+            
         } catch (error) { console.error('Failed to load problem:', error); codingContainer.innerHTML = '<p class="text-danger">Could not load the problem.</p>'; } 
     }
 });
