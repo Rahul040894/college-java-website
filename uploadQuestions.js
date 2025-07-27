@@ -1,56 +1,44 @@
-// uploadQuestions.js
+// uploadQuestions.js (Corrected Version)
+
 const fs = require('fs');
 const mongoose = require('mongoose');
-require('dotenv').config(); // To use our DATABASE_URL
+require('dotenv').config();
 
-// Re-import our Test model from server.js (or define it here)
-const TestSchema = new mongoose.Schema({
+// Define the schema EXACTLY as it is in server.js for PracticeTest
+const PracticeTestSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
     questions: [new mongoose.Schema({
         question: { type: String, required: true },
         options: { type: [String], required: true },
         answer: { type: String, required: true }
-    })] 
+    })]
 });
-const Test = mongoose.model('Test', TestSchema);
-
+// THIS IS THE FIX: Use the 'PracticeTest' model name
+const PracticeTest = mongoose.model('PracticeTest', PracticeTestSchema);
 
 const uploadData = async () => {
-    // Check if a file path was provided
     const filePath = process.argv[2];
     if (!filePath) {
         console.error('ERROR: Please provide the path to the JSON file.');
-        console.log('Usage: node uploadQuestions.js <path-to-your-json-file.json>');
         return;
     }
 
     try {
-        // Connect to the database
         await mongoose.connect(process.env.DATABASE_URL);
-        console.log('✅ MongoDB Connected for upload.');
+        console.log('✅ MongoDB Connected for practice test upload.');
 
-        // Read the JSON file
         const data = fs.readFileSync(filePath, 'utf-8');
         const testData = JSON.parse(data);
 
-        // Check if a test with this name already exists
-        const existingTest = await Test.findOne({ name: testData.name });
-        if (existingTest) {
-            console.warn(`⚠️ A test named "${testData.name}" already exists. Aborting.`);
-            mongoose.connection.close();
-            return;
-        }
+        // Use findOneAndUpdate with upsert: it will create the test if it doesn't exist,
+        // or update it if a test with the same name already exists.
+        await PracticeTest.findOneAndUpdate({ name: testData.name }, testData, { upsert: true, new: true });
 
-        // Create a new test document and save it
-        const newTest = new Test(testData);
-        await newTest.save();
-
-        console.log(`✅ Successfully uploaded test: "${testData.name}"`);
+        console.log(`✅ Successfully uploaded/updated practice test: "${testData.name}"`);
 
     } catch (error) {
         console.error('❌ Error during upload:', error);
     } finally {
-        // Always close the connection
         mongoose.connection.close();
         console.log('Database connection closed.');
     }
