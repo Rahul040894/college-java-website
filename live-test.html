@@ -43,7 +43,6 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="notes.html">Module-wise Notes</a></li>
                     <li class="nav-item"><a class="nav-link" href="pyq.html">University PYQs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="coding.html">Coding Problems</a></li> <!-- The New Link -->
                     <li class="nav-item"><a class="nav-link" href="compiler.html">Java Online Compiler</a></li>
                     <li class="nav-item"><a class="nav-link" href="mcq-test.html">MCQ Tests</a></li>
                 </ul>
@@ -60,17 +59,19 @@
         <div class="container">
             <!-- Entry Form Container -->
             <div id="entry-container" class="content-box">
-                <h2>Final Java Examination</h2>
+                <!-- CHANGE 1: Title Updated -->
+                <h2>MCQ Exam on Java & DSA</h2>
                 <p>Please enter your details to begin the test. You will have 90 minutes to complete the questions. This test can only be attempted once.</p>
                 <hr>
                 <form id="entry-form">
+                    <!-- CHANGE 2 & 3: Field Reordered and Relabeled -->
                     <div class="mb-3">
-                        <label for="studentName" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="studentName" required>
+                        <label for="studentId" class="form-label">Enter Your USN Number</label>
+                        <input type="text" class="form-control" id="studentId" required>
                     </div>
                     <div class="mb-3">
-                        <label for="studentId" class="form-label">Student ID / Roll Number</label>
-                        <input type="text" class="form-control" id="studentId" required>
+                        <label for="studentName" class="form-label">Enter Your Full Name</label>
+                        <input type="text" class="form-control" id="studentName" required>
                     </div>
                     <button type="submit" id="startBtn" class="btn btn-primary btn-lg">Start Test</button>
                 </form>
