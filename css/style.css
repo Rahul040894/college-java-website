@@ -169,3 +169,40 @@ pre code {
     color: inherit;
     padding: 0;
 }
+
+/* ======================================================= */
+/* ==   Custom Styling for High-Visibility MCQ Radios   == */
+/* ======================================================= */
+
+/* Make the whole option area feel more clickable */
+.form-check-input, .form-check-label {
+    cursor: pointer;
+}
+
+/* --- 1. Making the Unchecked Circle Visible --- */
+/* This targets the round radio button itself */
+.form-check-input {
+    width: 1.25em;  /* Make it slightly larger */
+    height: 1.25em;
+    /* This is the key fix: a solid, medium-dark gray border */
+    border: 2px solid #808080; 
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* --- 2. Styling the Selected Option --- */
+/* This targets the radio button WHEN it is checked */
+.form-check-input:checked {
+    /* Use our website's dark teal for a consistent look */
+    background-color: #0a4d68; 
+    /* Match the border to the background */
+    border-color: #0a4d68;     
+}
+
+/* --- 3. Adding a 'Glow' Effect on Focus --- */
+/* This happens when a user clicks or tabs to the option */
+.form-check-input:focus {
+    border-color: #0a4d68;
+    outline: 0;
+    /* A subtle glow effect using our brand color */
+    box-shadow: 0 0 0 0.25rem rgba(10, 77, 104, 0.25);
+}
