@@ -2,20 +2,224 @@
   "testName": "final-exam-java",
   "questions": [
     {
-      "question": "What is the main purpose of the JVM?",
-      "options": ["To compile Java code", "To provide a platform-independent execution environment", "To write Java code", "To manage the database"],
-      "answer": "To provide a platform-independent execution environment"
+      "question": "Consider the following statements:\nI) Abstract class can not have constructors but can have static methods.\nII) A class that is declared with the abstract keyword is known as an abstract class in Java.\nIII) The syntax of abstract class in java is an abstract class A{}.\n\nWhich of the above statements is/are correct?",
+      "options": [
+        "I, II only",
+        "II, III only",
+        "I, III only",
+        "III only"
+      ],
+      "answer": "II, III only"
     },
     {
-      "question": "Which of these keywords is used to prevent a method from being overridden?",
-      "options": ["static", "private", "abstract", "final"],
-      "answer": "final"
+      "question": "What is the output of the following code?\n\n<pre><code>package com.rahuljavaskit.oops;\nclass First {\n    int i;\n}\nclass Second extends First {\n    int j;\n    void display() {\n        super.i = j + 1;\n        System.out.println(j + \" \" + i);\n    }\n}\npublic class InheritanceImplementation {\n    public static void main(String args[]) {\n        Second obj = new Second();\n        obj.i=1;\n        obj.j=2;\n        obj.display();\n    }\n}</code></pre>",
+      "options": [
+        "2 2",
+        "2 3",
+        "3 3",
+        "3 2"
+      ],
+      "answer": "2 3"
     },
     {
-      "question": "What does the 'static' keyword mean when applied to a variable?",
-      "options": ["The variable's value cannot be changed", "The variable belongs to the class, not an instance", "The variable can only be accessed by subclasses", "The variable is automatically initialized"],
-      "answer": "The variable belongs to the class, not an instance"
+      "question": "Consider the following statements:\nI) If a class has multiple methods having the same name but different in parameters, it is known as Method Overloading.\nII) Abstraction is the concept of defining real-world objects in terms of classes or interfaces.\nIII) Method overriding is a combination of inheritance and polymorphism.\n\nWhich of the above statement/s is/are correct?",
+      "options": [
+        "I only",
+        "I, II only",
+        "II, III only",
+        "I, II, III"
+      ],
+      "answer": "I, II, III"
+    },
+    {
+      "question": "Given the Teacher class, identify how many reference variables and objects are created in the following code snippet:\n\n<pre><code>Teacher name,id;\nname = new Teacher();\nTeacher teacher = new Teacher();</code></pre>",
+      "options": [
+        "Three reference variables and two objects are created.",
+        "One reference variable and two objects are created.",
+        "Three reference variables and three objects are created.",
+        "Two reference variables and two objects are created."
+      ],
+      "answer": "Three reference variables and two objects are created."
+    },
+    {
+      "question": "What is the output of the following code?\n\n<pre><code>public class Test {\n    private int data = 5;\n\n    public int getValue() {\n        return this.data;\n    }\n    public int getValue(int value) {\n        return (data+1);\n    }\n    public int getValue(int... value) {\n        return (data+2);\n    }\n\n    public static void main(String[] args) {\n        Test temp = new Test();\n        System.out.println(temp.getValue(7, 8, 12));\n    }\n}</code></pre>",
+      "options": [
+        "Error in code",
+        "8",
+        "10",
+        "7"
+      ],
+      "answer": "7"
+    },
+    {
+      "question": "What is the output of the following code?\n\n<pre><code>import java.util.ArrayList;\nimport java.util.Iterator;\n\npublic class Main {\n    public static void main(String args[]) {\n        ArrayList<Integer> arrayList = new ArrayList<>();\n        arrayList.add(1);\n        arrayList.add(2);\n\n        Iterator<Integer> it = arrayList.iterator();\n        while (it.hasNext()) {\n            Integer value = it.next();\n            if (value.equals(2))\n                arrayList.remove(value);\n        }\n    }\n}</code></pre>",
+      "options": [
+        "Compilation Error",
+        "Run Time Error",
+        "ConcurrentModificationException",
+        "Program will Run Successfully"
+      ],
+      "answer": "ConcurrentModificationException"
+    },
+    {
+      "question": "Which of the following is not true about BlockingQueue?",
+      "options": [
+        "It makes it easy to implement Producer-Consumer design pattern",
+        "Has inbuilt blocking support for put() and take() methods",
+        "put() and take() methods implement LIFO ordering.",
+        "put() and take() methods implement FIFO ordering."
+      ],
+      "answer": "put() and take() methods implement LIFO ordering."
+    },
+    {
+      "question": "Which of the following is true about deadlocks?",
+      "options": [
+        "It’s a situation where all the threads die simultaneously.",
+        "It’s a situation where two threads acquire locks on the same object simultaneously.",
+        "Deadlock describes a situation where two or more threads are blocked forever, waiting for each other.",
+        "There is no such concept as Deadlock in multithreading."
+      ],
+      "answer": "Deadlock describes a situation where two or more threads are blocked forever, waiting for each other."
+    },
+    {
+      "question": "Which of the following is not a means to avoid deadlock?",
+      "options": [
+        "Avoid using unnecessary multithreading",
+        "Using interruptible locks in the program",
+        "Avoiding nested loops and holding several locks at once",
+        "Executing foreign code while holding a lock"
+      ],
+      "answer": "Executing foreign code while holding a lock"
+    },
+    {
+      "question": "Select the false statement.",
+      "options": [
+        "notifyAll() method wakes up all threads waiting on the object's monitor.",
+        "wait(), notify(), and notifyAll() methods belong to the Object class.",
+        "The 'synchronized' keyword can be applied to methods and blocks.",
+        "Synchronization is a process of handling CPU scheduling."
+      ],
+      "answer": "Synchronization is a process of handling CPU scheduling."
+    },
+    {
+      "question": "What is the correct signature of the main method in Java?",
+      "options": [
+        "public static void main(String args)",
+        "public static void main(String[] args)",
+        "public void main(String[] args)",
+        "private static void main(String[] args)"
+      ],
+      "answer": "public static void main(String[] args)"
+    },
+    {
+      "question": "Which of these is a non-access modifier?",
+      "options": [
+        "public",
+        "private",
+        "static",
+        "protected"
+      ],
+      "answer": "static"
+    },
+    {
+      "question": "What is the primary difference between an abstract class and an interface in Java 8+?",
+      "options": [
+        "An interface can have instance variables, while an abstract class cannot.",
+        "A class can implement multiple abstract classes, but only one interface.",
+        "An abstract class can have constructors and state (instance variables), while an interface cannot.",
+        "An abstract class cannot have static methods."
+      ],
+      "answer": "An abstract class can have constructors and state (instance variables), while an interface cannot."
+    },
+    {
+      "question": "Consider the following code. What will be printed to the console?\n\n<pre><code>String s1 = \"Java\";\nString s2 = \"Java\";\nString s3 = new String(\"Java\");\n\nSystem.out.println((s1 == s2) + \", \" + (s1.equals(s3)));</code></pre>",
+      "options": [
+        "true, true",
+        "true, false",
+        "false, true",
+        "false, false"
+      ],
+      "answer": "true, true"
+    },
+    {
+      "question": "What is the output of the following exception handling code?\n\n<pre><code>public class Test {\n    public static int testMethod() {\n        try {\n            return 1;\n        } finally {\n            System.out.print(\"Finally block is executed. \");\n        }\n    }\n\n    public static void main(String[] args) {\n        System.out.print(\"Return value is: \" + testMethod());\n    }\n}</code></pre>",
+      "options": [
+        "Return value is: 1",
+        "Finally block is executed. Return value is: 1",
+        "Compilation Error",
+        "An exception is thrown at runtime"
+      ],
+      "answer": "Finally block is executed. Return value is: 1"
+    },
+    {
+      "question": "In the Java Collections Framework, which interface provides a contract for sorting objects based on their natural ordering?",
+      "options": [
+        "Comparator",
+        "Comparable",
+        "Serializable",
+        "Iterable"
+      ],
+      "answer": "Comparable"
+    },
+    {
+      "question": "What is the difference between StringBuilder and StringBuffer?",
+      "options": [
+        "StringBuilder is immutable, while StringBuffer is mutable.",
+        "StringBuilder is synchronized and thread-safe, while StringBuffer is not.",
+        "StringBuffer is synchronized and thread-safe, while StringBuilder is not.",
+        "There is no difference; they are interchangeable."
+      ],
+      "answer": "StringBuffer is synchronized and thread-safe, while StringBuilder is not."
+    },
+    {
+      "question": "Where are local variables and object references stored in the JVM memory?",
+      "options": [
+        "Heap",
+        "Stack",
+        "Method Area",
+        "PC Registers"
+      ],
+      "answer": "Stack"
+    },
+    {
+      "question": "What is 'type erasure' in the context of Java Generics?",
+      "options": [
+        "A process where the compiler removes all generic type information at compile time.",
+        "A runtime error that occurs when a wrong type is used in a generic collection.",
+        "A feature that allows casting generic types to any other type.",
+        "The process of creating new data types."
+      ],
+      "answer": "A process where the compiler removes all generic type information at compile time."
+    },
+    {
+      "question": "What is the purpose of the `try-with-resources` statement in Java?",
+      "options": [
+        "To try multiple resources in a single try block.",
+        "To ensure that each resource is closed at the end of the statement, avoiding resource leaks.",
+        "To allocate more memory resources to the try block.",
+        "To catch resource-specific exceptions only."
+      ],
+      "answer": "To ensure that each resource is closed at the end of the statement, avoiding resource leaks."
+    },
+    {
+      "question": "Which Java 8 Stream API intermediate operation would you use to transform each element in a stream into another element?",
+      "options": [
+        "filter()",
+        "forEach()",
+        "reduce()",
+        "map()"
+      ],
+      "answer": "map()"
+    },
+    {
+      "question": "When is a constructor called?",
+      "options": [
+        "When a method of the class is called.",
+        "When an object of the class is created using the 'new' keyword.",
+        "When the class is loaded into memory.",
+        "When the garbage collector is about to destroy the object."
+      ],
+      "answer": "When an object of the class is created using the 'new' keyword."
     }
-    
   ]
 }

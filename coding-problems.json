@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Reverse a String",
+    "description": "Write a Java method that takes a string as input and returns the string reversed. You should not use any built-in reverse methods.",
+    "exampleInput": "hello",
+    "exampleOutput": "olleh",
+    "topic": "Strings"
+  },
+  {
+    "title": "Check for Palindrome",
+    "description": "Write a Java method that checks if a given string is a palindrome. A palindrome is a word that reads the same forwards and backward. The check should be case-insensitive.",
+    "exampleInput": "Madam",
+    "exampleOutput": "true",
+    "topic": "Strings"
+  },
+  {
+    "title": "Find the Maximum Element in an Array",
+    "description": "Write a Java method that finds the largest integer in an array of integers. Return 0 if the array is empty.",
+    "exampleInput": "[1, 5, 2, 9, 3]",
+    "exampleOutput": "9",
+    "topic": "Arrays"
+  }
+]
