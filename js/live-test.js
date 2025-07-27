@@ -1,11 +1,9 @@
-// js/live-test.js (Final Version with 30 Minute Timer)
+// js/live-test.js (Final Corrected Version)
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
-    const testName = 'final-exam-java'; // The name of our test
-    // ========== THIS IS THE TIMER CHANGE ==========
+    const testName = 'final-exam-java';
     const testDurationMinutes = 30;
-    // ============================================
 
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
@@ -40,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error(data.error || 'Failed to start the test.');
             }
-            localStorage.setItem('studentId', studentId); // Store ID for submission
+            localStorage.setItem('studentId', studentId);
             startTest(data.questions, studentName, studentId);
         } catch (error) {
             showError(error.message);
@@ -64,8 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
         questions.forEach((q, index) => {
             const questionElement = document.createElement('div');
             questionElement.className = 'mb-4';
-            let optionsHTML = q.options..map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join('');
-            questionElement.innerHTML = `<h5>${index + 1}. ${q.question}</h5>${optionsHTML}`;
+            
+            // THE FIX IS HERE: Corrected from 'options..map' to 'options.map'
+            let optionsHTML = q.options.map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join('');
+            
+            questionElement.innerHTML = `<h5>${index + 1}. ${q.question.replace(/\n/g, '<br>')}</h5>${optionsHTML}`;
             examForm.appendChild(questionElement);
         });
         const submitButton = document.createElement('button');
