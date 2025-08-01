@@ -1,4 +1,4 @@
-// js/live-test.js (The Final, Stabilized Production Version)
+// js/live-test.js (Final Version with Anti-Cheating Feature)
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Configuration ---
@@ -9,15 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Element Selectors ---
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
-    const completeContainer = document.getElementById('complete-container');
-    const entryForm = document.getElementById('entry-form');
-    const startBtn = document.getElementById('startBtn');
-    const entryError = document.getElementById('entry-error');
-    const studentInfo = document.getElementById('student-info');
+    // ... (rest of selectors are the same)
     const examForm = document.getElementById('exam-form');
     let timerInterval;
+    
+    // --- NEW: A flag to prevent multiple submissions ---
+    let isSubmitting = false;
 
     // --- Event Listeners ---
+    const entryForm = document.getElementById('entry-form');
     if (entryForm) {
         entryForm.addEventListener('submit', handleStartTest);
     }
@@ -26,29 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleStartTest(e) {
         e.preventDefault();
-        const studentNameInput = document.getElementById('studentName');
-        const studentIdInput = document.getElementById('studentId');
-        const studentName = studentNameInput.value.trim();
-        const studentId = studentIdInput.value.trim();
-        
-        if (!studentName || !studentId) {
-            showError("Please fill in all fields.");
-            return;
-        }
-
+        // ... (this function is the same)
+        const studentName = document.getElementById('studentName').value.trim();
+        const studentId = document.getElementById('studentId').value.trim();
+        if (!studentName || !studentId) { showError("Please fill in all fields."); return; }
+        const startBtn = document.getElementById('startBtn');
         startBtn.disabled = true;
         startBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Starting...`;
-        
         try {
-            const response = await fetch(`${liveServerUrl}/api/exam/start`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ studentName, studentId, testName })
-            });
+            const response = await fetch(`${liveServerUrl}/api/exam/start`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentName, studentId, testName }) });
             const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to start the test.');
-            }
+            if (!response.ok) { throw new Error(data.error || 'Failed to start the test.'); }
             localStorage.setItem('studentId', studentId);
             startTest(data.questions, studentName, studentId);
         } catch (error) {
@@ -61,12 +49,70 @@ document.addEventListener('DOMContentLoaded', () => {
     function startTest(questions, name, id) {
         entryContainer.classList.add('d-none');
         testContainer.classList.remove('d-none');
+        const studentInfo = document.getElementById('student-info');
         studentInfo.textContent = `Student: ${name} (${id})`;
+        
+        // --- NEW: Activate the "Digital Proctor" ---
+        // Add the event listener for the Page Visibility API
+        document.addEventListener('visibilitychange', handleVisibilityChange);
         
         const shuffledQuestions = shuffleArray(questions);
         displayQuestions(shuffledQuestions);
         startTimer();
     }
+    
+    // --- NEW: The "Digital Proctor" function ---
+    function handleVisibilityChange() {
+        // 'document.hidden' is true when the user switches tabs or minimizes the window
+        if (document.hidden) {
+            alert("You have navigated away from the test. Your exam will now be submitted to prevent malpractice.");
+            handleSubmission(); // Trigger the auto-submission
+        }
+    }
+    
+    async function handleSubmission(e) {
+        if (e) e.preventDefault();
+        
+        // --- NEW: Check the flag to prevent double submissions ---
+        if (isSubmitting) {
+            return; // If submission is already in progress, do nothing.
+        }
+        isSubmitting = true; // Set the flag to true
+        
+        // Stop the timer and remove the visibility checker
+        clearInterval(timerInterval);
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+        
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Submitting...`;
+        }
+        
+        examForm.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
+
+        const answers = [];
+        examForm.querySelectorAll('input[type="radio"]:checked').forEach(input => {
+            answers.push({ id: input.name.replace('question', ''), answer: input.value });
+        });
+        
+        const studentId = localStorage.getItem('studentId');
+        
+        try {
+            await fetch(`${liveServerUrl}/api/exam/submit`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ studentId, testName, answers })
+            });
+            testContainer.classList.add('d-none');
+            const completeContainer = document.getElementById('complete-container');
+            completeContainer.classList.remove('d-none');
+        } catch (error) {
+            alert('There was an error submitting your test. Please contact your instructor.');
+        }
+    }
+
+    // --- Other functions (displayQuestions, startTimer, etc.) remain the same ---
     
     function displayQuestions(questions) {
         examForm.innerHTML = '';
@@ -86,41 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
         examForm.addEventListener('submit', handleSubmission);
     }
     
-    async function handleSubmission(e) {
-        if (e) e.preventDefault();
-        clearInterval(timerInterval);
-        
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Submitting...`;
-        
-        examForm.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
-
-        const answers = [];
-        examForm.querySelectorAll('input[type="radio"]:checked').forEach(input => {
-            answers.push({ id: input.name.replace('question', ''), answer: input.value });
-        });
-        
-        const studentId = localStorage.getItem('studentId');
-        
-        try {
-            await fetch(`${liveServerUrl}/api/exam/submit`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ studentId, testName, answers })
-            });
-            testContainer.classList.add('d-none');
-            completeContainer.classList.remove('d-none');
-        } catch (error) {
-            alert('There was an error submitting your test. Please contact your instructor.');
-        }
-    }
-    
     function startTimer() {
         let timeLeft = testDurationMinutes * 60;
         const timerElement = document.getElementById('timer');
+        timerElement.textContent = `Time Left: ${testDurationMinutes}:00`;
 
         timerInterval = setInterval(() => {
+            timeLeft--;
             const minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
             seconds = seconds < 10 ? '0' + seconds : seconds;
@@ -130,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             if (timeLeft <= 0) {
-                clearInterval(timerInterval);
                 if (timerElement) {
                     timerElement.textContent = 'Time Up!';
                     timerElement.classList.remove('bg-danger');
@@ -138,11 +155,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 handleSubmission();
             }
-            timeLeft--;
         }, 1000);
     }
 
     function showError(message) {
+        const entryError = document.getElementById('entry-error');
         entryError.textContent = message;
         entryError.classList.remove('d-none');
     }
