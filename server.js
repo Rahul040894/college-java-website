@@ -1,4 +1,4 @@
-// server.js (Final Version with USN Whitelist Security)
+// server.js (The Truly Final, Fully-Secured Production Version)
 
 const express = require('express');
 const cors = require('cors');
@@ -18,43 +18,50 @@ mongoose.connect(process.env.DATABASE_URL)
     .then(() => console.log("✅ MongoDB Connected Successfully!"))
     .catch(err => console.error("MongoDB Connection Failed:", err));
 
-// === DATABASE MODELS ===
+// === ALL DATABASE MODELS ===
 const PracticeTest = mongoose.model('PracticeTest', new mongoose.Schema({ name: String, questions: [new mongoose.Schema({ question: String, options: [String], answer: String }, { _id: true })] }));
 const Exam = mongoose.model('Exam', new mongoose.Schema({ testName: String, questions: [new mongoose.Schema({ question: String, options: [String], answer: String }, { _id: true })] }));
 const TestResult = mongoose.model('TestResult', new mongoose.Schema({ studentName: String, studentId: String, testName: String, score: Number, total: Number, startTime: Date, finishTime: Date, status: String }).index({ studentId: 1, testName: 1 }, { unique: true }));
 const CodingProblem = mongoose.model('CodingProblem', new mongoose.Schema({ title: String, description: String, exampleInput: String, exampleOutput: String, topic: String }));
 const CodeSubmission = mongoose.model('CodeSubmission', new mongoose.Schema({ studentId: String, problemId: { type: mongoose.Schema.Types.ObjectId, ref: 'CodingProblem' }, submittedCode: String, submissionTime: { type: Date, default: Date.now } }));
-
-// --- NEW MODEL FOR USN WHITELIST ---
-const AllowedUsnSchema = new mongoose.Schema({ usn: { type: String, required: true, unique: true } });
-const AllowedUsn = mongoose.model('AllowedUsn', AllowedUsnSchema);
+const AllowedUsn = mongoose.model('AllowedUsn', new mongoose.Schema({ usn: { type: String, required: true, unique: true } }));
 
 
-// === API ENDPOINTS ===
+// === ALL API ENDPOINTS ===
 
 // ... (All other API endpoints for practice tests, compiler, coding problems remain the same)
 
-// --- Endpoints for TIMED FINAL EXAM (NOW WITH SECURITY CHECK) ---
+// --- Endpoints for TIMED FINAL EXAM (NOW WITH ROBUST SECURITY CHECK) ---
 app.post('/api/exam/start', async (req, res) => {
     const { studentName, studentId, testName } = req.body;
     try {
-        // ========== THE NEW SECURITY CHECK ==========
-        const isAllowed = await AllowedUsn.findOne({ usn: studentId });
+        // ========== THE NEW, ROBUST SECURITY CHECK ==========
+        // 1. We make the check case-insensitive by creating a regular expression.
+        // The 'i' flag at the end means "case-insensitive".
+        const usnRegex = new RegExp(`^${studentId}$`, 'i');
+        
+        // 2. We use this case-insensitive regex to find the USN in the database.
+        const isAllowed = await AllowedUsn.findOne({ usn: usnRegex });
+
         if (!isAllowed) {
             return res.status(403).json({ error: "This USN is not authorized to take the exam. Please check for typos or contact your instructor." });
         }
-        // ============================================
+        // ==================================================
 
         const exam = await Exam.findOne({ testName: testName });
         if (!exam) return res.status(404).json({ error: "The exam is not available at this time." });
         
-        const newResult = new TestResult({ studentName, studentId, testName, total: exam.questions.length });
-        await newResult.save(); // This will still catch duplicate attempts
+        // Use the authorized, properly-cased USN from the database for consistency.
+        const authorizedUsn = isAllowed.usn;
+        
+        const newResult = new TestResult({ studentName, studentId: authorizedUsn, testName, total: exam.questions.length });
+        await newResult.save();
         
         const questionsForStudent = exam.questions.map(q => ({ id: q._id, question: q.question, options: q.options }));
         res.json({ questions: questionsForStudent, startTime: newResult.startTime });
     } catch (error) {
         if (error.code === 11000) return res.status(403).json({ error: "This USN has already started the test. Multiple attempts are not allowed." });
+        console.error("Error in /api/exam/start:", error); // Added for better server-side debugging
         res.status(500).json({ error: "A server error occurred. Please try again." });
     }
 });
@@ -64,7 +71,7 @@ app.post('/api/exam/start', async (req, res) => {
 app.get('/api/tests', async (req, res) => { try { const tests = await PracticeTest.find({}).select('name questions'); res.json(tests.map(test => ({ name: test.name, questionCount: test.questions.length }))); } catch (error) { res.status(500).json({ message: "Error fetching practice tests" }); } });
 app.get('/api/test/:testName', async (req, res) => { try { const test = await PracticeTest.findOne({ name: req.params.testName }); if (!test) return res.status(404).json({ message: "Practice test not found" }); res.json(test.questions.map(q => ({ id: q._id, question: q.question, options: q.options }))); } catch (error) { res.status(500).json({ message: "Error fetching practice test" }); } });
 app.post('/api/submit/:testName', async (req, res) => { try { const correctTest = await PracticeTest.findOne({ name: req.params.testName }); if (!correctTest) return res.status(404).json({ message: "Practice test not found" }); let score = 0; req.body.answers.forEach(ans => { const q = correctTest.questions.find(q => q._id.toString() === ans.id); if (q && q.answer === ans.answer) score++; }); res.json({ score: score, total: correctTest.questions.length }); } catch (error) { res.status(500).json({ message: "Error submitting practice test" }); } });
-app.post('/api/exam/submit', async (req, res) => { const { studentId, testName, answers } = req.body; try { const result = await TestResult.findOne({ studentId, testName }); if (!result || result.status === 'finished') return res.status(403).json({ error: "Test already submitted." }); const exam = await Exam.findOne({ testName }); let score = 0; answers.forEach(ans => { const q = exam.questions.find(q => q._id.toString() === ans.id); if (q && q.answer === ans.answer) score++; }); result.score = score; result.status = 'finished'; result.finishTime = new Date(); await result.save(); res.json({ message: "Submitted successfully!", score: result.score, total: result.total }); } catch (error) { res.status(500).json({ error: "Server error submitting test." }); } });
+app.post('/api/exam/submit', async (req, res) => { const { studentId, testName, answers } = req.body; try { const usnRegex = new RegExp(`^${studentId}$`, 'i'); const result = await TestResult.findOne({ studentId: usnRegex, testName }); if (!result || result.status === 'finished') return res.status(403).json({ error: "Test already submitted." }); const exam = await Exam.findOne({ testName }); let score = 0; answers.forEach(ans => { const q = exam.questions.find(q => q._id.toString() === ans.id); if (q && q.answer === ans.answer) score++; }); result.score = score; result.status = 'finished'; result.finishTime = new Date(); await result.save(); res.json({ message: "Submitted successfully!", score: result.score, total: result.total }); } catch (error) { res.status(500).json({ error: "Server error submitting test." }); } });
 app.get('/api/coding-problems', async (req, res) => { try { const problems = await CodingProblem.find({}).select('title topic'); res.json(problems); } catch (error) { res.status(500).json({ message: "Error fetching problem list" }); } });
 app.get('/api/coding-problems/:id', async (req, res) => { try { const problem = await CodingProblem.findById(req.params.id); if (!problem) return res.status(404).json({ message: "Problem not found" }); res.json(problem); } catch (error) { res.status(500).json({ message: "Error fetching problem details" }); } });
 app.post('/api/coding-problems/submit', async (req, res) => { const { studentId, problemId, submittedCode } = req.body; if (!studentId || !problemId || !submittedCode) return res.status(400).json({ message: "All fields are required." }); try { const submission = new CodeSubmission({ studentId, problemId, submittedCode }); await submission.save(); res.status(201).json({ message: "Code submitted successfully!" }); } catch (error) { res.status(500).json({ message: "Error saving submission" }); } });
