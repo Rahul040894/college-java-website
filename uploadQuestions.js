@@ -1,4 +1,4 @@
-// uploadQuestions.js (Final Corrected Version)
+// uploadQuestions.js (Final, Simplified Version)
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -19,19 +19,13 @@ const uploadData = async () => {
         const data = fs.readFileSync(filePath, 'utf-8');
         const testData = JSON.parse(data);
         
-        // This is the FIX: The key in our JSON is 'testName', but the model expects 'name'.
-        const formattedData = {
-            name: testData.testName, 
-            questions: testData.questions
-        };
-
-        await PracticeTest.findOneAndUpdate({ name: formattedData.name }, formattedData, { upsert: true });
-        console.log(`✅ Successfully uploaded/updated practice test: "${formattedData.name}"`);
+        // No mapping needed now, the data is a perfect match.
+        await PracticeTest.findOneAndUpdate({ name: testData.name }, testData, { upsert: true });
+        console.log(`✅ Successfully uploaded/updated practice test: "${testData.name}"`);
     } catch (error) {
         console.error('❌ Error during upload:', error);
     } finally {
         await mongoose.connection.close();
     }
 };
-
 uploadData();

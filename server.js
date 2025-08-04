@@ -1,5 +1,4 @@
 // server.js (The Truly Final, Fully-Integrated Production Version)
-
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -7,18 +6,10 @@ const axios = require('axios');
 require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// === CORS Configuration ===
 const corsOptions = { origin: 'https://rahuljavaskit.online', methods: "GET,POST" };
 app.use(cors(corsOptions));
 app.use(express.json());
-
-// === Database Connection ===
-mongoose.connect(process.env.DATABASE_URL)
-    .then(() => console.log("✅ MongoDB Connected Successfully!"))
-    .catch(err => console.error("MongoDB Connection Failed:", err));
-
-// === ALL DATABASE MODELS ===
+mongoose.connect(process.env.DATABASE_URL).then(() => console.log("✅ MongoDB Connected")).catch(err => console.error("MongoDB Connection Failed:", err));
 const PracticeTestSchema = new mongoose.Schema({ name: { type: String, required: true, unique: true }, questions: [new mongoose.Schema({ question: String, options: [String], answer: String }, { _id: true })] });
 const PracticeTest = mongoose.model('PracticeTest', PracticeTestSchema);
 const ExamSchema = new mongoose.Schema({ testName: { type: String, required: true, unique: true }, questions: [new mongoose.Schema({ question: String, options: [String], answer: String }, { _id: true })] });
@@ -29,9 +20,6 @@ const TestResult = mongoose.model('TestResult', TestResultSchema);
 const AllowedUsn = mongoose.model('AllowedUsn', new mongoose.Schema({ usn: { type: String, required: true, unique: true } }));
 const CodingProblem = mongoose.model('CodingProblem', new mongoose.Schema({ title: String, description: String, exampleInput: String, exampleOutput: String, topic: String }));
 const CodeSubmission = mongoose.model('CodeSubmission', new mongoose.Schema({ studentId: String, problemId: { type: mongoose.Schema.Types.ObjectId, ref: 'CodingProblem' }, submittedCode: String, submissionTime: { type: Date, default: Date.now } }));
-
-// === ALL API ENDPOINTS ===
-
 app.get('/api/tests', async (req, res) => { try { const tests = await PracticeTest.find({}).select('name questions'); res.json(tests.map(test => ({ name: test.name, questionCount: test.questions.length }))); } catch (error) { res.status(500).json({ message: "Error fetching practice tests" }); } });
 app.get('/api/test/:testName', async (req, res) => { try { const test = await PracticeTest.findOne({ name: req.params.testName }); if (!test) return res.status(404).json({ message: "Practice test not found" }); res.json(test.questions.map(q => ({ id: q._id, question: q.question, options: q.options }))); } catch (error) { res.status(500).json({ message: "Error fetching practice test" }); } });
 app.post('/api/submit/:testName', async (req, res) => { try { const correctTest = await PracticeTest.findOne({ name: req.params.testName }); if (!correctTest) return res.status(404).json({ message: "Practice test not found" }); let score = 0; req.body.answers.forEach(ans => { const q = correctTest.questions.find(q => q._id.toString() === ans.id); if (q && q.answer === ans.answer) score++; }); res.json({ score: score, total: correctTest.questions.length }); } catch (error) { res.status(500).json({ message: "Error submitting practice test" }); } });

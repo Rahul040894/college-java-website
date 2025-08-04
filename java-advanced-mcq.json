@@ -1,605 +1,69 @@
 {
-  "testName": "java-advanced-mcq",
+  "name": "java-advanced-mcq",
   "questions": [
     {
       "question": "What is the primary reason for the existence of the String Constant Pool in the JVM?",
-      "options": [
-        "To improve security by making strings immutable.",
-        "To improve performance and save memory by reusing common string literals.",
-        "To allow strings to be used in switch statements.",
-        "To ensure strings are garbage collected more efficiently."
-      ],
+      "options": ["To improve security by making strings immutable.", "To improve performance and save memory by reusing common string literals.", "To allow strings to be used in switch statements.", "To ensure strings are garbage collected more efficiently."],
       "answer": "To improve performance and save memory by reusing common string literals."
     },
-    {
-      "question": "Consider the code: `String s = \"\"; for(int i=0; i<100; i++){ s += i; }`. Approximately how many String objects are created and then become eligible for garbage collection during this loop?",
-      "options": [
-        "1",
-        "100",
-        "101",
-        "200"
-      ],
-      "answer": "100"
-    },
-    {
-      "question": "Which of the following statements is the most accurate description of how `StringBuffer` achieves thread-safety?",
-      "options": [
-        "It uses the 'volatile' keyword on its internal character array.",
-        "It uses 'final' methods that cannot be overridden.",
-        "It has 'synchronized' methods, ensuring only one thread can modify it at a time.",
-        "It creates a new object for every modification."
-      ],
-      "answer": "It has 'synchronized' methods, ensuring only one thread can modify it at a time."
-    },
-    {
-      "question": "What will be the output of the following code snippet?\n\n<pre><code>String s1 = new String(\"test\");\nString s2 = new String(\"test\");\nString s3 = \"test\";\nString s4 = \"test\";\nSystem.out.println(\"s1==s2: \" + (s1==s2));\nSystem.out.println(\"s3==s4: \" + (s3==s4));</code></pre>",
-      "options": [
-        "s1==s2: true\ns3==s4: true",
-        "s1==s2: false\ns3==s4: false",
-        "s1==s2: true\ns3==s4: false",
-        "s1==s2: false\ns3==s4: true"
-      ],
-      "answer": "s1==s2: false\ns3==s4: true"
-    },
-    {
-      "question": "In terms of memory management, what is the primary advantage of using `StringBuilder` over String concatenation (`+`) inside a loop?",
-      "options": [
-        "StringBuilder is stored on the Stack, which is faster.",
-        "StringBuilder avoids creating a large number of intermediate String objects on the Heap.",
-        "StringBuilder uses less memory for the final string.",
-        "StringBuilder operations are automatically parallelized by the JVM."
-      ],
-      "answer": "StringBuilder avoids creating a large number of intermediate String objects on the Heap."
-    },
-    {
-      "question": "A class `Dog` extends `Animal`. Both have a method `makeSound()`. Which concept allows the JVM to call the `Dog` class's `makeSound()` method at runtime through a reference of type `Animal`?\n\n<pre><code>Animal myPet = new Dog();\nmyPet.makeSound(); // Calls Dog's method</code></pre>",
-      "options": [
-        "Method Overloading",
-        "Dynamic Method Dispatch",
-        "Constructor Chaining",
-        "Static Binding"
-      ],
-      "answer": "Dynamic Method Dispatch"
-    },
-    {
-      "question": "If a subclass constructor does not explicitly call a superclass constructor using `super()`, what happens?",
-      "options": [
-        "A compilation error occurs.",
-        "The superclass constructor is not called, leading to an uninitialized object.",
-        "The Java compiler automatically inserts a call to the superclass's no-argument constructor `super()`.",
-        "A NullPointerException is thrown at runtime."
-      ],
-      "answer": "The Java compiler automatically inserts a call to the superclass's no-argument constructor `super()`."
-    },
-    {
-      "question": "Which of the following is a valid reason to use an `interface` instead of an `abstract class`?",
-      "options": [
-        "When you need to share instance variables (state) among subclasses.",
-        "When you want to provide a common, non-final implementation for some methods.",
-        "When you want to define a 'contract' of behavior that multiple unrelated classes can implement.",
-        "When you need to define constructors for the subclasses to call."
-      ],
-      "answer": "When you want to define a 'contract' of behavior that multiple unrelated classes can implement."
-    },
-    {
-      "question": "What is the 'Diamond Problem' in inheritance, and how does Java address it?",
-      "options": [
-        "It's when a class inherits from four superclasses; Java solves it with the `implements` keyword.",
-        "It's an ambiguity that arises from multiple inheritance; Java avoids it by not supporting multiple inheritance of classes.",
-        "It's a performance issue with deep inheritance; Java solves it with the `final` keyword.",
-        "It's a problem with constructor calling; Java solves it with the `super()` keyword."
-      ],
-      "answer": "It's an ambiguity that arises from multiple inheritance; Java avoids it by not supporting multiple inheritance of classes."
-    },
-    {
-      "question": "In a class hierarchy, if a subclass overrides a method from its superclass, can it change the access modifier?",
-      "options": [
-        "No, the access modifier must be exactly the same.",
-        "Yes, but it can only make it more restrictive (e.g., from public to protected).",
-        "Yes, but it can only make it less restrictive (e.g., from protected to public).",
-        "Yes, it can be changed to any other access modifier."
-      ],
-      "answer": "Yes, but it can only make it less restrictive (e.g., from protected to public)."
-    },
-    {
-      "question": "Where in the JVM memory are objects created with the `new` keyword primarily stored?",
-      "options": [
-        "The Stack",
-        "The Heap",
-        "The Method Area",
-        "The PC Registers"
-      ],
-      "answer": "The Heap"
-    },
-    {
-      "question": "When an object is no longer reachable from any live thread, what is its immediate status in terms of memory management?",
-      "options": [
-        "It is immediately removed from memory.",
-        "Its finalize() method is immediately called.",
-        "It becomes eligible for garbage collection.",
-        "It is moved from the Stack to the Heap."
-      ],
-      "answer": "It becomes eligible for garbage collection."
-    },
-    {
-      "question": "What is a 'memory leak' in the context of a garbage-collected language like Java?",
-      "options": [
-        "A bug in the JVM that prevents memory from being freed.",
-        "When a program runs out of available Stack memory.",
-        "When objects are no longer needed by the application but are still being referenced, preventing the garbage collector from reclaiming them.",
-        "When an array is created with a size larger than available RAM."
-      ],
-      "answer": "When objects are no longer needed by the application but are still being referenced, preventing the garbage collector from reclaiming them."
-    },
-    {
-      "question": "Which of the following is the primary use case for an `ArrayList`?",
-      "options": [
-        "When you need to frequently add and remove elements from the middle of the list.",
-        "When you need fast, index-based random access to elements.",
-        "When you need a thread-safe list for concurrent operations.",
-        "When you need to store key-value pairs."
-      ],
-      "answer": "When you need fast, index-based random access to elements."
-    },
-    {
-      "question": "What is the underlying data structure of a `LinkedList`?",
-      "options": [
-        "A resizable array.",
-        "A collection of nodes where each node contains data and a reference to the next node.",
-        "A hash table.",
-        "A balanced binary tree."
-      ],
-      "answer": "A collection of nodes where each node contains data and a reference to the next node."
-    },
-    {
-      "question": "What is the time complexity for adding an element to the end of an `ArrayList` when the internal array is already full?",
-      "options": [
-        "O(1)",
-        "O(log n)",
-        "O(n)",
-        "O(n^2)"
-      ],
-      "answer": "O(n)"
-    },
-    {
-      "question": "A class has two methods: `void calculate(int a, double b)` and `void calculate(double a, int b)`. What is the result of the call `calculate(10, 20)`?",
-      "options": [
-        "It calls the first method.",
-        "It calls the second method.",
-        "A compilation error occurs due to an ambiguous method call.",
-        "A runtime error occurs."
-      ],
-      "answer": "A compilation error occurs due to an ambiguous method call."
-    },
-    {
-      "question": "Which of the following is true about constructors?",
-      "options": [
-        "A constructor must have a `void` return type.",
-        "A constructor can be declared as `final`.",
-        "A constructor can be overloaded.",
-        "A constructor is inherited by subclasses."
-      ],
-      "answer": "A constructor can be overloaded."
-    },
-    {
-      "question": "What is the purpose of the `this` keyword in a constructor?",
-      "options": [
-        "To call a method from the superclass.",
-        "To refer to the static members of the class.",
-        "To distinguish between instance variables and parameters with the same name.",
-        "To create a new instance of the class."
-      ],
-      "answer": "To distinguish between instance variables and parameters with the same name."
-    },
-    {
-      "question": "What does it mean for a string to be 'immutable'?",
-      "options": [
-        "The string variable cannot be reassigned to a new value.",
-        "The contents of the string object cannot be changed after it is created.",
-        "The string can only contain alphabetic characters.",
-        "The string is automatically saved in a database."
-      ],
-      "answer": "The contents of the string object cannot be changed after it is created."
-    },
-    {
-      "question": "What is the output of this code?\n\n<pre><code>StringBuilder sb = new StringBuilder(\"hello\");\nString s = \"hello\";\nSystem.out.println(s.equals(sb));</code></pre>",
-      "options": [
-        "true",
-        "false",
-        "A compilation error occurs.",
-        "A runtime exception is thrown."
-      ],
-      "answer": "false"
-    },
-    {
-      "question": "If an interface `Flyable` is defined, which of the following class declarations is valid?",
-      "options": [
-        "class Bird extends Flyable { }",
-        "class Bird implements Flyable { }",
-        "class Bird abstracts Flyable { }",
-        "class Bird inherits Flyable { }"
-      ],
-      "answer": "class Bird implements Flyable { }"
-    },
-    {
-      "question": "When an object with no more references is identified by the Garbage Collector, what is the sequence of events?",
-      "options": [
-        "Memory is freed, then finalize() is called.",
-        "finalize() is called, then memory is freed.",
-        "The object is immediately added to a finalization queue, its finalize() method is called at some later point, and then memory is reclaimed.",
-        "The memory is freed, and the finalize() method is not called unless explicitly invoked."
-      ],
-      "answer": "The object is immediately added to a finalization queue, its finalize() method is called at some later point, and then memory is reclaimed."
-    },
-    {
-      "question": "For a performance-critical task in a single-threaded application that requires many string modifications, which class is the best choice?",
-      "options": [
-        "String",
-        "StringBuffer",
-        "StringBuilder",
-        "char[]"
-      ],
-      "answer": "StringBuilder"
-    },
-    {
-      "question": "What is a key difference between an `Array` and an `ArrayList`?",
-      "options": [
-        "An Array can store primitives, while an ArrayList cannot.",
-        "An ArrayList has a fixed size, while an Array is dynamic.",
-        "An Array has a fixed size, while an ArrayList is dynamic.",
-        "An Array is part of the Collections Framework, while an ArrayList is not."
-      ],
-      "answer": "An Array has a fixed size, while an ArrayList is dynamic."
-    },
-    {
-      "question": "What happens when you add an element to a `LinkedList` at a specific index?",
-      "options": [
-        "All subsequent elements are shifted one position to the right.",
-        "The list is copied to a new, larger array.",
-        "The 'next' and 'prev' pointers of the surrounding nodes are updated to point to the new node.",
-        "A search is performed to find the index, which takes O(1) time."
-      ],
-      "answer": "The 'next' and 'prev' pointers of the surrounding nodes are updated to point to the new node."
-    },
-    {
-      "question": "Can a constructor be declared as `private`?",
-      "options": [
-        "No, constructors must be public.",
-        "Yes, and it is used to implement the Singleton design pattern.",
-        "Yes, but it can only be called from within the same package.",
-        "No, this will cause a compilation error."
-      ],
-      "answer": "Yes, and it is used to implement the Singleton design pattern."
-    },
-    {
-      "question": "What is the output of the following code?\n\n<pre><code>public class Test {\n    Test() {\n        this(\"Java\");\n        System.out.print(\"Base \");\n    }\n    Test(String s) {\n        System.out.print(s + \" \");\n    }\n    public static void main(String[] args) {\n        new Test();\n    }\n}</code></pre>",
-      "options": [
-        "Base Java",
-        "Java Base",
-        "A compilation error occurs.",
-        "A runtime error occurs."
-      ],
-      "answer": "Java Base"
-    },
-    {
-      "question": "Which statement about inheritance in Java is false?",
-      "options": [
-        "A subclass can inherit from only one superclass.",
-        "A superclass can have multiple subclasses.",
-        "Private members of a superclass are inherited by the subclass but are not directly accessible.",
-        "Constructors of the superclass are directly inherited by the subclass."
-      ],
-      "answer": "Constructors of the superclass are directly inherited by the subclass."
-    },
-    {
-      "question": "An interface can contain which of the following in Java 8 and later?",
-      "options": [
-        "Only abstract methods.",
-        "Abstract methods, static methods, and default methods.",
-        "Instance variables and constructors.",
-        "Only static and final variables."
-      ],
-      "answer": "Abstract methods, static methods, and default methods."
-    },
-    {
-      "question": "What is the main purpose of the Garbage Collector (GC)?",
-      "options": [
-        "To collect and organize unused class files.",
-        "To automatically free up memory occupied by unreachable objects.",
-        "To check for syntax errors in the code.",
-        "To manage the size of the String pool."
-      ],
-      "answer": "To automatically free up memory occupied by unreachable objects."
-    },
-    {
-      "question": "What is the output of the following snippet?\n\n<pre><code>Integer i1 = 127;\nInteger i2 = 127;\nInteger i3 = 128;\nInteger i4 = 128;\n\nSystem.out.println(i1 == i2);\nSystem.out.println(i3 == i4);</code></pre>",
-      "options": [
-        "true\ntrue",
-        "false\nfalse",
-        "true\nfalse",
-        "false\ntrue"
-      ],
-      "answer": "true\nfalse"
-    },
-    {
-      "question": "What best describes the `+` operator when used with Strings?",
-      "options": [
-        "It is a built-in primitive operation for strings.",
-        "It is an example of operator overloading, which is a feature available for all classes in Java.",
-        "It is a special case of operator overloading, available only for the String class, which the compiler translates into code using StringBuilder/StringBuffer.",
-        "It directly modifies the first string operand to append the second."
-      ],
-      "answer": "It is a special case of operator overloading, available only for the String class, which the compiler translates into code using StringBuilder/StringBuffer."
-    },
-    {
-      "question": "What is the primary performance concern when accessing an element by index in a `LinkedList`?",
-      "options": [
-        "The need to resize an internal array.",
-        "The risk of a NullPointerException.",
-        "The need to traverse the list from the beginning (or end) to reach the index.",
-        "The overhead of thread synchronization."
-      ],
-      "answer": "The need to traverse the list from the beginning (or end) to reach the index."
-    },
-    {
-      "question": "A method is declared as `public final void getDetails()`. Which of the following is true?",
-      "options": [
-        "This method cannot be accessed from outside its package.",
-        "This method can be overridden by a subclass.",
-        "This method cannot be overloaded.",
-        "This method cannot be overridden by a subclass."
-      ],
-      "answer": "This method cannot be overridden by a subclass."
-    },
-    {
-      "question": "If two objects have `obj1.equals(obj2)` as true, what must be true about their hash codes?",
-      "options": [
-        "obj1.hashCode() must be equal to obj2.hashCode().",
-        "obj1.hashCode() must be different from obj2.hashCode().",
-        "Their hash codes can be the same or different.",
-        "This scenario is not possible in Java."
-      ],
-      "answer": "obj1.hashCode() must be equal to obj2.hashCode()."
-    },
-    {
-      "question": "What happens if a method is declared with the `throws IOException` clause?",
-      "options": [
-        "The method will automatically handle the IOException using a try-catch block.",
-        "Any code that calls this method must either handle the IOException with a try-catch block or also declare that it throws the exception.",
-        "It means the method can only throw IOExceptions and no other type.",
-        "This is an example of an unchecked exception."
-      ],
-      "answer": "Any code that calls this method must either handle the IOException with a try-catch block or also declare that it throws the exception."
-    },
-    {
-      "question": "What is the main difference between an `Array` and a `Collection` in Java?",
-      "options": [
-        "Arrays can only hold primitive types.",
-        "Collections are always thread-safe.",
-        "Arrays have a fixed size and can hold primitives or objects, while Collections have dynamic size and can only hold objects.",
-        "Arrays are faster for all operations."
-      ],
-      "answer": "Arrays have a fixed size and can hold primitives or objects, while Collections have dynamic size and can only hold objects."
-    },
-    {
-      "question": "Which of these is the most suitable reason to prefer `StringBuilder` over String concatenation (`+`)?",
-      "options": [
-        "To ensure thread safety.",
-        "To improve code readability.",
-        "To improve performance by reducing the number of temporary objects created.",
-        "To allow for strings longer than the maximum `int` value."
-      ],
-      "answer": "To improve performance by reducing the number of temporary objects created."
-    },
-    {
-      "question": "In a class, you have an instance variable `int count` and a constructor `public MyClass(int count)`. How do you correctly assign the parameter to the instance variable?",
-      "options": [
-        "count = count;",
-        "this.count = count;",
-        "super.count = count;",
-        "MyClass.count = count;"
-      ],
-      "answer": "this.count = count;"
-    },
-    {
-      "question": "What is the purpose of a `default` method in an interface (Java 8+)?",
-      "options": [
-        "To define a method that must be implemented by all classes.",
-        "To provide a default constructor for the interface.",
-        "To allow new methods to be added to an interface without breaking existing implementing classes.",
-        "To create a static utility method."
-      ],
-      "answer": "To allow new methods to be added to an interface without breaking existing implementing classes."
-    },
-    {
-      "question": "A `static` block in a Java class is executed when?",
-      "options": [
-        "Every time an object of the class is created.",
-        "Only when the main method is called.",
-        "Exactly once, when the class is first loaded into the JVM.",
-        "Only when a static method of the class is called."
-      ],
-      "answer": "Exactly once, when the class is first loaded into the JVM."
-    },
-    {
-      "question": "Which concept allows a class to implement multiple interfaces but extend only one class?",
-      "options": [
-        "Encapsulation",
-        "Java's approach to avoiding multiple inheritance problems.",
-        "Polymorphism",
-        "Abstraction"
-      ],
-      "answer": "Java's approach to avoiding multiple inheritance problems."
-    },
-    {
-      "question": "What is the state of an `ArrayList` after this code is run?\n\n<pre><code>ArrayList<String> list = new ArrayList<>();\nlist.add(\"A\");\nlist.add(1, \"B\");\nlist.add(\"C\");\nlist.remove(0);</code></pre>",
-      "options": [
-        "[B, C]",
-        "[A, B, C]",
-        "[A, C]",
-        "An exception is thrown."
-      ],
-      "answer": "[B, C]"
-    },
-    {
-      "question": "If you need a collection that stores unique elements and provides fast access, which is the best choice?",
-      "options": [
-        "ArrayList",
-        "LinkedList",
-        "HashSet",
-        "TreeMap"
-      ],
-      "answer": "HashSet"
-    },
-    {
-      "question": "What is the primary role of the `ClassLoader` in the JVM?",
-      "options": [
-        "To compile .java files into .class files.",
-        "To dynamically load Java classes into the JVM at runtime.",
-        "To manage the Garbage Collection process.",
-        "To execute the bytecode line by line."
-      ],
-      "answer": "To dynamically load Java classes into the JVM at runtime."
-    },
-    {
-      "question": "What is the output of the following?\n\n<pre><code>String str = null;\nSystem.out.println(String.valueOf(str));</code></pre>",
-      "options": [
-        "null",
-        "An empty string",
-        "A NullPointerException is thrown.",
-        "The string \"null\""
-      ],
-      "answer": "The string \"null\""
-    },
-    {
-      "question": "Which of these is a `checked` exception?",
-      "options": [
-        "NullPointerException",
-        "ArrayIndexOutOfBoundsException",
-        "IOException",
-        "NumberFormatException"
-      ],
-      "answer": "IOException"
-    },
-    {
-      "question": "What is the purpose of the `super()` call in a constructor?",
-      "options": [
-        "To call a method from the superclass.",
-        "To call the constructor of the superclass.",
-        "To access a static variable from the superclass.",
-        "It is used to create an instance of the superclass."
-      ],
-      "answer": "To call the constructor of the superclass."
-    },
-    {
-      "question": "What will happen if you try to compile and run this code?\n\n<pre><code>public class Test {\n    public static void main(String[] args) {\n        final int x = 10;\n        x = 20;\n        System.out.println(x);\n    }\n}</code></pre>",
-      "options": [
-        "It prints 10.",
-        "It prints 20.",
-        "A compilation error occurs.",
-        "A runtime exception is thrown."
-      ],
-      "answer": "A compilation error occurs."
-    },
-    {
-      "question": "What is method hiding in Java?",
-      "options": [
-        "When a subclass method has a different signature than the superclass method.",
-        "When a subclass defines a static method with the same signature as a static method in its superclass.",
-        "When a private method in a superclass is called from a subclass.",
-        "Another term for method overriding."
-      ],
-      "answer": "When a subclass defines a static method with the same signature as a static method in its superclass."
-    },
-    {
-      "question": "Which statement best describes the memory allocation for an `ArrayList` vs a `LinkedList`?",
-      "options": [
-        "ArrayList elements are stored in contiguous memory, while LinkedList nodes can be scattered across the heap.",
-        "Both use contiguous memory blocks.",
-        "LinkedList elements are stored on the stack, ArrayList on the heap.",
-        "Both store their elements scattered across the heap."
-      ],
-      "answer": "ArrayList elements are stored in contiguous memory, while LinkedList nodes can be scattered across the heap."
-    },
-    {
-      "question": "What is the output?\n\n<pre><code>public class Test {\n    private void print() {\n        System.out.println(\"Parent\");\n    }\n    public static void main(String[] args) {\n        Test t = new Child();\n        t.print();\n    }\n}\nclass Child extends Test {\n    public void print() {\n        System.out.println(\"Child\");\n    }\n}</code></pre>",
-      "options": [
-        "Child",
-        "Parent",
-        "A compilation error occurs.",
-        "A runtime error occurs."
-      ],
-      "answer": "Parent"
-    },
-    {
-      "question": "Why is it generally a bad idea to rely on the `finalize()` method for resource cleanup?",
-      "options": [
-        "Because it is a private method.",
-        "Because it can only be used in abstract classes.",
-        "Because there is no guarantee when, or even if, the Garbage Collector will call it.",
-        "Because it slows down compilation time."
-      ],
-      "answer": "Because there is no guarantee when, or even if, the Garbage Collector will call it."
-    },
-    {
-      "question": "Which of these is NOT a terminal operation in the Java Stream API?",
-      "options": [
-        "forEach()",
-        "collect()",
-        "filter()",
-        "reduce()"
-      ],
-      "answer": "filter()"
-    },
-    {
-      "question": "What is the primary characteristic of an object created from a class that implements the `Serializable` interface?",
-      "options": [
-        "It can be executed by multiple threads simultaneously.",
-        "Its state can be converted into a byte stream.",
-        "It can only have one instance in the entire application.",
-        "It cannot be extended by another class."
-      ],
-      "answer": "Its state can be converted into a byte stream."
-    },
-    {
-      "question": "What is the main advantage of the `for-each` loop (enhanced for loop)?",
-      "options": [
-        "It is faster than a traditional for loop.",
-        "It allows you to modify the collection while iterating.",
-        "It provides a cleaner, more readable syntax for iterating over all elements of a collection or array without needing an index variable.",
-        "It can iterate in reverse order."
-      ],
-      "answer": "It provides a cleaner, more readable syntax for iterating over all elements of a collection or array without needing an index variable."
-    },
-    {
-      "question": "What is the result of this code?\n\n<pre><code>String str = \"skit\";\nstr.toUpperCase();\nSystem.out.println(str);</code></pre>",
-      "options": [
-        "SKIT",
-        "skit",
-        "A compilation error occurs.",
-        "null"
-      ],
-      "answer": "skit"
-    },
-    {
-      "question": "If a class implements two interfaces, and both interfaces have a default method with the exact same signature, what happens?",
-      "options": [
-        "The first interface's method is used by default.",
-        "The class must explicitly override the method to resolve the ambiguity.",
-        "The program will choose one of the methods at random.",
-        "The methods cancel each other out and cannot be called."
-      ],
-      "answer": "The class must explicitly override the method to resolve the ambiguity."
-    },
-    {
-      "question": "What is the purpose of a constructor?",
-      "options": [
-        "To destroy an object.",
-        "To initialize a newly created object.",
-        "To provide a return value when an object is created.",
-        "To copy an object."
-      ],
-      "answer": "To initialize a newly created object."
-    }
+    {"question": "Consider the code: `String s = \"\"; for(int i=0; i<100; i++){ s += i; }`. Approximately how many String objects are created and then become eligible for garbage collection during this loop?","options": ["1","100","101","200"],"answer": "100"},
+    {"question": "Which of the following statements is the most accurate description of how `StringBuffer` achieves thread-safety?","options": ["It uses the 'volatile' keyword on its internal character array.","It uses 'final' methods that cannot be overridden.","It has 'synchronized' methods, ensuring only one thread can modify it at a time.","It creates a new object for every modification."],"answer": "It has 'synchronized' methods, ensuring only one thread can modify it at a time."},
+    {"question": "What will be the output of the following code snippet?\n\n<pre><code>String s1 = new String(\"test\");\nString s2 = new String(\"test\");\nString s3 = \"test\";\nString s4 = \"test\";\nSystem.out.println(\"s1==s2: \" + (s1==s2));\nSystem.out.println(\"s3==s4: \" + (s3==s4));</code></pre>","options": ["s1==s2: true\ns3==s4: true","s1==s2: false\ns3==s4: false","s1==s2: true\ns3==s4: false","s1==s2: false\ns3==s4: true"],"answer": "s1==s2: false\ns3==s4: true"},
+    {"question": "In terms of memory management, what is the primary advantage of using `StringBuilder` over String concatenation (`+`) inside a loop?","options": ["StringBuilder is stored on the Stack, which is faster.","StringBuilder avoids creating a large number of intermediate String objects on the Heap.","StringBuilder uses less memory for the final string.","StringBuilder operations are automatically parallelized by the JVM."],"answer": "StringBuilder avoids creating a large number of intermediate String objects on the Heap."},
+    {"question": "A class `Dog` extends `Animal`. Both have a method `makeSound()`. Which concept allows the JVM to call the `Dog` class's `makeSound()` method at runtime through a reference of type `Animal`?\n\n<pre><code>Animal myPet = new Dog();\nmyPet.makeSound(); // Calls Dog's method</code></pre>","options": ["Method Overloading","Dynamic Method Dispatch","Constructor Chaining","Static Binding"],"answer": "Dynamic Method Dispatch"},
+    {"question": "If a subclass constructor does not explicitly call a superclass constructor using `super()`, what happens?","options": ["A compilation error occurs.","The superclass constructor is not called, leading to an uninitialized object.","The Java compiler automatically inserts a call to the superclass's no-argument constructor `super()`.","A NullPointerException is thrown at runtime."],"answer": "The Java compiler automatically inserts a call to the superclass's no-argument constructor `super()`."},
+    {"question": "Which of the following is a valid reason to use an `interface` instead of an `abstract class`?","options": ["When you need to share instance variables (state) among subclasses.","When you want to provide a common, non-final implementation for some methods.","When you want to define a 'contract' of behavior that multiple unrelated classes can implement.","When you need to define constructors for the subclasses to call."],"answer": "When you want to define a 'contract' of behavior that multiple unrelated classes can implement."},
+    {"question": "What is the 'Diamond Problem' in inheritance, and how does Java address it?","options": ["It's when a class inherits from four superclasses; Java solves it with the `implements` keyword.","It's an ambiguity that arises from multiple inheritance; Java avoids it by not supporting multiple inheritance of classes.","It's a performance issue with deep inheritance; Java solves it with the `final` keyword.","It's a problem with constructor calling; Java solves it with the `super()` keyword."],"answer": "It's an ambiguity that arises from multiple inheritance; Java avoids it by not supporting multiple inheritance of classes."},
+    {"question": "In a class hierarchy, if a subclass overrides a method from its superclass, can it change the access modifier?","options": ["No, the access modifier must be exactly the same.","Yes, but it can only make it more restrictive (e.g., from public to protected).","Yes, but it can only make it less restrictive (e.g., from protected to public).","Yes, it can be changed to any other access modifier."],"answer": "Yes, but it can only make it less restrictive (e.g., from protected to public)."},
+    {"question": "Where in the JVM memory are objects created with the `new` keyword primarily stored?","options": ["The Stack","The Heap","The Method Area","The PC Registers"],"answer": "The Heap"},
+    {"question": "When an object is no longer reachable from any live thread, what is its immediate status in terms of memory management?","options": ["It is immediately removed from memory.","Its finalize() method is immediately called.","It becomes eligible for garbage collection.","It is moved from the Stack to the Heap."],"answer": "It becomes eligible for garbage collection."},
+    {"question": "What is a 'memory leak' in the context of a garbage-collected language like Java?","options": ["A bug in the JVM that prevents memory from being freed.","When a program runs out of available Stack memory.","When objects are no longer needed by the application but are still being referenced, preventing the garbage collector from reclaiming them.","When an array is created with a size larger than available RAM."],"answer": "When objects are no longer needed by the application but are still being referenced, preventing the garbage collector from reclaiming them."},
+    {"question": "Which of the following is the primary use case for an `ArrayList`?","options": ["When you need to frequently add and remove elements from the middle of the list.","When you need fast, index-based random access to elements.","When you need a thread-safe list for concurrent operations.","When you need to store key-value pairs."],"answer": "When you need fast, index-based random access to elements."},
+    {"question": "What is the underlying data structure of a `LinkedList`?","options": ["A resizable array.","A collection of nodes where each node contains data and a reference to the next node.","A hash table.","A balanced binary tree."],"answer": "A collection of nodes where each node contains data and a reference to the next node."},
+    {"question": "What is the time complexity for adding an element to the end of an `ArrayList` when the internal array is already full?","options": ["O(1)","O(log n)","O(n)","O(n^2)"],"answer": "O(n)"},
+    {"question": "A class has two methods: `void calculate(int a, double b)` and `void calculate(double a, int b)`. What is the result of the call `calculate(10, 20)`?","options": ["It calls the first method.","It calls the second method.","A compilation error occurs due to an ambiguous method call.","A runtime error occurs."],"answer": "A compilation error occurs due to an ambiguous method call."},
+    {"question": "Which of the following is true about constructors?","options": ["A constructor must have a `void` return type.","A constructor can be declared as `final`.","A constructor can be overloaded.","A constructor is inherited by subclasses."],"answer": "A constructor can be overloaded."},
+    {"question": "What is the purpose of the `this` keyword in a constructor?","options": ["To call a method from the superclass.","To refer to the static members of the class.","To distinguish between instance variables and parameters with the same name.","To create a new instance of the class."],"answer": "To distinguish between instance variables and parameters with the same name."},
+    {"question": "What does it mean for a string to be 'immutable'?","options": ["The string variable cannot be reassigned to a new value.","The contents of the string object cannot be changed after it is created.","The string can only contain alphabetic characters.","The string is automatically saved in a database."],"answer": "The contents of the string object cannot be changed after it is created."},
+    {"question": "What is the output of this code?\n\n<pre><code>StringBuilder sb = new StringBuilder(\"hello\");\nString s = \"hello\";\nSystem.out.println(s.equals(sb));</code></pre>","options": ["true","false","A compilation error occurs.","A runtime exception is thrown."],"answer": "false"},
+    {"question": "If an interface `Flyable` is defined, which of the following class declarations is valid?","options": ["class Bird extends Flyable { }","class Bird implements Flyable { }","class Bird abstracts Flyable { }","class Bird inherits Flyable { }"],"answer": "class Bird implements Flyable { }"},
+    {"question": "When an object with no more references is identified by the Garbage Collector, what is the sequence of events?","options": ["Memory is freed, then finalize() is called.","finalize() is called, then memory is freed.","The object is immediately added to a finalization queue, its finalize() method is called at some later point, and then memory is reclaimed.","The memory is freed, and the finalize() method is not called unless explicitly invoked."],"answer": "The object is immediately added to a finalization queue, its finalize() method is called at some later point, and then memory is reclaimed."},
+    {"question": "For a performance-critical task in a single-threaded application that requires many string modifications, which class is the best choice?","options": ["String","StringBuffer","StringBuilder","char[]"],"answer": "StringBuilder"},
+    {"question": "What is a key difference between an `Array` and an `ArrayList`?","options": ["An Array can store primitives, while an ArrayList cannot.","An ArrayList has a fixed size, while an Array is dynamic.","An Array has a fixed size, while an ArrayList is dynamic.","An Array is part of the Collections Framework, while an ArrayList is not."],"answer": "An Array has a fixed size, while an ArrayList is dynamic."},
+    {"question": "What happens when you add an element to a `LinkedList` at a specific index?","options": ["All subsequent elements are shifted one position to the right.","The list is copied to a new, larger array.","The 'next' and 'prev' pointers of the surrounding nodes are updated to point to the new node.","A search is performed to find the index, which takes O(1) time."],"answer": "The 'next' and 'prev' pointers of the surrounding nodes are updated to point to the new node."},
+    {"question": "Can a constructor be declared as `private`?","options": ["No, constructors must be public.","Yes, and it is used to implement the Singleton design pattern.","Yes, but it can only be called from within the same package.","No, this will cause a compilation error."],"answer": "Yes, and it is used to implement the Singleton design pattern."},
+    {"question": "What is the output of the following code?\n\n<pre><code>public class Test {\n    Test() {\n        this(\"Java\");\n        System.out.print(\"Base \");\n    }\n    Test(String s) {\n        System.out.print(s + \" \");\n    }\n    public static void main(String[] args) {\n        new Test();\n    }\n}</code></pre>","options": ["Base Java","Java Base","A compilation error occurs.","A runtime error occurs."],"answer": "Java Base"},
+    {"question": "Which statement about inheritance in Java is false?","options": ["A subclass can inherit from only one superclass.","A superclass can have multiple subclasses.","Private members of a superclass are inherited by the subclass but are not directly accessible.","Constructors of the superclass are directly inherited by the subclass."],"answer": "Constructors of the superclass are directly inherited by the subclass."},
+    {"question": "An interface can contain which of the following in Java 8 and later?","options": ["Only abstract methods.","Abstract methods, static methods, and default methods.","Instance variables and constructors.","Only static and final variables."],"answer": "Abstract methods, static methods, and default methods."},
+    {"question": "What is the main purpose of the Garbage Collector (GC)?","options": ["To collect and organize unused class files.","To automatically free up memory occupied by unreachable objects.","To check for syntax errors in the code.","To manage the size of the String pool."],"answer": "To automatically free up memory occupied by unreachable objects."},
+    {"question": "What is the output of the following snippet?\n\n<pre><code>Integer i1 = 127;\nInteger i2 = 127;\nInteger i3 = 128;\nInteger i4 = 128;\n\nSystem.out.println(i1 == i2);\nSystem.out.println(i3 == i4);</code></pre>","options": ["true\ntrue","false\nfalse","true\nfalse","false\ntrue"],"answer": "true\nfalse"},
+    {"question": "What best describes the `+` operator when used with Strings?","options": ["It is a built-in primitive operation for strings.","It is an example of operator overloading, which is a feature available for all classes in Java.","It is a special case of operator overloading, available only for the String class, which the compiler translates into code using StringBuilder/StringBuffer.","It directly modifies the first string operand to append the second."],"answer": "It is a special case of operator overloading, available only for the String class, which the compiler translates into code using StringBuilder/StringBuffer."},
+    {"question": "What is the primary performance concern when accessing an element by index in a `LinkedList`?","options": ["The need to resize an internal array.","The risk of a NullPointerException.","The need to traverse the list from the beginning (or end) to reach the index.","The overhead of thread synchronization."],"answer": "The need to traverse the list from the beginning (or end) to reach the index."},
+    {"question": "A method is declared as `public final void getDetails()`. Which of the following is true?","options": ["This method cannot be accessed from outside its package.","This method can be overridden by a subclass.","This method cannot be overloaded.","This method cannot be overridden by a subclass."],"answer": "This method cannot be overridden by a subclass."},
+    {"question": "If two objects have `obj1.equals(obj2)` as true, what must be true about their hash codes?","options": ["obj1.hashCode() must be equal to obj2.hashCode().","obj1.hashCode() must be different from obj2.hashCode().","Their hash codes can be the same or different.","This scenario is not possible in Java."],"answer": "obj1.hashCode() must be equal to obj2.hashCode()."},
+    {"question": "What happens if a method is declared with the `throws IOException` clause?","options": ["The method will automatically handle the IOException using a try-catch block.","Any code that calls this method must either handle the IOException with a try-catch block or also declare that it throws the exception.","It means the method can only throw IOExceptions and no other type.","This is an example of an unchecked exception."],"answer": "Any code that calls this method must either handle the IOException with a try-catch block or also declare that it throws the exception."},
+    {"question": "What is the main difference between an `Array` and a `Collection` in Java?","options": ["Arrays can only hold primitive types.","Collections are always thread-safe.","Arrays have a fixed size and can hold primitives or objects, while Collections have dynamic size and can only hold objects.","Arrays are faster for all operations."],"answer": "Arrays have a fixed size and can hold primitives or objects, while Collections have dynamic size and can only hold objects."},
+    {"question": "Which of these is the most suitable reason to prefer `StringBuilder` over String concatenation (`+`)?","options": ["To ensure thread safety.","To improve code readability.","To improve performance by reducing the number of temporary objects created.","To allow for strings longer than the maximum `int` value."],"answer": "To improve performance by reducing the number of temporary objects created."},
+    {"question": "In a class, you have an instance variable `int count` and a constructor `public MyClass(int count)`. How do you correctly assign the parameter to the instance variable?","options": ["count = count;","this.count = count;","super.count = count;","MyClass.count = count;"],"answer": "this.count = count;"},
+    {"question": "What is the purpose of a `default` method in an interface (Java 8+)?","options": ["To define a method that must be implemented by all classes.","To provide a default constructor for the interface.","To allow new methods to be added to an interface without breaking existing implementing classes.","To create a static utility method."],"answer": "To allow new methods to be added to an interface without breaking existing implementing classes."},
+    {"question": "A `static` block in a Java class is executed when?","options": ["Every time an object of the class is created.","Only when the main method is called.","Exactly once, when the class is first loaded into the JVM.","Only when a static method of the class is called."],"answer": "Exactly once, when the class is first loaded into the JVM."},
+    {"question": "Which concept allows a class to implement multiple interfaces but extend only one class?","options": ["Encapsulation","Java's approach to avoiding multiple inheritance problems.","Polymorphism","Abstraction"],"answer": "Java's approach to avoiding multiple inheritance problems."},
+    {"question": "What is the state of an `ArrayList` after this code is run?\n\n<pre><code>ArrayList<String> list = new ArrayList<>();\nlist.add(\"A\");\nlist.add(1, \"B\");\nlist.add(\"C\");\nlist.remove(0);</code></pre>","options": ["[B, C]","[A, B, C]","[A, C]","An exception is thrown."],"answer": "[B, C]"},
+    {"question": "If you need a collection that stores unique elements and provides fast access, which is the best choice?","options": ["ArrayList","LinkedList","HashSet","TreeMap"],"answer": "HashSet"},
+    {"question": "What is the primary role of the `ClassLoader` in the JVM?","options": ["To compile .java files into .class files.","To dynamically load Java classes into the JVM at runtime.","To manage the Garbage Collection process.","To execute the bytecode line by line."],"answer": "To dynamically load Java classes into the JVM at runtime."},
+    {"question": "What is the output of the following?\n\n<pre><code>String str = null;\nSystem.out.println(String.valueOf(str));</code></pre>","options": ["null","An empty string","A NullPointerException is thrown.","The string \"null\""],"answer": "The string \"null\""},
+    {"question": "Which of these is a `checked` exception?","options": ["NullPointerException","ArrayIndexOutOfBoundsException","IOException","NumberFormatException"],"answer": "IOException"},
+    {"question": "What is the purpose of the `super()` call in a constructor?","options": ["To call a method from the superclass.","To call the constructor of the superclass.","To access a static variable from the superclass.","It is used to create an instance of the superclass."],"answer": "To call the constructor of the superclass."},
+    {"question": "What will happen if you try to compile and run this code?\n\n<pre><code>public class Test {\n    public static void main(String[] args) {\n        final int x = 10;\n        x = 20;\n        System.out.println(x);\n    }\n}</code></pre>","options": ["It prints 10.","It prints 20.","A compilation error occurs.","A runtime exception is thrown."],"answer": "A compilation error occurs."},
+    {"question": "What is method hiding in Java?","options": ["When a subclass method has a different signature than the superclass method.","When a subclass defines a static method with the same signature as a static method in its superclass.","When a private method in a superclass is called from a subclass.","Another term for method overriding."],"answer": "When a subclass defines a static method with the same signature as a static method in its superclass."},
+    {"question": "Which statement best describes the memory allocation for an `ArrayList` vs a `LinkedList`?","options": ["ArrayList elements are stored in contiguous memory, while LinkedList nodes can be scattered across the heap.","Both use contiguous memory blocks.","LinkedList elements are stored on the stack, ArrayList on the heap.","Both store their elements scattered across the heap."],"answer": "ArrayList elements are stored in contiguous memory, while LinkedList nodes can be scattered across the heap."},
+    {"question": "What is the output?\n\n<pre><code>public class Test {\n    private void print() {\n        System.out.println(\"Parent\");\n    }\n    public static void main(String[] args) {\n        Test t = new Child();\n        t.print();\n    }\n}\nclass Child extends Test {\n    public void print() {\n        System.out.println(\"Child\");\n    }\n}</code></pre>","options": ["Child","Parent","A compilation error occurs.","A runtime error occurs."],"answer": "Parent"},
+    {"question": "Why is it generally a bad idea to rely on the `finalize()` method for resource cleanup?","options": ["Because it is a private method.","Because it can only be used in abstract classes.","Because there is no guarantee when, or even if, the Garbage Collector will call it.","Because it slows down compilation time."],"answer": "Because there is no guarantee when, or even if, the Garbage Collector will call it."},
+    {"question": "Which of these is NOT a terminal operation in the Java Stream API?","options": ["forEach()","collect()","filter()","reduce()"],"answer": "filter()"},
+    {"question": "What is the primary characteristic of an object created from a class that implements the `Serializable` interface?","options": ["It can be executed by multiple threads simultaneously.","Its state can be converted into a byte stream.","It can only have one instance in the entire application.","It cannot be extended by another class."],"answer": "Its state can be converted into a byte stream."},
+    {"question": "What is the main advantage of the `for-each` loop (enhanced for loop)?","options": ["It is faster than a traditional for loop.","It allows you to modify the collection while iterating.","It provides a cleaner, more readable syntax for iterating over all elements of a collection or array without needing an index variable.","It can iterate in reverse order."],"answer": "It provides a cleaner, more readable syntax for iterating over all elements of a collection or array without needing an index variable."},
+    {"question": "What is the result of this code?\n\n<pre><code>String str = \"skit\";\nstr.toUpperCase();\nSystem.out.println(str);</code></pre>","options": ["SKIT","skit","A compilation error occurs.","null"],"answer": "skit"},
+    {"question": "If a class implements two interfaces, and both interfaces have a default method with the exact same signature, what happens?","options": ["The first interface's method is used by default.","The class must explicitly override the method to resolve the ambiguity.","The program will choose one of the methods at random.","The methods cancel each other out and cannot be called."],"answer": "The class must explicitly override the method to resolve the ambiguity."},
+    {"question": "What is the purpose of a constructor?","options": ["To destroy an object.","To initialize a newly created object.","To provide a return value when an object is created.","To copy an object."],"answer": "To initialize a newly created object."}
   ]
 }
