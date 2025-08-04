@@ -1,46 +1,36 @@
-// uploadQuestions.js (Corrected Version)
-
+// uploadQuestions.js (Final Corrected Version)
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-// Define the schema EXACTLY as it is in server.js for PracticeTest
 const PracticeTestSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
-    questions: [new mongoose.Schema({
-        question: { type: String, required: true },
-        options: { type: [String], required: true },
-        answer: { type: String, required: true }
-    })]
+    questions: [new mongoose.Schema({ question: String, options: [String], answer: String }, { _id: true })]
 });
-// THIS IS THE FIX: Use the 'PracticeTest' model name
 const PracticeTest = mongoose.model('PracticeTest', PracticeTestSchema);
 
 const uploadData = async () => {
     const filePath = process.argv[2];
-    if (!filePath) {
-        console.error('ERROR: Please provide the path to the JSON file.');
-        return;
-    }
+    if (!filePath) { console.error('ERROR: Please provide path to JSON file.'); return; }
 
     try {
         await mongoose.connect(process.env.DATABASE_URL);
         console.log('✅ MongoDB Connected for practice test upload.');
-
         const data = fs.readFileSync(filePath, 'utf-8');
         const testData = JSON.parse(data);
+        
+        // This is the FIX: The key in our JSON is 'testName', but the model expects 'name'.
+        const formattedData = {
+            name: testData.testName, 
+            questions: testData.questions
+        };
 
-        // Use findOneAndUpdate with upsert: it will create the test if it doesn't exist,
-        // or update it if a test with the same name already exists.
-        await PracticeTest.findOneAndUpdate({ name: testData.name }, testData, { upsert: true, new: true });
-
-        console.log(`✅ Successfully uploaded/updated practice test: "${testData.name}"`);
-
+        await PracticeTest.findOneAndUpdate({ name: formattedData.name }, formattedData, { upsert: true });
+        console.log(`✅ Successfully uploaded/updated practice test: "${formattedData.name}"`);
     } catch (error) {
         console.error('❌ Error during upload:', error);
     } finally {
-        mongoose.connection.close();
-        console.log('Database connection closed.');
+        await mongoose.connection.close();
     }
 };
 
