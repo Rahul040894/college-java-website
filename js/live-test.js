@@ -1,12 +1,12 @@
-// js/live-test.js (Final Version with 60 Minute Timer)
+// js/live-test.js (The Truly Final Version with All Features)
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Configuration ---
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     const testName = 'final-exam-java';
-    // ========== THIS IS THE TIMER CHANGE ==========
     const testDurationMinutes = 60;
-    // ============================================
 
+    // --- Element Selectors ---
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
     const completeContainer = document.getElementById('complete-container');
@@ -16,10 +16,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentInfo = document.getElementById('student-info');
     const examForm = document.getElementById('exam-form');
     let timerInterval;
+    
+    // --- A flag to prevent multiple submissions ---
+    let isSubmitting = false;
 
+    // --- Event Listeners ---
     if (entryForm) {
         entryForm.addEventListener('submit', handleStartTest);
     }
+
+    // --- Main Functions ---
 
     async function handleStartTest(e) {
         e.preventDefault();
@@ -28,10 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const studentName = studentNameInput.value.trim();
         const studentId = studentIdInput.value.trim();
         
-        if (!studentName || !studentId) {
-            showError("Please fill in all fields.");
-            return;
-        }
+        if (!studentName || !studentId) { showError("Please fill in all fields."); return; }
 
         startBtn.disabled = true;
         startBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Starting...`;
@@ -43,9 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ studentName, studentId, testName })
             });
             const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to start the test.');
-            }
+            if (!response.ok) { throw new Error(data.error || 'Failed to start the test.'); }
             localStorage.setItem('studentId', studentId);
             startTest(data.questions, studentName, studentId);
         } catch (error) {
@@ -60,32 +61,31 @@ document.addEventListener('DOMContentLoaded', () => {
         testContainer.classList.remove('d-none');
         studentInfo.textContent = `Student: ${name} (${id})`;
         
+        // --- Activate the "Digital Proctor" ---
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        
         const shuffledQuestions = shuffleArray(questions);
         displayQuestions(shuffledQuestions);
         startTimer();
     }
     
-    function displayQuestions(questions) {
-        examForm.innerHTML = '';
-        questions.forEach((q, index) => {
-            const questionElement = document.createElement('div');
-            questionElement.className = 'mb-4';
-            let optionsHTML = q.options.map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join('');
-            questionElement.innerHTML = `<h5>${index + 1}. ${q.question.replace(/\n/g, '<br>')}</h5>${optionsHTML}`;
-            examForm.appendChild(questionElement);
-        });
-        const submitButton = document.createElement('button');
-        submitButton.type = 'submit';
-        submitButton.id = 'submitBtn';
-        submitButton.className = 'btn btn-success btn-lg mt-3';
-        submitButton.textContent = 'Finish & Submit Test';
-        examForm.appendChild(submitButton);
-        examForm.addEventListener('submit', handleSubmission);
+    // --- The "Digital Proctor" function ---
+    function handleVisibilityChange() {
+        if (document.hidden) {
+            alert("You have navigated away from the test tab. Your exam will now be submitted automatically.");
+            handleSubmission(); // Trigger the auto-submission
+        }
     }
     
     async function handleSubmission(e) {
         if (e) e.preventDefault();
+        
+        if (isSubmitting) return; // Prevent double submissions
+        isSubmitting = true;
+        
+        // Stop the timer and remove the visibility checker to prevent it from firing again
         clearInterval(timerInterval);
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
         
         const submitBtn = document.getElementById('submitBtn');
         if (submitBtn) {
@@ -115,11 +115,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+    function displayQuestions(questions) {
+        examForm.innerHTML = '';
+        questions.forEach((q, index) => {
+            const questionElement = document.createElement('div');
+            questionElement.className = 'mb-4';
+            let optionsHTML = q.options.map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join('');
+            questionElement.innerHTML = `<h5>${index + 1}. ${q.question.replace(/\n/g, '<br>')}</h5>${optionsHTML}`;
+            examForm.appendChild(questionElement);
+        });
+        const submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+        submitButton.id = 'submitBtn';
+        submitButton.className = 'btn btn-success btn-lg mt-3';
+        submitButton.textContent = 'Finish & Submit Test';
+        examForm.appendChild(submitButton);
+        examForm.addEventListener('submit', handleSubmission);
+    }
+    
     function startTimer() {
         let timeLeft = testDurationMinutes * 60;
         const timerElement = document.getElementById('timer');
+        timerElement.textContent = `Time Left: ${testDurationMinutes}:00`;
 
         timerInterval = setInterval(() => {
+            timeLeft--;
             const minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
             seconds = seconds < 10 ? '0' + seconds : seconds;
@@ -129,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             if (timeLeft <= 0) {
-                clearInterval(timerInterval);
                 if (timerElement) {
                     timerElement.textContent = 'Time Up!';
                     timerElement.classList.remove('bg-danger');
@@ -137,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 handleSubmission();
             }
-            timeLeft--;
         }, 1000);
     }
 
