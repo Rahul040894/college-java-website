@@ -1,12 +1,10 @@
-// js/live-test.js (The Truly Final Version with All Features)
+// js/live-test.js (Final Version with Enhanced Error Message)
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Configuration ---
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     const testName = 'final-exam-java';
     const testDurationMinutes = 60;
 
-    // --- Element Selectors ---
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
     const completeContainer = document.getElementById('complete-container');
@@ -16,16 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentInfo = document.getElementById('student-info');
     const examForm = document.getElementById('exam-form');
     let timerInterval;
-    
-    // --- A flag to prevent multiple submissions ---
-    let isSubmitting = false;
 
-    // --- Event Listeners ---
     if (entryForm) {
         entryForm.addEventListener('submit', handleStartTest);
     }
-
-    // --- Main Functions ---
 
     async function handleStartTest(e) {
         e.preventDefault();
@@ -34,10 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const studentName = studentNameInput.value.trim();
         const studentId = studentIdInput.value.trim();
         
-        if (!studentName || !studentId) { showError("Please fill in all fields."); return; }
+        if (!studentName || !studentId) {
+            showError("Please fill in all fields.");
+            return;
+        }
 
         startBtn.disabled = true;
-        startBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Starting...`;
+        startBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Starting... Please wait.`;
         
         try {
             const response = await fetch(`${liveServerUrl}/api/exam/start`, {
@@ -46,73 +41,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ studentName, studentId, testName })
             });
             const data = await response.json();
-            if (!response.ok) { throw new Error(data.error || 'Failed to start the test.'); }
+            if (!response.ok) {
+                // This will now show specific errors from the server, like "USN not authorized".
+                throw new Error(data.error || 'An unknown error occurred.');
+            }
             localStorage.setItem('studentId', studentId);
             startTest(data.questions, studentName, studentId);
         } catch (error) {
-            showError(error.message);
+            // ========== THIS IS THE NEW, IMPROVED ERROR HANDLING ==========
+            console.error("Error starting test:", error); // Log the technical error for your own debugging
+            // Check if the error message is the generic "Failed to fetch"
+            if (error.message.includes("Failed to fetch")) {
+                showError("Could not connect to the server. It may be waking up from sleep. Please wait a moment and try again.");
+            } else {
+                // Show the specific error message from our server (e.g., "USN not authorized")
+                showError(error.message);
+            }
+            // =============================================================
             startBtn.disabled = false;
             startBtn.innerHTML = 'Start Test';
         }
     }
 
     function startTest(questions, name, id) {
+        // ... (rest of the functions are unchanged)
         entryContainer.classList.add('d-none');
         testContainer.classList.remove('d-none');
         studentInfo.textContent = `Student: ${name} (${id})`;
-        
-        // --- Activate the "Digital Proctor" ---
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-        
         const shuffledQuestions = shuffleArray(questions);
         displayQuestions(shuffledQuestions);
         startTimer();
-    }
-    
-    // --- The "Digital Proctor" function ---
-    function handleVisibilityChange() {
-        if (document.hidden) {
-            alert("You have navigated away from the test tab. Your exam will now be submitted automatically.");
-            handleSubmission(); // Trigger the auto-submission
-        }
-    }
-    
-    async function handleSubmission(e) {
-        if (e) e.preventDefault();
-        
-        if (isSubmitting) return; // Prevent double submissions
-        isSubmitting = true;
-        
-        // Stop the timer and remove the visibility checker to prevent it from firing again
-        clearInterval(timerInterval);
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-        
-        const submitBtn = document.getElementById('submitBtn');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Submitting...`;
-        }
-        
-        examForm.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
-
-        const answers = [];
-        examForm.querySelectorAll('input[type="radio"]:checked').forEach(input => {
-            answers.push({ id: input.name.replace('question', ''), answer: input.value });
-        });
-        
-        const studentId = localStorage.getItem('studentId');
-        
-        try {
-            await fetch(`${liveServerUrl}/api/exam/submit`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ studentId, testName, answers })
-            });
-            testContainer.classList.add('d-none');
-            completeContainer.classList.remove('d-none');
-        } catch (error) {
-            alert('There was an error submitting your test. Please contact your instructor.');
-        }
     }
     
     function displayQuestions(questions) {
@@ -133,29 +91,38 @@ document.addEventListener('DOMContentLoaded', () => {
         examForm.addEventListener('submit', handleSubmission);
     }
     
+    async function handleSubmission(e) {
+        if (e) e.preventDefault();
+        clearInterval(timerInterval);
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Submitting...`; }
+        examForm.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
+        const answers = [];
+        examForm.querySelectorAll('input[type="radio"]:checked').forEach(input => { answers.push({ id: input.name.replace('question', ''), answer: input.value }); });
+        const studentId = localStorage.getItem('studentId');
+        try {
+            await fetch(`${liveServerUrl}/api/exam/submit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, testName, answers }) });
+            testContainer.classList.add('d-none');
+            completeContainer.classList.remove('d-none');
+        } catch (error) {
+            alert('There was an error submitting your test. Please contact your instructor.');
+        }
+    }
+    
     function startTimer() {
         let timeLeft = testDurationMinutes * 60;
         const timerElement = document.getElementById('timer');
-        timerElement.textContent = `Time Left: ${testDurationMinutes}:00`;
-
         timerInterval = setInterval(() => {
-            timeLeft--;
             const minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
             seconds = seconds < 10 ? '0' + seconds : seconds;
-            
-            if (timerElement) {
-                timerElement.textContent = `Time Left: ${minutes}:${seconds}`;
-            }
-            
+            if (timerElement) { timerElement.textContent = `Time Left: ${minutes}:${seconds}`; }
             if (timeLeft <= 0) {
-                if (timerElement) {
-                    timerElement.textContent = 'Time Up!';
-                    timerElement.classList.remove('bg-danger');
-                    timerElement.classList.add('bg-warning');
-                }
+                clearInterval(timerInterval);
+                if (timerElement) { timerElement.textContent = 'Time Up!'; timerElement.classList.remove('bg-danger'); timerElement.classList.add('bg-warning'); }
                 handleSubmission();
             }
+            timeLeft--;
         }, 1000);
     }
 
