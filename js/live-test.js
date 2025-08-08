@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentInfo = document.getElementById('student-info');
     const examForm = document.getElementById('exam-form');
     let timerInterval;
-    
-    // --- A flag to prevent multiple submissions ---
     let isSubmitting = false;
 
     // --- Event Listeners ---
@@ -33,34 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const studentIdInput = document.getElementById('studentId');
         const studentName = studentNameInput.value.trim();
         const studentId = studentIdInput.value.trim();
-        
-        if (!studentName || !studentId) {
-            showError("Please fill in all fields.");
-            return;
-        }
-
+        if (!studentName || !studentId) { showError("Please fill in all fields."); return; }
         startBtn.disabled = true;
         startBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Starting... Please wait.`;
-        
         try {
-            const response = await fetch(`${liveServerUrl}/api/exam/start`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ studentName, studentId, testName })
-            });
+            const response = await fetch(`${liveServerUrl}/api/exam/start`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentName, studentId, testName }) });
             const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.error || 'An unknown error occurred.');
-            }
+            if (!response.ok) { throw new Error(data.error || 'An unknown error occurred.'); }
             localStorage.setItem('studentId', studentId);
             startTest(data.questions, studentName, studentId);
         } catch (error) {
             console.error("Error starting test:", error);
-            if (error.message.includes("Failed to fetch")) {
-                showError("Could not connect to the server. It may be waking up. Please wait a moment and try again.");
-            } else {
-                showError(error.message);
-            }
+            if (error.message.includes("Failed to fetch")) { showError("Could not connect to the server. It may be waking up. Please wait a moment and try again."); } else { showError(error.message); }
             startBtn.disabled = false;
             startBtn.innerHTML = 'Start Test';
         }
@@ -71,56 +53,63 @@ document.addEventListener('DOMContentLoaded', () => {
         testContainer.classList.remove('d-none');
         studentInfo.textContent = `Student: ${name} (${id})`;
         
-        // --- THE DIGITAL PROCTOR - RESTORED AND ACTIVE ---
+        // --- Activate the "Digital Proctor" Suite ---
         document.addEventListener('visibilitychange', handleVisibilityChange);
+        activateCopyPasteBlock(); // NEW: Activate the copy-paste blocker
         
         const shuffledQuestions = shuffleArray(questions);
         displayQuestions(shuffledQuestions);
         startTimer();
     }
     
-    // --- The "Digital Proctor" function ---
+    // --- The "Digital Proctor" function for Tab Switching ---
     function handleVisibilityChange() {
         if (document.hidden) {
-            // Give a clear warning to the user
             alert("You have navigated away from the test tab. Your exam will now be submitted automatically to prevent malpractice.");
-            // Trigger the submission
             handleSubmission();
         }
+    }
+
+    // --- NEW: The Copy-Paste Blocker ---
+    const toastElement = document.getElementById('copyPasteToast');
+    const copyPasteToast = new bootstrap.Toast(toastElement);
+    const handleDisabledAction = (event) => {
+        event.preventDefault();
+        copyPasteToast.show();
+    };
+    function activateCopyPasteBlock() {
+        document.addEventListener('copy', handleDisabledAction);
+        document.addEventListener('paste', handleDisabledAction);
+        document.addEventListener('cut', handleDisabledAction);
+        document.addEventListener('contextmenu', handleDisabledAction);
+    }
+    function deactivateCopyPasteBlock() {
+        document.removeEventListener('copy', handleDisabledAction);
+        document.removeEventListener('paste', handleDisabledAction);
+        document.removeEventListener('cut', handleDisabledAction);
+        document.removeEventListener('contextmenu', handleDisabledAction);
     }
     
     async function handleSubmission(e) {
         if (e) e.preventDefault();
-        
-        // Prevent multiple submissions if the user clicks and the timer runs out at the same time
         if (isSubmitting) return;
         isSubmitting = true;
         
-        // Stop the timer and remove the proctor to prevent it from firing again
+        // Stop all proctoring features
         clearInterval(timerInterval);
         document.removeEventListener('visibilitychange', handleVisibilityChange);
+        deactivateCopyPasteBlock(); // NEW: Deactivate the blocker upon submission
         
         const submitBtn = document.getElementById('submitBtn');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Submitting...`;
-        }
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Submitting...`; }
         
         examForm.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
-
         const answers = [];
-        examForm.querySelectorAll('input[type="radio"]:checked').forEach(input => {
-            answers.push({ id: input.name.replace('question', ''), answer: input.value });
-        });
+        examForm.querySelectorAll('input[type="radio"]:checked').forEach(input => { answers.push({ id: input.name.replace('question', ''), answer: input.value }); });
         
         const studentId = localStorage.getItem('studentId');
-        
         try {
-            await fetch(`${liveServerUrl}/api/exam/submit`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ studentId, testName, answers })
-            });
+            await fetch(`${liveServerUrl}/api/exam/submit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, testName, answers }) });
             testContainer.classList.add('d-none');
             completeContainer.classList.remove('d-none');
         } catch (error) {
@@ -149,25 +138,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function startTimer() {
         let timeLeft = testDurationMinutes * 60;
         const timerElement = document.getElementById('timer');
-
         timerInterval = setInterval(() => {
+            timeLeft--;
             const minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
             seconds = seconds < 10 ? '0' + seconds : seconds;
-            
-            if (timerElement) {
-                timerElement.textContent = `Time Left: ${minutes}:${seconds}`;
-            }
-            
+            if (timerElement) { timerElement.textContent = `Time Left: ${minutes}:${seconds}`; }
             if (timeLeft <= 0) {
-                if (timerElement) {
-                    timerElement.textContent = 'Time Up!';
-                    timerElement.classList.remove('bg-danger');
-                    timerElement.classList.add('bg-warning');
-                }
+                if (timerElement) { timerElement.textContent = 'Time Up!'; timerElement.classList.remove('bg-danger'); timerElement.classList.add('bg-warning'); }
                 handleSubmission();
             }
-            timeLeft--;
         }, 1000);
     }
 
@@ -181,6 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
-        return array;
+        return array.slice(); // Return a shuffled copy
     }
 });
