@@ -1,74 +1,145 @@
-// js/script.js (The Truly Final Production Version)
+// js/script.js (The Truly Final, Fully-Integrated Production Version)
 
 document.addEventListener('DOMContentLoaded', () => {
+    // A single source of truth for your live server URL
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
-    let isSubmitting = false; // Global flag for submissions
+    let isSubmitting = false; // Global flag to prevent double submissions
 
-    // --- Feature Flag for Exam Banner ---
+    // --- Feature Flag Logic for Exam Banner ---
     const examAlertBox = document.getElementById('exam-alert-box');
-    if (examAlertBox) { /* ... check exam status ... */ }
+    async function checkExamStatus() {
+        if (!examAlertBox) return;
+        try {
+            const response = await fetch(`${liveServerUrl}/api/exam/status`);
+            const data = await response.json();
+            if (data.isLive) examAlertBox.classList.remove('d-none');
+        } catch (error) { console.error("Could not check exam status:", error); }
+    }
+    checkExamStatus();
 
     // --- Background Image Changer ---
     const backgroundElement = document.querySelector('body.full-bg');
-    if (backgroundElement) { /* ... background logic ... */ }
-
-    // --- MCQ Test Logic (Now with Proctoring) ---
-    const mainContentBox = document.getElementById('mcq-content-box'); // Use a more specific ID
-    const urlParams = new URLSearchParams(window.location.search);
-    const testNameToStart = urlParams.get('test');
-
-    if (testNameToStart && mainContentBox) {
-        startTest(testNameToStart);
-    } else if (mainContentBox) {
-        loadTestList();
-    }
-    
-    // --- Proctoring Toasts ---
-    const proctorToastElement = document.getElementById('proctorToast');
-    const proctorToast = proctorToastElement ? new bootstrap.Toast(proctorToastElement) : null;
-    const visibilityToastElement = document.getElementById('visibilityToast');
-    const visibilityToast = visibilityToastElement ? new bootstrap.Toast(visibilityToastElement) : null;
-    
-    const handleDisabledAction = (event) => { event.preventDefault(); if(proctorToast) proctorToast.show(); };
-    const handleVisibilityChange = () => { if (document.hidden && !isSubmitting) { if(visibilityToast) visibilityToast.show(); submitTest(null, testNameToStart); } };
-
-    function activateProctoring() {
-        document.addEventListener('copy', handleDisabledAction);
-        document.addEventListener('paste', handleDisabledAction);
-        document.addEventListener('cut', handleDisabledAction);
-        document.addEventListener('contextmenu', handleDisabledAction);
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-    }
-    function deactivateProctoring() {
-        document.removeEventListener('copy', handleDisabledAction);
-        document.removeEventListener('paste', handleDisabledAction);
-        document.removeEventListener('cut', handleDisabledAction);
-        document.removeEventListener('contextmenu', handleDisabledAction);
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
+    if (backgroundElement) {
+        const backgroundImages = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg'];
+        let currentImageIndex = 0;
+        backgroundElement.style.backgroundImage = `url('${backgroundImages[0]}')`;
+        const changeBackgroundImage = () => {
+            currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+            backgroundElement.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
+        };
+        setInterval(changeBackgroundImage, 7000);
     }
 
-    async function loadTestList() {
-        mainContentBox.innerHTML = `<h2>Available MCQ Tests</h2><p>Select a topic to test your knowledge.</p><hr><div id="test-list-container"><p>Loading tests...</p></div>`;
+    // =======================================================
+    // == SECTION 2: MCQ TEST LOGIC (REBUILT FOR CLARITY)   ==
+    // =======================================================
+    const mcqContentBox = document.getElementById('mcq-content-box');
+    if (mcqContentBox) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const testNameToStart = urlParams.get('test');
+
+        if (testNameToStart) {
+            startPracticeTest(testNameToStart);
+        } else {
+            loadPracticeTestList();
+        }
+    }
+
+    async function loadPracticeTestList() {
+        mcqContentBox.innerHTML = `<h2>Available MCQ Tests</h2><p>Select a topic to test your knowledge.</p><hr><div id="test-list-container"><p>Loading tests...</p></div>`;
         const testListContainer = document.getElementById('test-list-container');
-        // ... (rest of loadTestList logic is the same)
+        const longLoadTimer = setTimeout(() => { if (testListContainer) testListContainer.innerHTML = '<p class="text-info">The server is waking up...</p>'; }, 8000);
+        try {
+            const response = await fetch(`${liveServerUrl}/api/tests`);
+            clearTimeout(longLoadTimer);
+            if (!response.ok) throw new Error(`Server Error`);
+            const tests = await response.json();
+            if (tests.length === 0) { testListContainer.innerHTML = '<p>No tests have been added yet.</p>'; return; }
+            testListContainer.innerHTML = '';
+            tests.forEach(test => {
+                const testLink = document.createElement('a');
+                testLink.href = `mcq-test.html?test=${test.name}`;
+                testLink.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center';
+                testLink.innerHTML = `<strong>${test.name.replace(/-/g, ' ').toUpperCase()}</strong><span class="badge bg-primary rounded-pill">${test.questionCount} Qs</span>`;
+                testListContainer.appendChild(testLink);
+            });
+        } catch (error) {
+            clearTimeout(longLoadTimer);
+            if (testListContainer) testListContainer.innerHTML = '<p class="text-danger">Could not load tests. Please refresh.</p>';
+        }
     }
 
-    async function startTest(testName) {
-        activateProctoring(); // Activate proctoring when the test starts
-        // ... (rest of startTest logic is the same)
+    async function startPracticeTest(testName) {
+        mcqContentBox.innerHTML = `<h2>${testName.replace(/-/g, ' ').toUpperCase()}</h2><hr><div id="test-area"><p>Loading questions...</p></div>`;
+        const testArea = document.getElementById('test-area');
+        const longLoadTimer = setTimeout(() => { if (testArea) testArea.innerHTML = '<p class="text-info">Server is starting...</p>'; }, 8000);
+        const url = `${liveServerUrl}/api/test/${testName}`;
+        try {
+            const response = await fetch(url);
+            clearTimeout(longLoadTimer);
+            if (!response.ok) throw new Error(`Server Error`);
+            const questions = await response.json();
+            displayPracticeQuestions(questions, testName);
+        } catch (error) {
+            clearTimeout(longLoadTimer);
+            if(testArea) testArea.innerHTML = `<p class="text-danger">Failed to load test.</p>`;
+        }
     }
 
-    async function submitTest(event, testName) {
+    function displayPracticeQuestions(questions, testName) {
+        const testArea = document.getElementById('test-area');
+        const formHTML = `<form id="mcq-form"></form>`;
+        testArea.innerHTML = formHTML;
+        const mcqForm = document.getElementById('mcq-form');
+        questions.forEach((q, index) => {
+            const questionElement = document.createElement('div');
+            questionElement.className = 'mb-4';
+            let optionsHTML = q.options.map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join('');
+            questionElement.innerHTML = `<h5>${index + 1}. ${q.question.replace(/\n/g, '<br>')}</h5>${optionsHTML}`;
+            mcqForm.appendChild(questionElement);
+        });
+        const submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+        submitButton.className = 'btn btn-success mt-3';
+        submitButton.textContent = 'Submit Answers';
+        mcqForm.appendChild(submitButton);
+        mcqForm.addEventListener('submit', (event) => submitPracticeTest(event, testName));
+    }
+
+    async function submitPracticeTest(event, testName) {
         if (event) event.preventDefault();
         if (isSubmitting) return;
         isSubmitting = true;
-        deactivateProctoring(); // Deactivate proctoring upon submission
-        // ... (rest of submitTest logic is the same)
+        mcqContentBox.innerHTML = `<h2>Submitting...</h2><p>Please wait while we process your results.</p>`;
+        const mcqForm = document.getElementById('mcq-form');
+        const answers = [];
+        if (mcqForm) { mcqForm.querySelectorAll('input[type="radio"]:checked').forEach(input => { answers.push({ id: input.name.replace('question', ''), answer: input.value }); }); }
+        const url = `${liveServerUrl}/api/submit/${testName}`;
+        try {
+            const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ answers }) });
+            const result = await response.json();
+            displayPracticeResult(result, testName);
+        } catch (error) {
+            console.error("Could not submit test:", error);
+            mcqContentBox.innerHTML = `<p class="text-danger">Could not submit test.</p>`;
+        }
     }
 
+    function displayPracticeResult(result, testName) {
+        const percentage = (result.score / result.total) * 100;
+        let feedbackMessage = percentage >= 80 ? 'Excellent work!' : 'Keep practicing!';
+        mcqContentBox.innerHTML = `<h3>Test Complete!</h3><h4>Your Score: ${result.score} out of ${result.total}</h4><div class="progress" style="height: 25px;"><div class="progress-bar bg-success" role="progressbar" style="width: ${percentage}%;" aria-valuenow="${percentage}">${percentage.toFixed(0)}%</div></div><p class="mt-3">${feedbackMessage}</p><a href="mcq-test.html?test=${testName}" class="btn btn-info">Try Again</a><a href="mcq-test.html" class="btn btn-secondary">Back to Test List</a>`;
+    }
+
+
     // --- Online Compiler & Coding Problems Logic (No changes needed) ---
-    // ... (All other logic remains here)
+    const runButton = document.getElementById('runButton'); if (runButton) { /* ... */ }
+    const codingContainer = document.getElementById('coding-container'); if (codingContainer) { /* ... */ }
+    async function loadProblemList() { /* ... */ }
+    async function loadSingleProblem(problemId) { /* ... */ }
+    // (Full code for other sections is included in the complete block below)
 });
+
 
 // ====================================================================================
 // === COMPLETE SCRIPT.JS FOR FINAL COPY-PASTE ===
@@ -86,55 +157,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const backgroundElement = document.querySelector('body.full-bg');
     if (backgroundElement) { const backgroundImages = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg']; let currentImageIndex = 0; backgroundElement.style.backgroundImage = `url('${backgroundImages[0]}')`; const changeBackgroundImage = () => { currentImageIndex = (currentImageIndex + 1) % backgroundImages.length; backgroundElement.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`; }; setInterval(changeBackgroundImage, 7000); }
 
-    // --- MCQ Test Logic (with Proctoring) ---
-    const mainContentBox = document.getElementById('mcq-content-box');
-    const urlParams = new URLSearchParams(window.location.search);
-    const testNameToStart = urlParams.get('test');
-
-    if (testNameToStart && mainContentBox) {
-        startTest(testNameToStart);
-    } else if (mainContentBox) {
-        loadTestList();
-    }
-    
-    const proctorToastElement = document.getElementById('proctorToast');
-    const proctorToast = proctorToastElement ? new bootstrap.Toast(proctorToastElement) : null;
-    const visibilityToastElement = document.getElementById('visibilityToast');
-    const visibilityToast = visibilityToastElement ? new bootstrap.Toast(visibilityToastElement) : null;
-    
-    const handleDisabledAction = (event) => { event.preventDefault(); if (proctorToast) proctorToast.show(); };
-    const handleVisibilityChange = () => { if (document.hidden && !isSubmitting) { if (visibilityToast) visibilityToast.show(); setTimeout(() => submitTest(null, testNameToStart), 500); } };
-
-    function activateProctoring() { document.addEventListener('copy', handleDisabledAction); document.addEventListener('paste', handleDisabledAction); document.addEventListener('cut', handleDisabledAction); document.addEventListener('contextmenu', handleDisabledAction); document.addEventListener('visibilitychange', handleVisibilityChange); }
-    function deactivateProctoring() { document.removeEventListener('copy', handleDisabledAction); document.removeEventListener('paste', handleDisabledAction); document.removeEventListener('cut', handleDisabledAction); document.removeEventListener('contextmenu', handleDisabledAction); document.removeEventListener('visibilitychange', handleVisibilityChange); }
-
-    async function loadTestList() {
-        mainContentBox.innerHTML = `<h2>Available MCQ Tests</h2><p>Select a topic to test your knowledge.</p><hr><div id="test-list-container"><p>Loading tests...</p></div>`;
-        const testListContainer = document.getElementById('test-list-container');
-        const longLoadTimer = setTimeout(() => { if (testListContainer) testListContainer.innerHTML = '<p class="text-info">The server is waking up...</p>'; }, 8000);
-        try { const response = await fetch(`${liveServerUrl}/api/tests`); clearTimeout(longLoadTimer); if (!response.ok) throw new Error(`Server Error`); const tests = await response.json(); if (tests.length === 0) { testListContainer.innerHTML = '<p>No tests have been added yet.</p>'; return; } testListContainer.innerHTML = ''; tests.forEach(test => { const testLink = document.createElement('a'); testLink.href = `mcq-test.html?test=${test.name}`; testLink.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center'; testLink.innerHTML = `<strong>${test.name.replace(/-/g, ' ').toUpperCase()}</strong><span class="badge bg-primary rounded-pill">${test.questionCount} Qs</span>`; testListContainer.appendChild(testLink); }); } catch (error) { clearTimeout(longLoadTimer); if (testListContainer) testListContainer.innerHTML = '<p class="text-danger">Could not load tests. Please refresh.</p>'; }
-    }
-    async function startTest(testName) {
-        activateProctoring();
-        mainContentBox.innerHTML = `<h2>${testName.replace(/-/g, ' ').toUpperCase()}</h2><hr><div id="test-area"><p>Loading questions...</p></div>`; const testArea = document.getElementById('test-area'); const longLoadTimer = setTimeout(() => { if (testArea) testArea.innerHTML = '<p class="text-info">Server is starting...</p>'; }, 8000); const url = `${liveServerUrl}/api/test/${testName}`; try { const response = await fetch(url); clearTimeout(longLoadTimer); if (!response.ok) throw new Error(`Server Error`); const questions = await response.json(); displayQuestions(questions, testName); } catch (error) { clearTimeout(longLoadTimer); if(testArea) testArea.innerHTML = `<p class="text-danger">Failed to load test.</p>`; }
-    }
-    function displayQuestions(questions, testName) { const testArea = document.getElementById('test-area'); const formHTML = `<form id="mcq-form"></form>`; testArea.innerHTML = formHTML; const mcqForm = document.getElementById('mcq-form'); questions.forEach((q, index) => { const questionElement = document.createElement('div'); questionElement.className = 'mb-4'; let optionsHTML = q.options.map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join(''); questionElement.innerHTML = `<h5>${index + 1}. ${q.question.replace(/\n/g, '<br>')}</h5>${optionsHTML}`; mcqForm.appendChild(questionElement); }); const submitButton = document.createElement('button'); submitButton.type = 'submit'; submitButton.className = 'btn btn-success mt-3'; submitButton.textContent = 'Submit Answers'; mcqForm.appendChild(submitButton); mcqForm.addEventListener('submit', (event) => submitTest(event, testName)); }
-    async function submitTest(event, testName) {
-        if (event) event.preventDefault();
-        if (isSubmitting) return;
-        isSubmitting = true;
-        deactivateProctoring();
-        mainContentBox.innerHTML = `<h2>Submitting...</h2><p>Please wait while we process your results.</p>`;
-        const mcqForm = document.getElementById('mcq-form');
-        const answers = [];
-        if (mcqForm) { mcqForm.querySelectorAll('input[type="radio"]:checked').forEach(input => { answers.push({ id: input.name.replace('question', ''), answer: input.value }); }); }
-        const url = `${liveServerUrl}/api/submit/${testName}`;
-        try { const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ answers }) }); const result = await response.json(); displayResult(result, testName); } catch (error) { console.error("Could not submit test:", error); mainContentBox.innerHTML = `<p class="text-danger">Could not submit test.</p>`; }
-    }
-    function displayResult(result, testName) { const percentage = (result.score / result.total) * 100; let feedbackMessage = percentage >= 80 ? 'Excellent work!' : 'Keep practicing!'; mainContentBox.innerHTML = `<h3>Test Complete!</h3><h4>Your Score: ${result.score} out of ${result.total}</h4><div class="progress" style="height: 25px;"><div class="progress-bar bg-success" role="progressbar" style="width: ${percentage}%;" aria-valuenow="${percentage}">${percentage.toFixed(0)}%</div></div><p class="mt-3">${feedbackMessage}</p><a href="mcq-test.html?test=${testName}" class="btn btn-info">Try Again</a><a href="mcq-test.html" class="btn btn-secondary">Back to Test List</a>`; }
+    // --- MCQ Test Logic (Rebuilt for Clarity) ---
+    const mcqContentBox = document.getElementById('mcq-content-box');
+    if (mcqContentBox) { const urlParams = new URLSearchParams(window.location.search); const testNameToStart = urlParams.get('test'); if (testNameToStart) { startPracticeTest(testNameToStart); } else { loadPracticeTestList(); } }
+    async function loadPracticeTestList() { mcqContentBox.innerHTML = `<h2>Available MCQ Tests</h2><p>Select a topic to test your knowledge.</p><hr><div id="test-list-container"><p>Loading tests...</p></div>`; const testListContainer = document.getElementById('test-list-container'); const longLoadTimer = setTimeout(() => { if (testListContainer) testListContainer.innerHTML = '<p class="text-info">The server is waking up...</p>'; }, 8000); try { const response = await fetch(`${liveServerUrl}/api/tests`); clearTimeout(longLoadTimer); if (!response.ok) throw new Error(`Server Error`); const tests = await response.json(); if (tests.length === 0) { testListContainer.innerHTML = '<p>No tests have been added yet.</p>'; return; } testListContainer.innerHTML = ''; tests.forEach(test => { const testLink = document.createElement('a'); testLink.href = `mcq-test.html?test=${test.name}`; testLink.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center'; testLink.innerHTML = `<strong>${test.name.replace(/-/g, ' ').toUpperCase()}</strong><span class="badge bg-primary rounded-pill">${test.questionCount} Qs</span>`; testListContainer.appendChild(testLink); }); } catch (error) { clearTimeout(longLoadTimer); if (testListContainer) testListContainer.innerHTML = '<p class="text-danger">Could not load tests. Please refresh.</p>'; } }
+    async function startPracticeTest(testName) { mcqContentBox.innerHTML = `<h2>${testName.replace(/-/g, ' ').toUpperCase()}</h2><hr><div id="test-area"><p>Loading questions...</p></div>`; const testArea = document.getElementById('test-area'); const longLoadTimer = setTimeout(() => { if (testArea) testArea.innerHTML = '<p class="text-info">Server is starting...</p>'; }, 8000); const url = `${liveServerUrl}/api/test/${testName}`; try { const response = await fetch(url); clearTimeout(longLoadTimer); if (!response.ok) throw new Error(`Server Error`); const questions = await response.json(); displayPracticeQuestions(questions, testName); } catch (error) { clearTimeout(longLoadTimer); if(testArea) testArea.innerHTML = `<p class="text-danger">Failed to load test.</p>`; } }
+    function displayPracticeQuestions(questions, testName) { const testArea = document.getElementById('test-area'); const formHTML = `<form id="mcq-form"></form>`; testArea.innerHTML = formHTML; const mcqForm = document.getElementById('mcq-form'); questions.forEach((q, index) => { const questionElement = document.createElement('div'); questionElement.className = 'mb-4'; let optionsHTML = q.options.map(option => `<div class="form-check"><input class="form-check-input" type="radio" name="question${q.id}" value="${option}" required><label class="form-check-label">${option}</label></div>`).join(''); questionElement.innerHTML = `<h5>${index + 1}. ${q.question.replace(/\n/g, '<br>')}</h5>${optionsHTML}`; mcqForm.appendChild(questionElement); }); const submitButton = document.createElement('button'); submitButton.type = 'submit'; submitButton.className = 'btn btn-success mt-3'; submitButton.textContent = 'Submit Answers'; mcqForm.appendChild(submitButton); mcqForm.addEventListener('submit', (event) => submitPracticeTest(event, testName)); }
+    async function submitPracticeTest(event, testName) { if (event) event.preventDefault(); if (isSubmitting) return; isSubmitting = true; mcqContentBox.innerHTML = `<h2>Submitting...</h2><p>Please wait while we process your results.</p>`; const mcqForm = document.getElementById('mcq-form'); const answers = []; if (mcqForm) { mcqForm.querySelectorAll('input[type="radio"]:checked').forEach(input => { answers.push({ id: input.name.replace('question', ''), answer: input.value }); }); } const url = `${liveServerUrl}/api/submit/${testName}`; try { const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ answers }) }); const result = await response.json(); displayPracticeResult(result, testName); } catch (error) { console.error("Could not submit test:", error); mcqContentBox.innerHTML = `<p class="text-danger">Could not submit test.</p>`; } }
+    function displayPracticeResult(result, testName) { const percentage = (result.score / result.total) * 100; let feedbackMessage = percentage >= 80 ? 'Excellent work!' : 'Keep practicing!'; mcqContentBox.innerHTML = `<h3>Test Complete!</h3><h4>Your Score: ${result.score} out of ${result.total}</h4><div class="progress" style="height: 25px;"><div class="progress-bar bg-success" role="progressbar" style="width: ${percentage}%;" aria-valuenow="${percentage}">${percentage.toFixed(0)}%</div></div><p class="mt-3">${feedbackMessage}</p><a href="mcq-test.html?test=${testName}" class="btn btn-info">Try Again</a><a href="mcq-test.html" class="btn btn-secondary">Back to Test List</a>`; }
 
     // --- Online Compiler & Coding Problems Logic ---
-    // This part remains the same
-    const runButton = document.getElementById('runButton'); if (runButton) { /* ... */ }
-    const codingContainer = document.getElementById('coding-container'); if (codingContainer) { /* ... */ }
+    const runButton = document.getElementById('runButton'); if (runButton) { const editor = CodeMirror(document.getElementById('codeEditor'), { value: `public class MyClass {\n    public static void main(String args[]) {\n        System.out.println("Hello, World!");\n    }\n}`, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true }); editor.setSize(null, "500px"); const toastElement = document.getElementById('copyPasteToast'); if (toastElement) { const copyPasteToast = new bootstrap.Toast(toastElement); const handleDisabledAction = (event) => { event.preventDefault(); copyPasteToast.show(); }; editor.on('paste', (instance, event) => handleDisabledAction(event)); editor.on('copy', (instance, event) => handleDisabledAction(event)); editor.on('cut', (instance, event) => handleDisabledAction(event)); editor.getWrapperElement().addEventListener('contextmenu', handleDisabledAction); } const stdInput = document.getElementById('stdInput'); const outputArea = document.getElementById('outputArea'); runButton.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = stdInput.value; runButton.disabled = true; runButton.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Waking Server...`; outputArea.textContent = 'Connecting to the server...'; const longLoadTimer = setTimeout(() => { outputArea.textContent = 'Server is waking up. Please be patient...'; }, 8000); try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, stdin: userInput }) }); clearTimeout(longLoadTimer); const result = await response.json(); if (result.error) { outputArea.textContent = result.error; } else if (result.output) { outputArea.textContent = result.output; } else { outputArea.textContent = "Execution finished, no output."; } } catch (error) { clearTimeout(longLoadTimer); outputArea.textContent = 'Could not connect. Please try again.'; } finally { runButton.disabled = false; runButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg> Run Code`; } }); }
+    const codingContainer = document.getElementById('coding-container'); if (codingContainer) { loadProblemList(); }
+    async function loadProblemList() { codingContainer.innerHTML = `<p>Loading coding problems...</p>`; try { const response = await fetch(`${liveServerUrl}/api/coding-problems`); const problems = await response.json(); if (problems.length === 0) { codingContainer.innerHTML = '<p>No coding problems have been added yet.</p>'; return; } codingContainer.innerHTML = `<h2>Coding Problems</h2><p>Select a problem to start coding.</p><hr><div class="list-group" id="problem-list"></div>`; const problemList = document.getElementById('problem-list'); problems.forEach(problem => { const problemLink = document.createElement('a'); problemLink.href = '#'; problemLink.className = 'list-group-item list-group-item-action'; problemLink.innerHTML = `<strong>${problem.title}</strong><span class="badge bg-secondary rounded-pill float-end">${problem.topic}</span>`; problemLink.onclick = (e) => { e.preventDefault(); loadSingleProblem(problem._id); }; problemList.appendChild(problemLink); }); } catch (error) { console.error('Failed to load problem list:', error); codingContainer.innerHTML = '<p class="text-danger">Could not load problems.</p>'; } }
+    async function loadSingleProblem(problemId) { codingContainer.innerHTML = `<p>Loading problem...</p>`; try { const response = await fetch(`${liveServerUrl}/api/coding-problems/${problemId}`); const problem = await response.json(); codingContainer.innerHTML = `<button id="backToListBtn" class="btn btn-sm btn-outline-secondary mb-3">&larr; Back to Problem List</button><h3>${problem.title}</h3><p>${problem.description.replace(/\n/g, '<br>')}</p><hr><h5>Example:</h5><pre><strong>Input:</strong>\n${problem.exampleInput}\n\n<strong>Output:</strong>\n${problem.exampleOutput}</pre><hr><div class="row"><div class="col-lg-8"><h5>Your Solution:</h5><div id="codeEditor" class="mb-3"></div><h5>Standard Input (for testing):</h5><textarea id="stdInput" class="form-control" rows="3"></textarea></div><div class="col-lg-4"><h5>Test Output:</h5><pre id="outputArea" class="bg-dark text-white p-3 rounded" style="min-height: 300px; overflow-y: auto;"></pre></div></div><div class="mt-3"><button id="runCodeBtn" class="btn btn-success">Run Code</button> <button id="submitCodeBtn" class="btn btn-primary">Submit Final Code</button></div><div class="mt-3"><label for="studentIdInput" class="form-label">Enter Your USN Number to Submit:</label><input type="text" id="studentIdInput" class="form-control w-50"></div>`; document.getElementById('backToListBtn').onclick = loadProblemList; const editor = CodeMirror(document.getElementById('codeEditor'), { value: `public class Solution {\n    // Note: The class name must be 'Solution' for the code to run correctly.\n    public static void main(String args[]) {\n        // Your solution here\n    }\n}`, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true }); editor.setSize(null, "400px"); const toastElement = document.getElementById('copyPasteToast'); if(toastElement) { const copyPasteToast = new bootstrap.Toast(toastElement); const handleDisabledAction = (event) => { event.preventDefault(); copyPasteToast.show(); }; editor.on('paste', (instance, event) => handleDisabledAction(event)); editor.on('copy', (instance, event) => handleDisabledAction(event)); editor.on('cut', (instance, event) => handleDisabledAction(event)); editor.getWrapperElement().addEventListener('contextmenu', handleDisabledAction); } const runCodeBtn = document.getElementById('runCodeBtn'); const submitCodeBtn = document.getElementById('submitCodeBtn'); const outputArea = document.getElementById('outputArea'); const stdInput = document.getElementById('stdInput'); const studentIdInput = document.getElementById('studentIdInput'); const submissionToast = new bootstrap.Toast(document.getElementById('submissionToast')); runCodeBtn.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = stdInput.value; runCodeBtn.disabled = true; submitCodeBtn.disabled = true; runCodeBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Running...`; outputArea.textContent = 'Executing...'; try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, stdin: userInput }) }); const result = await response.json(); if(result.output) { outputArea.textContent = result.output; } else if (result.error) { outputArea.textContent = result.error; } } catch (error) { outputArea.textContent = "Error connecting to compiler."; } finally { runCodeBtn.disabled = false; submitCodeBtn.disabled = false; runCodeBtn.innerHTML = `Run Code`; } }); submitCodeBtn.addEventListener('click', async () => { const studentId = studentIdInput.value.trim(); if (!studentId) { alert('Please enter your USN Number to submit.'); return; } const submittedCode = editor.getValue(); submitCodeBtn.disabled = true; runCodeBtn.disabled = true; submitCodeBtn.textContent = 'Submitting...'; try { const submitResponse = await fetch(`${liveServerUrl}/api/coding-problems/submit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, problemId, submittedCode }) }); if (!submitResponse.ok) throw new Error('Submission failed.'); submissionToast.show(); setTimeout(loadProblemList, 2000); } catch (error) { alert('An error occurred during submission.'); submitCodeBtn.disabled = false; runCodeBtn.disabled = false; submitCodeBtn.textContent = 'Submit Final Code'; } }); } catch (error) { console.error('Failed to load problem:', error); codingContainer.innerHTML = '<p class="text-danger">Could not load the problem.</p>'; } }
 });
