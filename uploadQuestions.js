@@ -1,10 +1,8 @@
-// uploadQuestions.js (The Final, Correct, and Simplified Version)
-
+// uploadQuestions.js (Final, Simplified Version)
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-// Define the schema EXACTLY as it is in server.js
 const PracticeTestSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
     questions: [new mongoose.Schema({ question: String, options: [String], answer: String }, { _id: true })]
@@ -13,10 +11,7 @@ const PracticeTest = mongoose.model('PracticeTest', PracticeTestSchema);
 
 const uploadData = async () => {
     const filePath = process.argv[2];
-    if (!filePath) {
-        console.error('ERROR: Please provide the path to the JSON file.');
-        return;
-    }
+    if (!filePath) { console.error('ERROR: Please provide path to JSON file.'); return; }
 
     try {
         await mongoose.connect(process.env.DATABASE_URL);
@@ -24,15 +19,9 @@ const uploadData = async () => {
         const data = fs.readFileSync(filePath, 'utf-8');
         const testData = JSON.parse(data);
         
-        // This is now the simple, direct logic.
-        await PracticeTest.findOneAndUpdate(
-            { name: testData.name }, 
-            testData, 
-            { upsert: true }
-        );
-
+        // No mapping needed now, the data is a perfect match.
+        await PracticeTest.findOneAndUpdate({ name: testData.name }, testData, { upsert: true });
         console.log(`✅ Successfully uploaded/updated practice test: "${testData.name}"`);
-
     } catch (error) {
         console.error('❌ Error during upload:', error);
     } finally {
