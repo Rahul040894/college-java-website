@@ -4,100 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Problems - Java Course</title>
-    <!-- CSS Files -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <!-- CodeMirror CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/dracula.min.css">
 </head>
 <body>
-
-    <!-- Header and Navbar (Consistent with other pages) -->
-    <div class="top-bar"></div>
-    <header class="main-header">
-        <div class="container py-3">
-            <div class="d-flex justify-content-between align-items-center">
-                <!-- College Info -->
-                <div class="d-flex align-items-center">
-                    <img src="images/logo.png" alt="College Logo" class="main-logo">
-                    <div class="college-title">
-                        <p class="society-name mb-0">Sri Raghavendra Educational Institutions Society</p>
-                        <h1 class="institute-name">Sri Krishna Institute of Technology</h1>
-                        <p class="affiliation mb-0">(Approved by AICTE, Affiliated to VTU, Karnataka)</p>
-                    </div>
-                </div>
-                <!-- Personal Branding -->
-                <div class="personal-branding d-none d-md-flex">
-                    <div class="instructor-info">
-                        <p class="instructor-name mb-0">Rahul Kumar</p>
-                        <p class="instructor-title mb-0">Assistant Professor</p>
-                    </div>
-                    <img src="images/profile.jpg" alt="Your Profile Picture" class="profile-pic">
-                </div>
-            </div>
-        </div>
-    </header>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Primary Navigation -->
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="notes.html">Module-wise Notes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pyq.html">University PYQs</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="coding.html">Coding Problems</a></li>
-                    <li class="nav-item"><a class="nav-link" href="compiler.html">Java Online Compiler</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mcq-test.html">MCQ Tests</a></li>
-                </ul>
-                <!-- Secondary Navigation -->
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="interview-prep.html">Company-Wise Interview Prep</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- End of Header and Navbar -->
-
-    <!-- Main Content Area for Coding Problems -->
+    <!-- Your updated Header and new Master Navbar go here -->
     <main class="py-5">
         <div class="container">
-            <!-- This content box will be dynamically controlled by our JavaScript -->
-            <div class="content-box" id="coding-container">
-                <!-- The list of problems will be loaded here initially -->
-            </div>
+            <div class="content-box" id="coding-container"></div>
         </div>
     </main>
-    
-    <!-- JavaScript Files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/clike/clike.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
-    
-    <!-- Toast Notification Elements -->
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100">
-        <!-- Toast for successful submission -->
-        <div id="submissionToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header bg-success text-white">
-                <strong class="me-auto">Success!</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
-            </div>
-            <div class="toast-body">
-                Your code has been submitted successfully.
-            </div>
-        </div>
-        <!-- THIS IS THE NEW TOAST for copy-paste blocking -->
-        <div id="copyPasteToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <strong class="me-auto">Feature Disabled</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-            </div>
-            <div class="toast-body">
-                Copy-paste is disabled to encourage manual coding practice.
-            </div>
-        </div>
+        <div id="submissionToast" class="toast"><div class="toast-header bg-success text-white"><strong class="me-auto">Success!</strong><button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button></div><div class="toast-body">Your code has been submitted.</div></div>
+        <div id="proctorToast" class="toast"><div class="toast-header"><strong class="me-auto">Action Disabled</strong><button type="button" class="btn-close" data-bs-dismiss="toast"></button></div><div class="toast-body">Copy-paste and right-click are disabled.</div></div>
+        <div id="visibilityToast" class="toast"><div class="toast-header bg-danger text-white"><strong class="me-auto">Warning!</strong><button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button></div><div class="toast-body">You have navigated away. The problem will be submitted.</div></div>
     </div>
 </body>
 </html>
