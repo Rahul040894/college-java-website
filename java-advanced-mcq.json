@@ -1,11 +1,7 @@
 {
-  "testName": "final-exam-java",
+  "name": "java-advanced-mcq",
   "questions": [
-    {
-      "question": "What is the primary reason for the existence of the String Constant Pool in the JVM?",
-      "options": ["To improve security by making strings immutable.", "To improve performance and save memory by reusing common string literals.", "To allow strings to be used in switch statements.", "To ensure strings are garbage collected more efficiently."],
-      "answer": "To improve performance and save memory by reusing common string literals."
-    },
+    {"question": "What is the primary reason for the existence of the String Constant Pool in the JVM?","options": ["To improve security by making strings immutable.","To improve performance and save memory by reusing common string literals.","To allow strings to be used in switch statements.","To ensure strings are garbage collected more efficiently."],"answer": "To improve performance and save memory by reusing common string literals."},
     {"question": "Consider the code: `String s = \"\"; for(int i=0; i<100; i++){ s += i; }`. Approximately how many String objects are created and then become eligible for garbage collection during this loop?","options": ["1","100","101","200"],"answer": "100"},
     {"question": "Which of the following statements is the most accurate description of how `StringBuffer` achieves thread-safety?","options": ["It uses the 'volatile' keyword on its internal character array.","It uses 'final' methods that cannot be overridden.","It has 'synchronized' methods, ensuring only one thread can modify it at a time.","It creates a new object for every modification."],"answer": "It has 'synchronized' methods, ensuring only one thread can modify it at a time."},
     {"question": "What will be the output of the following code snippet?\n\n<pre><code>String s1 = new String(\"test\");\nString s2 = new String(\"test\");\nString s3 = \"test\";\nString s4 = \"test\";\nSystem.out.println(\"s1==s2: \" + (s1==s2));\nSystem.out.println(\"s3==s4: \" + (s3==s4));</code></pre>","options": ["s1==s2: true\ns3==s4: true","s1==s2: false\ns3==s4: false","s1==s2: true\ns3==s4: false","s1==s2: false\ns3==s4: true"],"answer": "s1==s2: false\ns3==s4: true"},
