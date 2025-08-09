@@ -1,4 +1,4 @@
-// uploadQuestions.js (Final, Simplified Version)
+// uploadQuestions.js (Final, Robust Version)
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -19,9 +19,20 @@ const uploadData = async () => {
         const data = fs.readFileSync(filePath, 'utf-8');
         const testData = JSON.parse(data);
         
-        // No mapping needed now, the data is a perfect match.
-        await PracticeTest.findOneAndUpdate({ name: testData.name }, testData, { upsert: true });
-        console.log(`✅ Successfully uploaded/updated practice test: "${testData.name}"`);
+        const formattedData = {
+            name: testData.name, 
+            questions: testData.questions
+        };
+
+        // This is a more forceful update. It deletes the old one first.
+        console.log(`Deleting existing test named '${formattedData.name}' if it exists...`);
+        await PracticeTest.deleteOne({ name: formattedData.name });
+
+        console.log(`Creating new test: '${formattedData.name}'...`);
+        const newTest = new PracticeTest(formattedData);
+        await newTest.save();
+        
+        console.log(`✅ Successfully uploaded practice test: "${formattedData.name}"`);
     } catch (error) {
         console.error('❌ Error during upload:', error);
     } finally {
