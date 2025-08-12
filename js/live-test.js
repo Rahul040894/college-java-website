@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Configuration ---
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
-    const testName = 'final-exam-java';
+    const testName = 'java-dsa-mcq-set-1';
     const testDurationMinutes = 60;
 
     // --- Element Selectors ---
