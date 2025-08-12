@@ -1,4 +1,4 @@
-// uploadQuestions.js (Final, Simplified Version)
+// uploadQuestions.js (The Final, Correct, and Simplified Version)
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -19,7 +19,6 @@ const uploadData = async () => {
         const data = fs.readFileSync(filePath, 'utf-8');
         const testData = JSON.parse(data);
         
-        // No mapping needed now, the data is a perfect match.
         await PracticeTest.findOneAndUpdate({ name: testData.name }, testData, { upsert: true });
         console.log(`✅ Successfully uploaded/updated practice test: "${testData.name}"`);
     } catch (error) {
@@ -28,5 +27,4 @@ const uploadData = async () => {
         await mongoose.connection.close();
     }
 };
-
 uploadData();

@@ -1,205 +1,25 @@
 {
   "name": "java-dsa-mcq-set-1",
   "questions": [
-    {
-      "question": "Which of these data structures provides the best time complexity for the `get(int index)` operation?",
-      "options": [
-        "ArrayList",
-        "LinkedList",
-        "HashSet",
-        "TreeMap"
-      ],
-      "answer": "ArrayList"
-    },
-    {
-      "question": "What happens in a `HashMap` when two different keys produce the same hash code (a collision)?",
-      "options": [
-        "The new entry overwrites the existing entry.",
-        "The `put` operation throws an exception.",
-        "The new entry is stored in the same bucket, typically in a linked list or a tree.",
-        "The `HashMap` automatically rehashes all existing keys."
-      ],
-      "answer": "The new entry is stored in the same bucket, typically in a linked list or a tree."
-    },
-    {
-      "question": "What is the result of this code snippet, related to method hiding?\n\n<pre><code>class Animal {\n    public static void makeSound() {\n        System.out.println(\"Animal sound\");\n    }\n}\nclass Cat extends Animal {\n    public static void makeSound() {\n        System.out.println(\"Meow\");\n    }\n}\n\npublic class Test {\n    public static void main(String[] args) {\n        Animal myPet = new Cat();\n        myPet.makeSound();\n    }\n}</code></pre>",
-      "options": [
-        "Meow",
-        "Animal sound",
-        "A compilation error occurs.",
-        "A runtime exception is thrown."
-      ],
-      "answer": "Animal sound"
-    },
-    {
-      "question": "Why is the `String` class in Java declared as `final`?",
-      "options": [
-        "To ensure its methods cannot be overloaded.",
-        "To prevent other classes from extending it, which is crucial for maintaining its immutability and security.",
-        "To allow it to be used in `try-with-resources` statements.",
-        "To make it eligible for garbage collection faster."
-      ],
-      "answer": "To prevent other classes from extending it, which is crucial for maintaining its immutability and security."
-    },
-    {
-      "question": "What is the average time complexity for searching for an element in a balanced Binary Search Tree (BST)?",
-      "options": [
-        "O(1)",
-        "O(log n)",
-        "O(n)",
-        "O(n log n)"
-      ],
-      "answer": "O(log n)"
-    },
-    {
-      "question": "What is the primary difference between a `HashSet` and a `TreeSet`?",
-      "options": [
-        "HashSet allows duplicate elements, while TreeSet does not.",
-        "TreeSet is synchronized, while HashSet is not.",
-        "HashSet does not guarantee any order of elements, while TreeSet maintains elements in a sorted order.",
-        "HashSet can store `null` values, while TreeSet cannot."
-      ],
-      "answer": "HashSet does not guarantee any order of elements, while TreeSet maintains elements in a sorted order."
-    },
-    {
-      "question": "What is printed by the following code?\n\n<pre><code>public class Test {\n    public static String test() {\n        try {\n            System.out.print(\"A\");\n            return \"B\";\n        } finally {\n            System.out.print(\"C\");\n        }\n    }\n    public static void main(String[] args) {\n        System.out.print(test());\n    }\n}</code></pre>",
-      "options": [
-        "AB",
-        "AC",
-        "ACB",
-        "ABC"
-      ],
-      "answer": "ACB"
-    },
-    {
-      "question": "Which of the following statements is a mandatory part of the `equals()` and `hashCode()` contract?",
-      "options": [
-        "If two objects are not equal according to `equals()`, their `hashCode()` must be different.",
-        "If two objects are equal according to `equals()`, their `hashCode()` must be the same.",
-        "If two objects have the same `hashCode()`, they must be equal according to `equals()`.",
-        "The `hashCode()` method cannot return a negative number."
-      ],
-      "answer": "If two objects are equal according to `equals()`, their `hashCode()` must be the same."
-    },
-    {
-      "question": "What is the main purpose of using Generics (e.g., `ArrayList<String>`) in Java?",
-      "options": [
-        "To make collections run faster.",
-        "To allow collections to store primitive types.",
-        "To provide stronger type checking at compile time and avoid `ClassCastException` at runtime.",
-        "To reduce the memory usage of collection objects."
-      ],
-      "answer": "To provide stronger type checking at compile time and avoid `ClassCastException` at runtime."
-    },
-    {
-      "question": "What is the output of this code demonstrating constructor chaining?\n\n<pre><code>class Parent {\n    Parent() { System.out.print(\"P\"); }\n}\nclass Child extends Parent {\n    Child() {\n        this(10);\n        System.out.print(\"C1\");\n    }\n    Child(int i) {\n        super();\n        System.out.print(\"C2\");\n    }\n}\nnew Child();</code></pre>",
-      "options": [
-        "PC1C2",
-        "PC2C1",
-        "C2PC1",
-        "A compilation error occurs."
-      ],
-      "answer": "PC2C1"
-    },
-    {
-      "question": "If you need to store key-value pairs and guarantee that iteration will happen in the natural sorted order of the keys, which class should you use?",
-      "options": [
-        "HashMap",
-        "Hashtable",
-        "LinkedHashMap",
-        "TreeMap"
-      ],
-      "answer": "TreeMap"
-    },
-    {
-      "question": "Which data structure operates on a Last-In, First-Out (LIFO) principle?",
-      "options": [
-        "Queue",
-        "Stack",
-        "ArrayList",
-        "Deque"
-      ],
-      "answer": "Stack"
-    },
-    {
-      "question": "What is the defining characteristic of a 'functional interface' in Java 8?",
-      "options": [
-        "It can only be implemented by lambda expressions.",
-        "It must not contain any default or static methods.",
-        "It must contain exactly one abstract method.",
-        "It must extend the `java.util.function.Function` interface."
-      ],
-      "answer": "It must contain exactly one abstract method."
-    },
-    {
-      "question": "What will be printed by the second `System.out.println` statement?\n\n<pre><code>Integer a = 128;\nInteger b = 128;\nSystem.out.println(a.equals(b));\nSystem.out.println(a == b);</code></pre>",
-      "options": [
-        "true",
-        "false",
-        "It will not compile.",
-        "It depends on the JVM."
-      ],
-      "answer": "false"
-    },
-    {
-      "question": "What is a 'covariant return type' in the context of method overriding?",
-      "options": [
-        "The overridden method must have the exact same return type as the superclass method.",
-        "The overridden method can have a return type that is a subclass of the superclass method's return type.",
-        "The overridden method must return `void`.",
-        "The overridden method can have any return type."
-      ],
-      "answer": "The overridden method can have a return type that is a subclass of the superclass method's return type."
-    },
-    {
-      "question": "What problem does the `try-with-resources` statement primarily solve?",
-      "options": [
-        "It allows catching multiple exception types in one block.",
-        "It prevents `NullPointerException` when dealing with resources.",
-        "It guarantees that resources implementing `AutoCloseable` are closed, preventing resource leaks.",
-        "It makes file I/O operations faster."
-      ],
-      "answer": "It guarantees that resources implementing `AutoCloseable` are closed, preventing resource leaks."
-    },
-    {
-      "question": "Which Java Stream API terminal operation is used to combine all elements of a stream into a single result?",
-      "options": [
-        "collect()",
-        "map()",
-        "reduce()",
-        "flatMap()"
-      ],
-      "answer": "reduce()"
-    },
-    {
-      "question": "What does it mean for a sorting algorithm to be 'stable'?",
-      "options": [
-        "It has a consistent O(n log n) time complexity.",
-        "It does not use any extra memory.",
-        "It preserves the original relative order of equal elements.",
-        "It can only sort numbers."
-      ],
-      "answer": "It preserves the original relative order of equal elements."
-    },
-    {
-      "question": "Which statement is true about Java interfaces?",
-      "options": [
-        "An interface can extend a class.",
-        "An interface can implement another interface.",
-        "An interface can extend multiple other interfaces.",
-        "An interface can be instantiated using the `new` keyword."
-      ],
-      "answer": "An interface can extend multiple other interfaces."
-    },
-    {
-      "question": "What is the primary purpose of the `volatile` keyword in Java?",
-      "options": [
-        "To make a variable constant.",
-        "To prevent a variable from being serialized.",
-        "To ensure that changes to a variable made by one thread are immediately visible to other threads.",
-        "To mark a method for garbage collection."
-      ],
-      "answer": "To ensure that changes to a variable made by one thread are immediately visible to other threads."
-    }
+    { "question": "Which of these data structures provides the best time complexity for the `get(int index)` operation?", "options": ["ArrayList", "LinkedList", "HashSet", "TreeMap"], "answer": "ArrayList" },
+    { "question": "What happens in a `HashMap` when two different keys produce the same hash code (a collision)?", "options": ["The new entry overwrites the existing entry.", "The `put` operation throws an exception.", "The new entry is stored in the same bucket, typically in a linked list or a tree.", "The `HashMap` automatically rehashes all existing keys."], "answer": "The new entry is stored in the same bucket, typically in a linked list or a tree." },
+    { "question": "What is the result of this code snippet, related to method hiding?\n\n<pre><code>class Animal {\n    public static void makeSound() {\n        System.out.println(\"Animal sound\");\n    }\n}\nclass Cat extends Animal {\n    public static void makeSound() {\n        System.out.println(\"Meow\");\n    }\n}\n\npublic class Test {\n    public static void main(String[] args) {\n        Animal myPet = new Cat();\n        myPet.makeSound();\n    }\n}</code></pre>", "options": ["Meow", "Animal sound", "A compilation error occurs.", "A runtime exception is thrown."], "answer": "Animal sound" },
+    { "question": "Why is the `String` class in Java declared as `final`?", "options": ["To ensure its methods cannot be overloaded.", "To prevent other classes from extending it, which is crucial for maintaining its immutability and security.", "To allow it to be used in `try-with-resources` statements.", "To make it eligible for garbage collection faster."], "answer": "To prevent other classes from extending it, which is crucial for maintaining its immutability and security." },
+    { "question": "What is the average time complexity for searching for an element in a balanced Binary Search Tree (BST)?", "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"], "answer": "O(log n)" },
+    { "question": "What is the primary difference between a `HashSet` and a `TreeSet`?", "options": ["HashSet allows duplicate elements, while TreeSet does not.", "TreeSet is synchronized, while HashSet is not.", "HashSet does not guarantee any order of elements, while TreeSet maintains elements in a sorted order.", "HashSet can store `null` values, while TreeSet cannot."], "answer": "HashSet does not guarantee any order of elements, while TreeSet maintains elements in a sorted order." },
+    { "question": "What is printed by the following code?\n\n<pre><code>public class Test {\n    public static String test() {\n        try {\n            System.out.print(\"A\");\n            return \"B\";\n        } finally {\n            System.out.print(\"C\");\n        }\n    }\n    public static void main(String[] args) {\n        System.out.print(test());\n    }\n}</code></pre>", "options": ["AB", "AC", "ACB", "ABC"], "answer": "ACB" },
+    { "question": "Which of the following statements is a mandatory part of the `equals()` and `hashCode()` contract?", "options": ["If two objects are not equal according to `equals()`, their `hashCode()` must be different.", "If two objects are equal according to `equals()`, their `hashCode()` must be the same.", "If two objects have the same `hashCode()`, they must be equal according to `equals()`.", "The `hashCode()` method cannot return a negative number."], "answer": "If two objects are equal according to `equals()`, their `hashCode()` must be the same." },
+    { "question": "What is the main purpose of using Generics (e.g., `ArrayList<String>`) in Java?", "options": ["To make collections run faster.", "To allow collections to store primitive types.", "To provide stronger type checking at compile time and avoid `ClassCastException` at runtime.", "To reduce the memory usage of collection objects."], "answer": "To provide stronger type checking at compile time and avoid `ClassCastException` at runtime." },
+    { "question": "What is the output of this code demonstrating constructor chaining?\n\n<pre><code>class Parent {\n    Parent() { System.out.print(\"P\"); }\n}\nclass Child extends Parent {\n    Child() {\n        this(10);\n        System.out.print(\"C1\");\n    }\n    Child(int i) {\n        super();\n        System.out.print(\"C2\");\n    }\n}\nnew Child();</code></pre>", "options": ["PC1C2", "PC2C1", "C2PC1", "A compilation error occurs."], "answer": "PC2C1" },
+    { "question": "If you need to store key-value pairs and guarantee that iteration will happen in the natural sorted order of the keys, which class should you use?", "options": ["HashMap", "Hashtable", "LinkedHashMap", "TreeMap"], "answer": "TreeMap" },
+    { "question": "Which data structure operates on a Last-In, First-Out (LIFO) principle?", "options": ["Queue", "Stack", "ArrayList", "Deque"], "answer": "Stack" },
+    { "question": "What is the defining characteristic of a 'functional interface' in Java 8?", "options": ["It can only be implemented by lambda expressions.", "It must not contain any default or static methods.", "It must contain exactly one abstract method.", "It must extend the `java.util.function.Function` interface."], "answer": "It must contain exactly one abstract method." },
+    { "question": "What will be printed by the second `System.out.println` statement?\n\n<pre><code>Integer a = 128;\nInteger b = 128;\nSystem.out.println(a.equals(b));\nSystem.out.println(a == b);</code></pre>", "options": ["true", "false", "It will not compile.", "It depends on the JVM."], "answer": "false" },
+    { "question": "What is a 'covariant return type' in the context of method overriding?", "options": ["The overridden method must have the exact same return type as the superclass method.", "The overridden method can have a return type that is a subclass of the superclass method's return type.", "The overridden method must return `void`.", "The overridden method can have any return type."], "answer": "The overridden method can have a return type that is a subclass of the superclass method's return type." },
+    { "question": "What problem does the `try-with-resources` statement primarily solve?", "options": ["It allows catching multiple exception types in one block.", "It prevents `NullPointerException` when dealing with resources.", "It guarantees that resources implementing `AutoCloseable` are closed, preventing resource leaks.", "It makes file I/O operations faster."], "answer": "It guarantees that resources implementing `AutoCloseable` are closed, preventing resource leaks." },
+    { "question": "Which Java Stream API terminal operation is used to combine all elements of a stream into a single result?", "options": ["collect()", "map()", "reduce()", "flatMap()"], "answer": "reduce()" },
+    { "question": "What does it mean for a sorting algorithm to be 'stable'?", "options": ["It has a consistent O(n log n) time complexity.", "It does not use any extra memory.", "It preserves the original relative order of equal elements.", "It can only sort numbers."], "answer": "It preserves the original relative order of equal elements." },
+    { "question": "Which statement is true about Java interfaces?", "options": ["An interface can extend a class.", "An interface can implement another interface.", "An interface can extend multiple other interfaces.", "An interface can be instantiated using the `new` keyword."], "answer": "An interface can extend multiple other interfaces." },
+    { "question": "What is the primary purpose of the `volatile` keyword in Java?", "options": ["To make a variable constant.", "To prevent a variable from being serialized.", "To ensure that changes to a variable made by one thread are immediately visible to other threads.", "To mark a method for garbage collection."], "answer": "To ensure that changes to a variable made by one thread are immediately visible to other threads." }
   ]
 }
