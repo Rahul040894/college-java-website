@@ -1,4 +1,4 @@
-// server.js (The Truly Final Version with All Features & Security)
+// server.js (The Truly Final, Streamlined, and Secure Production Version)
 
 const express = require('express');
 const cors = require('cors');
@@ -23,12 +23,13 @@ const AllowedUsn = mongoose.model('AllowedUsn', new mongoose.Schema({ usn: { typ
 const CodingProblem = mongoose.model('CodingProblem', new mongoose.Schema({ title: String, description: String, exampleInput: String, exampleOutput: String, topic: String }));
 const CodeSubmission = mongoose.model('CodeSubmission', new mongoose.Schema({ studentId: String, problemId: { type: mongoose.Schema.Types.ObjectId, ref: 'CodingProblem' }, submittedCode: String, submissionTime: { type: Date, default: Date.now } }));
 
+
 // === ALL API ENDPOINTS ===
 
 // --- Feature Flag Endpoint ---
 app.get('/api/exam/status', (req, res) => { res.json({ isLive: process.env.EXAM_LIVE === 'true' }); });
 
-// --- NEW: USN Validation Endpoint for Coding Problems ---
+// --- USN Validation Endpoint ---
 app.post('/api/validate-usn', async (req, res) => {
     const { studentId } = req.body;
     if (!studentId) return res.status(400).json({ valid: false, message: 'USN is required.' });
@@ -36,7 +37,7 @@ app.post('/api/validate-usn', async (req, res) => {
         const usnRegex = new RegExp(`^${studentId}$`, 'i');
         const isAllowed = await AllowedUsn.findOne({ usn: usnRegex });
         if (isAllowed) {
-            res.json({ valid: true, usn: isAllowed.usn }); // Send back the correctly cased USN
+            res.json({ valid: true, usn: isAllowed.usn });
         } else {
             res.json({ valid: false, message: 'This USN is not authorized.' });
         }
