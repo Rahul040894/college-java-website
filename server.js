@@ -1,4 +1,4 @@
-// server.js (The Final, Streamlined, and Secure Production Version)
+// server.js (The Truly Final Version with All Features & Security)
 
 const express = require('express');
 const cors = require('cors');
@@ -16,17 +16,34 @@ app.use(express.json());
 // === Database Connection ===
 mongoose.connect(process.env.DATABASE_URL).then(() => console.log("✅ MongoDB Connected")).catch(err => console.error("MongoDB Connection Failed:", err));
 
-// === ALL DATABASE MODELS (PracticeTest model is now removed) ===
+// === ALL DATABASE MODELS ===
 const Exam = mongoose.model('Exam', new mongoose.Schema({ testName: String, questions: [new mongoose.Schema({ question: String, options: [String], answer: String }, { _id: true })] }));
 const TestResult = mongoose.model('TestResult', new mongoose.Schema({ studentName: String, studentId: String, testName: String, score: Number, total: Number, startTime: Date, finishTime: Date, status: String }).index({ studentId: 1, testName: 1 }, { unique: true }));
 const AllowedUsn = mongoose.model('AllowedUsn', new mongoose.Schema({ usn: { type: String, required: true, unique: true } }));
 const CodingProblem = mongoose.model('CodingProblem', new mongoose.Schema({ title: String, description: String, exampleInput: String, exampleOutput: String, topic: String }));
 const CodeSubmission = mongoose.model('CodeSubmission', new mongoose.Schema({ studentId: String, problemId: { type: mongoose.Schema.Types.ObjectId, ref: 'CodingProblem' }, submittedCode: String, submissionTime: { type: Date, default: Date.now } }));
 
-// === ALL API ENDPOINTS (PracticeTest endpoints are now removed) ===
+// === ALL API ENDPOINTS ===
 
 // --- Feature Flag Endpoint ---
 app.get('/api/exam/status', (req, res) => { res.json({ isLive: process.env.EXAM_LIVE === 'true' }); });
+
+// --- NEW: USN Validation Endpoint for Coding Problems ---
+app.post('/api/validate-usn', async (req, res) => {
+    const { studentId } = req.body;
+    if (!studentId) return res.status(400).json({ valid: false, message: 'USN is required.' });
+    try {
+        const usnRegex = new RegExp(`^${studentId}$`, 'i');
+        const isAllowed = await AllowedUsn.findOne({ usn: usnRegex });
+        if (isAllowed) {
+            res.json({ valid: true, usn: isAllowed.usn }); // Send back the correctly cased USN
+        } else {
+            res.json({ valid: false, message: 'This USN is not authorized.' });
+        }
+    } catch (error) {
+        res.status(500).json({ valid: false, message: 'Server error during validation.' });
+    }
+});
 
 // --- Timed Final Exam Endpoints ---
 app.post('/api/exam/start', async (req, res) => { const { studentName, studentId, testName } = req.body; try { const usnRegex = new RegExp(`^${studentId}$`, 'i'); const isAllowed = await AllowedUsn.findOne({ usn: usnRegex }); if (!isAllowed) { return res.status(403).json({ error: "This USN is not authorized." }); } const existingResult = await TestResult.findOne({ studentId: usnRegex, testName }); if (existingResult) { return res.status(403).json({ error: "This USN has already attempted this test." }); } const exam = await Exam.findOne({ testName }); if (!exam) return res.status(404).json({ error: "Exam not available." }); const authorizedUsn = isAllowed.usn; const newResult = new TestResult({ studentName, studentId: authorizedUsn, testName, total: exam.questions.length }); await newResult.save(); res.json({ questions: exam.questions.map(q => ({ id: q._id, question: q.question, options: q.options })), startTime: newResult.startTime }); } catch (error) { if (error.code === 11000) return res.status(403).json({ error: "This USN has already started the test." }); res.status(500).json({ error: "Server error starting test." }); } });
