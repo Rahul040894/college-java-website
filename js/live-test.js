@@ -1,12 +1,12 @@
-// js/live-test.js (The Truly Final Version with All Functions Restored)
+// js/live-test.js (Final Version with 20 Minute Timer)
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Configuration ---
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     const testName = 'final-exam-java';
-    const testDurationMinutes = 60;
+    // ========== THIS IS THE TIMER LOGIC CHANGE ==========
+    const testDurationMinutes = 20;
+    // ============================================
 
-    // --- Element Selectors ---
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
     const completeContainer = document.getElementById('complete-container');
@@ -18,12 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerInterval;
     let isSubmitting = false;
 
-    // --- Event Listeners ---
     if (entryForm) {
         entryForm.addEventListener('submit', handleStartTest);
     }
-
-    // --- Main Functions ---
 
     async function handleStartTest(e) {
         e.preventDefault();
@@ -35,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`${liveServerUrl}/api/exam/start`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentName, studentId, testName }) });
             const data = await response.json();
-            if (!response.ok) { throw new Error(data.error || 'Failed to start the test.'); }
+            if (!response.ok) { throw new Error(data.error || 'Failed to start test.'); }
             localStorage.setItem('studentId', studentId);
             startTest(data.questions, studentName, studentId);
         } catch (error) {
@@ -55,10 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
         startTimer();
     }
     
-    // --- The "Digital Proctor" functions ---
     function handleCheatingAttempt() {
         if (!isSubmitting) {
-            alert("You have navigated away from the test window. Your exam will be submitted automatically.");
+            alert("You have navigated away from the test window. Your exam will be submitted.");
             handleSubmission();
         }
     }
@@ -74,14 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleVisibilityChange() {
         if (document.hidden) handleCheatingAttempt();
     }
-    function handleDisabledAction(event) { event.preventDefault(); }
+    function handleDisabledAction(event) {
+        event.preventDefault();
+    }
     
     async function handleSubmission(e) {
         if (e) e.preventDefault();
         if (isSubmitting) return;
         isSubmitting = true;
         clearInterval(timerInterval);
-        // Deactivate proctoring
+        // Deactivate proctoring listeners
         document.removeEventListener('visibilitychange', handleVisibilityChange);
         window.removeEventListener('blur', handleCheatingAttempt);
         document.documentElement.removeEventListener('mouseleave', handleCheatingAttempt);
@@ -103,11 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
             testContainer.classList.add('d-none');
             completeContainer.classList.remove('d-none');
         } catch (error) {
-            alert('There was an error submitting your test. Please contact your instructor.');
+            alert('Error submitting your test. Contact your instructor.');
         }
     }
     
-    // --- THIS FUNCTION WAS MISSING ---
     function displayQuestions(questions) {
         examForm.innerHTML = '';
         questions.forEach((q, index) => {
@@ -143,11 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showError(message) {
+        const entryError = document.getElementById('entry-error');
         entryError.textContent = message;
         entryError.classList.remove('d-none');
     }
 
-    // --- THIS HELPER FUNCTION WAS MISSING ---
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
