@@ -1,9 +1,6 @@
-// uploadProblems.js
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
-// Define the schema EXACTLY as in server.js
 const CodingProblemSchema = new mongoose.Schema({
     title: { type: String, required: true, unique: true },
     description: String,
@@ -23,9 +20,6 @@ const uploadProblems = async () => {
 
         const data = fs.readFileSync(filePath, 'utf-8');
         const problems = JSON.parse(data);
-
-        // We will clear existing problems to avoid duplicates and then insert the new ones.
-        // This makes it easy to update problems by just editing the JSON file.
         console.log('Clearing existing problems...');
         await CodingProblem.deleteMany({});
         

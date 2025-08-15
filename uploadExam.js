@@ -1,10 +1,6 @@
-// uploadExam.js (Final Corrected Version)
-
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
-// THIS SCHEMA NOW PERFECTLY MATCHES the one in your server.js file
 const ExamSchema = new mongoose.Schema({
     testName: { type: String, required: true, unique: true },
     questions: [new mongoose.Schema({
@@ -29,9 +25,6 @@ const uploadExamData = async () => {
 
         const data = fs.readFileSync(filePath, 'utf-8');
         const examData = JSON.parse(data);
-
-        // This command will find an exam with the same name and update it,
-        // or create it if it doesn't exist. This is safe to run multiple times.
         await Exam.findOneAndUpdate(
             { testName: examData.testName }, 
             examData, 
@@ -43,7 +36,6 @@ const uploadExamData = async () => {
     } catch (error) {
         console.error('❌ Error during exam upload:', error);
     } finally {
-        // Always close the connection
         mongoose.connection.close();
         console.log('Database connection closed.');
     }

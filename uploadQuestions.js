@@ -1,4 +1,3 @@
-// uploadQuestions.js (The Final, Correct, and Simplified Version)
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config();

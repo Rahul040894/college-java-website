@@ -1,12 +1,7 @@
-// js/live-test.js (Final Version with 20 Minute Timer)
-
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     const testName = 'final-exam-java';
-    // ========== THIS IS THE TIMER LOGIC CHANGE ==========
     const testDurationMinutes = 20;
-    // ============================================
-
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
     const completeContainer = document.getElementById('complete-container');
@@ -79,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isSubmitting) return;
         isSubmitting = true;
         clearInterval(timerInterval);
-        // Deactivate proctoring listeners
         document.removeEventListener('visibilitychange', handleVisibilityChange);
         window.removeEventListener('blur', handleCheatingAttempt);
         document.documentElement.removeEventListener('mouseleave', handleCheatingAttempt);

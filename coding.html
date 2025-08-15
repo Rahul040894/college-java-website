@@ -10,16 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/dracula.min.css">
 </head>
 <body>
-    <!-- Header and Navbar -->
     <div class="top-bar"></div>
-    <header class="main-header"> <!-- Header content here --> </header>
-    <nav class="navbar navbar-expand-lg"> <!-- Navbar content here, with 'Coding Problems' as active --> </nav>
-
-    <!-- Main Content Area -->
+    <header class="main-header"> </header>
+    <nav class="navbar navbar-expand-lg"> </nav>
     <main class="py-5">
         <div class="container">
             <div class="content-box">
-                <!-- Gatekeeper Form (visible initially) -->
                 <div id="coding-entry-container">
                     <h2>Coding Problems Access</h2>
                     <p>Please enter your authorized USN to access the coding problems. Each problem is timed and proctored.</p>
@@ -33,16 +29,11 @@
                     </form>
                     <div id="coding-entry-error" class="alert alert-danger mt-3 d-none"></div>
                 </div>
-
-                <!-- Main Coding Area (hidden initially) -->
                 <div id="coding-container" class="d-none">
-                    <!-- Content will be loaded here by script.js -->
                 </div>
             </div>
         </div>
     </main>
-    
-    <!-- JavaScript & Toast Notifications -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/clike/clike.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

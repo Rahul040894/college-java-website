@@ -1,10 +1,6 @@
-// uploadUsns.js (Final, Robust Version)
-
 const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
-// Define the schema EXACTLY as it is in server.js
 const AllowedUsnSchema = new mongoose.Schema({
     usn: { type: String, required: true, unique: true }
 });
@@ -31,13 +27,11 @@ const uploadUsns = async () => {
         }
 
         console.log(`Preparing to upload ${usnArray.length} USNs...`);
-
-        // We will use a robust method that updates or inserts each USN one by one.
         for (const usn of usnArray) {
             await AllowedUsn.findOneAndUpdate(
-                { usn: usn }, // The filter to find the USN
-                { usn: usn }, // The data to set
-                { upsert: true, new: true } // 'upsert' means UPDATE if found, INSERT if not.
+                { usn: usn }, 
+                { usn: usn }, 
+                { upsert: true, new: true } 
             );
         }
         

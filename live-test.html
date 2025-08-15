@@ -8,12 +8,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Consistent Header and Navbar -->
     <div class="top-bar"></div>
     <header class="main-header">
         <div class="container py-3">
             <div class="d-flex justify-content-between align-items-center">
-                <!-- College Info -->
                 <div class="d-flex align-items-center">
                     <img src="images/logo.png" alt="College Logo" class="main-logo">
                     <div class="college-title">
@@ -22,7 +20,6 @@
                         <p class="affiliation mb-0">(Approved by AICTE, Affiliated to VTU, Karnataka)</p>
                     </div>
                 </div>
-                <!-- Personal Branding -->
                 <div class="personal-branding d-none d-md-flex">
                     <div class="instructor-info">
                         <p class="instructor-name mb-0">Rahul Kumar</p>
@@ -52,17 +49,11 @@
             </div>
         </div>
     </nav>
-    <!-- End of Header and Navbar -->
-
-    <!-- Main Content Area for the Live Test -->
     <main class="py-5">
         <div class="container">
-            <!-- Entry Form Container -->
             <div id="entry-container" class="content-box">
                 <h2>MCQ Exam on Java & DSA</h2>
-                <!-- ========== THIS IS THE TEXT CHANGE ========== -->
                 <p>Please enter your details to begin the test. You will have 20 minutes to complete the questions. This test can only be attempted once.</p>
-                <!-- ============================================= -->
                 <hr>
                 <form id="entry-form">
                     <div class="mb-3">
@@ -77,20 +68,14 @@
                 </form>
                 <div id="entry-error" class="alert alert-danger mt-3 d-none"></div>
             </div>
-
-            <!-- Test Container (hidden initially) -->
             <div id="test-container" class="content-box d-none">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h2 id="student-info" class="fs-5"></h2>
-                    <!-- ========== THIS IS THE TIMER DISPLAY CHANGE ========== -->
                     <h3 id="timer" class="badge bg-danger p-3 fs-5">Time Left: 20:00</h3>
-                    <!-- ====================================================== -->
                 </div>
                 <hr>
                 <form id="exam-form"></form>
             </div>
-            
-             <!-- Submission Complete Container (hidden initially) -->
             <div id="complete-container" class="content-box d-none text-center">
                 <h2 class="text-success">Test Submitted Successfully!</h2>
                 <p class="lead">Your answers have been recorded. Your instructor will share the results later.</p>

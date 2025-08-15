@@ -1,21 +1,12 @@
-// js/script.js (The Truly Final Production Version with All Proctoring Features)
-
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     let isSubmitting = false;
     let problemTimerInterval;
-
-    // --- Feature Flag Logic ---
     const examAlertBox = document.getElementById('exam-alert-box');
-    if (examAlertBox) { /* ... */ }
-
-    // --- Background Image Changer ---
+    if (examAlertBox) {  }
     const backgroundElement = document.querySelector('body.full-bg');
-    if (backgroundElement) { /* ... */ }
+    if (backgroundElement) { }
 
-    // =======================================================
-    // == START: HARDENED PROCTORING LOGIC                  ==
-    // =======================================================
     const proctorToast = document.getElementById('proctorToast') ? new bootstrap.Toast(document.getElementById('proctorToast')) : null;
     const visibilityToast = document.getElementById('visibilityToast') ? new bootstrap.Toast(document.getElementById('visibilityToast')) : null;
     
@@ -42,17 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(problemTimerInterval);
     }
 
-    // --- Online Compiler Logic ---
     const runButton = document.getElementById('runButton');
     if (runButton) {
-        const editor = CodeMirror(document.getElementById('codeEditor'), { /* ... config ... */ });
+        const editor = CodeMirror(document.getElementById('codeEditor'), { });
         activateEditorProctoring(editor);
-        // ... (rest of compiler logic)
+        
     }
 
-    // =======================================================
-    // == START: CODING PROBLEMS LOGIC (WITH GATEKEEPER)    ==
-    // =======================================================
     const codingEntryForm = document.getElementById('coding-entry-form');
     const codingContainer = document.getElementById('coding-container');
 
@@ -77,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!result.valid) {
                     throw new Error(result.message || 'USN not authorized.');
                 }
-                // Success! Store USN and show problems.
                 localStorage.setItem('codingStudentId', result.usn);
                 document.getElementById('coding-entry-container').classList.add('d-none');
                 codingContainer.classList.remove('d-none');
@@ -90,16 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    async function loadProblemList() { /* ... existing logic ... */ }
+    async function loadProblemList() {  }
     
     async function loadSingleProblem(problemId) {
-        // ... this function's dynamic HTML builder needs one change ...
-        // Remove the <input> for studentId and its label
-        // It will be replaced by pulling from localStorage in the submit function
-        // ... (rest of the function, including proctoring activation)
+        
     }
-    
-    // ... rest of coding problems logic, especially the submit function which now uses localStorage
     
     function showError(elementId, message) {
         const errorEl = document.getElementById(elementId);
@@ -108,27 +89,21 @@ document.addEventListener('DOMContentLoaded', () => {
             errorEl.classList.remove('d-none');
         }
     }
-    // (Full code for all sections is in the final block below)
+    
 });
 
-// ====================================================================================
-// === COMPLETE SCRIPT.JS FOR FINAL COPY-PASTE ===
-// ====================================================================================
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     let isSubmitting = false;
     let problemTimerInterval;
 
-    // --- Feature Flag for Exam Banner ---
     const examAlertBox = document.getElementById('exam-alert-box');
     async function checkExamStatus() { if (!examAlertBox) return; try { const response = await fetch(`${liveServerUrl}/api/exam/status`); const data = await response.json(); if (data.isLive) { examAlertBox.classList.remove('d-none'); } } catch (error) { console.error("Could not check exam status:", error); } }
     if (examAlertBox) checkExamStatus();
 
-    // --- Background Image Changer ---
     const backgroundElement = document.querySelector('body.full-bg');
     if (backgroundElement) { const backgroundImages = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg']; let currentImageIndex = 0; backgroundElement.style.backgroundImage = `url('${backgroundImages[0]}')`; const changeBackgroundImage = () => { currentImageIndex = (currentImageIndex + 1) % backgroundImages.length; backgroundElement.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`; }; setInterval(changeBackgroundImage, 7000); }
 
-    // --- Proctoring Logic ---
     const proctorToast = document.getElementById('proctorToast') ? new bootstrap.Toast(document.getElementById('proctorToast')) : null;
     const visibilityToast = document.getElementById('visibilityToast') ? new bootstrap.Toast(document.getElementById('visibilityToast')) : null;
     const handleDisabledAction = (event) => { event.preventDefault(); if (proctorToast) proctorToast.show(); };
@@ -137,11 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function activatePageProctoring(submissionCallback) { const visibilityHandler = () => { if (document.hidden) handleCheatingAttempt(submissionCallback); }; const blurHandler = () => handleCheatingAttempt(submissionCallback); const mouseLeaveHandler = () => handleCheatingAttempt(submissionCallback); window.proctoringListeners = { visibilityHandler, blurHandler, mouseLeaveHandler }; document.addEventListener('visibilitychange', window.proctoringListeners.visibilityHandler); window.addEventListener('blur', window.proctoringListeners.blurHandler); document.documentElement.addEventListener('mouseleave', window.proctoringListeners.mouseLeaveHandler); }
     function deactivateProctoring() { if (window.proctoringListeners) { document.removeEventListener('visibilitychange', window.proctoringListeners.visibilityHandler); document.removeEventListener('blur', window.proctoringListeners.blurHandler); document.documentElement.removeEventListener('mouseleave', window.proctoringListeners.mouseLeaveHandler); window.proctoringListeners = null; } clearInterval(problemTimerInterval); }
 
-    // --- Online Compiler Logic ---
     const runButton = document.getElementById('runButton');
     if (runButton) { const editor = CodeMirror(document.getElementById('codeEditor'), { value: `public class MyClass {\n    public static void main(String args[]) {\n        System.out.println("Hello, World!");\n    }\n}`, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true }); editor.setSize(null, "500px"); activateEditorProctoring(editor); const stdInput = document.getElementById('stdInput'); const outputArea = document.getElementById('outputArea'); runButton.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = stdInput.value; runButton.disabled = true; runButton.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Waking Server...`; outputArea.textContent = 'Connecting to the server...'; const longLoadTimer = setTimeout(() => { outputArea.textContent = 'Server is waking up. Please be patient...'; }, 8000); try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, stdin: userInput }) }); clearTimeout(longLoadTimer); const result = await response.json(); if (result.error) { outputArea.textContent = result.error; } else if (result.output) { outputArea.textContent = result.output; } else { outputArea.textContent = "Execution finished, no output."; } } catch (error) { clearTimeout(longLoadTimer); outputArea.textContent = 'Could not connect. Please try again.'; } finally { runButton.disabled = false; runButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg> Run Code`; } }); }
     
-    // --- Coding Problems Logic ---
     const codingEntryForm = document.getElementById('coding-entry-form');
     const codingContainer = document.getElementById('coding-container');
     if (codingEntryForm) {
