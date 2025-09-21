@@ -1,4 +1,4 @@
-// server.js (The Truly Final, Streamlined, and Secure Production Version)
+// server.js (The Truly Final Version with All Features & Security)
 
 const express = require('express');
 const cors = require('cors');
@@ -16,7 +16,7 @@ app.use(express.json());
 // === Database Connection ===
 mongoose.connect(process.env.DATABASE_URL).then(() => console.log("✅ MongoDB Connected")).catch(err => console.error("MongoDB Connection Failed:", err));
 
-// === ALL DATABASE MODELS (PracticeTest model is now removed) ===
+// === ALL DATABASE MODELS ===
 const Exam = mongoose.model('Exam', new mongoose.Schema({ testName: String, questions: [new mongoose.Schema({ question: String, options: [String], answer: String }, { _id: true })] }));
 const TestResult = mongoose.model('TestResult', new mongoose.Schema({ studentName: String, studentId: String, testName: String, score: Number, total: Number, startTime: Date, finishTime: Date, status: String }).index({ studentId: 1, testName: 1 }, { unique: true }));
 const AllowedUsn = mongoose.model('AllowedUsn', new mongoose.Schema({ usn: { type: String, required: true, unique: true } }));
@@ -28,7 +28,7 @@ const CodeSubmission = mongoose.model('CodeSubmission', new mongoose.Schema({ st
 // --- Feature Flag Endpoint ---
 app.get('/api/exam/status', (req, res) => { res.json({ isLive: process.env.EXAM_LIVE === 'true' }); });
 
-// --- USN Validation Endpoint ---
+// --- NEW: USN Validation Endpoint for Coding Problems ---
 app.post('/api/validate-usn', async (req, res) => {
     const { studentId } = req.body;
     if (!studentId) return res.status(400).json({ valid: false, message: 'USN is required.' });
@@ -36,7 +36,7 @@ app.post('/api/validate-usn', async (req, res) => {
         const usnRegex = new RegExp(`^${studentId}$`, 'i');
         const isAllowed = await AllowedUsn.findOne({ usn: usnRegex });
         if (isAllowed) {
-            res.json({ valid: true, usn: isAllowed.usn });
+            res.json({ valid: true, usn: isAllowed.usn }); // Send back the correctly cased USN
         } else {
             res.json({ valid: false, message: 'This USN is not authorized.' });
         }

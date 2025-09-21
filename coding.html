@@ -12,46 +12,45 @@
 <body>
     <!-- Header and Navbar -->
     <div class="top-bar"></div>
-    <header class="main-header">
-        <div class="container py-3">
-            <!-- Your Header Content -->
-        </div>
-    </header>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <!-- Your Navbar Content (with 'Coding Problems' active) -->
-        </div>
-    </nav>
+    <header class="main-header"> <!-- Header content here --> </header>
+    <nav class="navbar navbar-expand-lg"> <!-- Navbar content here, with 'Coding Problems' as active --> </nav>
 
     <!-- Main Content Area -->
     <main class="py-5">
         <div class="container">
-            <div class="content-box" id="coding-container">
-                <!-- All content is loaded here by script.js -->
+            <div class="content-box">
+                <!-- Gatekeeper Form (visible initially) -->
+                <div id="coding-entry-container">
+                    <h2>Coding Problems Access</h2>
+                    <p>Please enter your authorized USN to access the coding problems. Each problem is timed and proctored.</p>
+                    <hr>
+                    <form id="coding-entry-form">
+                        <div class="mb-3">
+                            <label for="codingStudentId" class="form-label">Enter Your USN Number</label>
+                            <input type="text" class="form-control" id="codingStudentId" required>
+                        </div>
+                        <button type="submit" id="accessProblemsBtn" class="btn btn-primary btn-lg">Access Problems</button>
+                    </form>
+                    <div id="coding-entry-error" class="alert alert-danger mt-3 d-none"></div>
+                </div>
+
+                <!-- Main Coding Area (hidden initially) -->
+                <div id="coding-container" class="d-none">
+                    <!-- Content will be loaded here by script.js -->
+                </div>
             </div>
         </div>
     </main>
     
-    <!-- JavaScript Files -->
+    <!-- JavaScript & Toast Notifications -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/clike/clike.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
-    
-    <!-- Toast Notification Elements for Proctoring and Submissions -->
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100">
-        <div id="submissionToast" class="toast">
-            <div class="toast-header bg-success text-white"><strong class="me-auto">Success!</strong><button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button></div>
-            <div class="toast-body">Your code has been submitted.</div>
-        </div>
-        <div id="proctorToast" class="toast">
-            <div class="toast-header"><strong class="me-auto">Action Disabled</strong><button type="button" class="btn-close" data-bs-dismiss="toast"></button></div>
-            <div class="toast-body">Copy-paste and right-click are disabled.</div>
-        </div>
-        <div id="visibilityToast" class="toast">
-             <div class="toast-header bg-danger text-white"><strong class="me-auto">Warning!</strong><button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button></div>
-             <div class="toast-body">You have navigated away. The problem will be submitted automatically.</div>
-        </div>
+        <div id="submissionToast" class="toast"><div class="toast-header bg-success text-white">...</div><div class="toast-body">...</div></div>
+        <div id="proctorToast" class="toast"><div class="toast-header">...</div><div class="toast-body">...</div></div>
+        <div id="visibilityToast" class="toast"><div class="toast-header bg-danger text-white">...</div><div class="toast-body">...</div></div>
     </div>
 </body>
 </html>
