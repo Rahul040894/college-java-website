@@ -1,4 +1,4 @@
-// js/script.js (The Truly Final Production Version with All Features and UX Enhancements)
+// js/script.js (The Truly Final Production Version with All Features and Fixes)
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleCheatingAttempt = (callback) => { if (!isSubmitting) { alert("Since you have navigated away from the test, your code is getting auto-submitted now! Attempt next question now!"); if (callback && typeof callback === 'function') callback(); } };
     function activateEditorProctoring(editorInstance) { editorInstance.on('copy', (instance, event) => handleDisabledAction(event)); editorInstance.on('cut', (instance, event) => handleDisabledAction(event)); const editorWrapper = editorInstance.getWrapperElement(); editorWrapper.addEventListener('paste', handleDisabledAction); editorWrapper.addEventListener('contextmenu', handleDisabledAction); editorInstance.on('beforeChange', (instance, changeObj) => { if (changeObj.origin === 'paste') { changeObj.cancel(); if (proctorToast) proctorToast.show(); } }); }
     function activatePageProctoring(submissionCallback) { const visibilityHandler = () => { if (document.hidden) handleCheatingAttempt(submissionCallback); }; const blurHandler = () => handleCheatingAttempt(submissionCallback); window.proctoringListeners = { visibilityHandler, blurHandler }; document.addEventListener('visibilitychange', window.proctoringListeners.visibilityHandler); window.addEventListener('blur', window.proctoringListeners.blurHandler); }
-    function deactivateProctoring() { document.removeEventListener('copy', handleDisabledAction); document.removeEventListener('paste', handleDisabledAction); document.removeEventListener('cut', handleDisabledAction); document.removeEventListener('contextmenu', handleDisabledAction); if (window.proctoringListeners) { document.removeEventListener('visibilitychange', window.proctoringListeners.visibilityHandler); document.removeEventListener('blur', window.proctoringListeners.blurHandler); window.proctoringListeners = null; } clearInterval(problemTimerInterval); }
+    function deactivateProctoring() { if (window.proctoringListeners) { document.removeEventListener('visibilitychange', window.proctoringListeners.visibilityHandler); document.removeEventListener('blur', window.proctoringListeners.blurHandler); window.proctoringListeners = null; } clearInterval(problemTimerInterval); }
 
     // --- Online Compiler Logic ---
     const runButton = document.getElementById('runButton');
@@ -42,13 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const codingEntryContainer = document.getElementById('coding-entry-container');
     const accessProblemsBtn = document.getElementById('accessProblemsBtn');
 
-    if (codingContainer && accessProblemsBtn) {
-        // Main router for this page
-        if (localStorage.getItem('codingStudentId')) {
-            codingEntryContainer.classList.add('d-none');
+    if (codingContainer) {
+        // This is the router for the page. It decides what to show.
+        const loggedInUsn = localStorage.getItem('codingStudentId');
+        if (loggedInUsn) {
+            codingEntryContainer?.classList.add('d-none');
             codingContainer.classList.remove('d-none');
             loadProblemList();
-        } else {
+        } else if (accessProblemsBtn) {
             accessProblemsBtn.addEventListener('click', handleCodingAccess);
         }
     }
@@ -60,7 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!studentId) { showError('coding-entry-error', 'Please enter your USN.'); return; }
         accessProblemsBtn.disabled = true; accessProblemsBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Verifying...`;
         try {
+            // ========== THIS IS THE CRITICAL FIX ==========
             const response = await fetch(`${liveServerUrl}/api/validate-usn`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId }) });
+            // ============================================
             const result = await response.json();
             if (!result.valid) throw new Error(result.message || 'USN not authorized.');
             localStorage.setItem('codingStudentId', result.usn);
@@ -88,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         activatePageProctoring(submissionCallback);
         startProblemTimer(30, submissionCallback);
         runCodeBtn.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = document.getElementById('stdInput').value; const selectedLang = languageSelector.value; runCodeBtn.disabled = true; submitCodeBtn.disabled = true; runCodeBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Running...`; document.getElementById('outputArea').textContent = 'Executing...'; try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, language: selectedLang, stdin: userInput }) }); const result = await response.json(); if(result.output) { document.getElementById('outputArea').textContent = result.output; } else if (result.error) { document.getElementById('outputArea').textContent = result.error; } } catch (error) { document.getElementById('outputArea').textContent = "Error connecting to compiler."; } finally { runCodeBtn.disabled = false; submitCodeBtn.disabled = false; runCodeBtn.innerHTML = `Run Code`; } });
-        submitCodeBtn.addEventListener('click', async (event) => { if (event) event.preventDefault(); if (isSubmitting) return; isSubmitting = true; deactivateProctoring(); const studentId = localStorage.getItem('codingStudentId'); if (!studentId) { alert('USN not found. Please go back and re-validate.'); isSubmitting = false; return; } const submittedCode = editor.getValue(); submitCodeBtn.disabled = true; runCodeBtn.disabled = true; submitCodeBtn.textContent = 'Submitting...'; try { const submitResponse = await fetch(`${liveServerUrl}/api/coding-problems/submit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, problemId, submittedCode }) }); const result = await submitResponse.json(); if (!submitResponse.ok) { alert(result.message); isSubmitting = false; loadProblemList(); return; } const submissionToast = new bootstrap.Toast(document.getElementById('submissionToast')); submissionToast.show(); setTimeout(() => { isSubmitting = false; loadProblemList(); }, 2000); } catch (error) { alert('An error occurred during submission.'); submitCodeBtn.disabled = false; runCodeBtn.disabled = false; submitCodeBtn.textContent = 'Submit Final Code'; isSubmitting = false; } });
+        submitCodeBtn.addEventListener('click', async (event) => { if (event) event.preventDefault(); if (isSubmitting) return; isSubmitting = true; deactivateProctoring(); const studentId = localStorage.getItem('codingStudentId'); if (!studentId) { alert('USN not found. Please go back and re-validate.'); isSubmitting = false; return; } const submittedCode = editor.getValue(); submitCodeBtn.disabled = true; runCodeBtn.disabled = true; submitCodeBtn.textContent = 'Submitting...'; try { const submitResponse = await fetch(`${liveServerUrl}/api/coding-problems/submit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, problemId, submittedCode }) }); const result = await submitResponse.json(); if (!submitResponse.ok) { alert(result.message); loadProblemList(); return; } const submissionToast = new bootstrap.Toast(document.getElementById('submissionToast')); submissionToast.show(); setTimeout(() => { isSubmitting = false; loadProblemList(); }, 2000); } catch (error) { alert('An error occurred during submission.'); submitCodeBtn.disabled = false; runCodeBtn.disabled = false; submitCodeBtn.textContent = 'Submit Final Code'; isSubmitting = false; } });
     } catch (error) { console.error('Failed to load problem:', error); codingContainer.innerHTML = '<p class="text-danger">Could not load the problem.</p>'; } }
     function startProblemTimer(durationMinutes, submissionCallback) { let timeLeft = durationMinutes * 60; const timerElement = document.getElementById('problemTimer'); problemTimerInterval = setInterval(() => { timeLeft--; const minutes = Math.floor(timeLeft / 60); let seconds = timeLeft % 60; seconds = seconds < 10 ? '0' + seconds : seconds; if (timerElement) timerElement.textContent = `Time Left: ${minutes}:${seconds}`; if (timeLeft <= 0) { if (timerElement) timerElement.textContent = 'Time Up!'; handleCheatingAttempt(submissionCallback); } }, 1000); }
     function showError(elementId, message) { const errorEl = document.getElementById(elementId); if (errorEl) { errorEl.textContent = message; errorEl.classList.remove('d-none'); } }
