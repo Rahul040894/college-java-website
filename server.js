@@ -1,4 +1,4 @@
-// server.js (The Truly Final Version with All Features & Security)
+// server.js (The Truly Final Version with All Features, Security, and Multi-Language Compiler)
 
 const express = require('express');
 const cors = require('cors');
@@ -23,12 +23,13 @@ const AllowedUsn = mongoose.model('AllowedUsn', new mongoose.Schema({ usn: { typ
 const CodingProblem = mongoose.model('CodingProblem', new mongoose.Schema({ title: String, description: String, exampleInput: String, exampleOutput: String, topic: String }));
 const CodeSubmission = mongoose.model('CodeSubmission', new mongoose.Schema({ studentId: String, problemId: { type: mongoose.Schema.Types.ObjectId, ref: 'CodingProblem' }, submittedCode: String, submissionTime: { type: Date, default: Date.now } }).index({ studentId: 1, problemId: 1 }, { unique: true }));
 
+
 // === ALL API ENDPOINTS ===
 
 // --- Feature Flag Endpoint ---
 app.get('/api/exam/status', (req, res) => { res.json({ isLive: process.env.EXAM_LIVE === 'true' }); });
 
-// --- NEW: USN Validation Endpoint for Coding Problems ---
+// --- USN Validation Endpoint ---
 app.post('/api/validate-usn', async (req, res) => {
     const { studentId } = req.body;
     if (!studentId) return res.status(400).json({ valid: false, message: 'USN is required.' });
@@ -36,7 +37,7 @@ app.post('/api/validate-usn', async (req, res) => {
         const usnRegex = new RegExp(`^${studentId}$`, 'i');
         const isAllowed = await AllowedUsn.findOne({ usn: usnRegex });
         if (isAllowed) {
-            res.json({ valid: true, usn: isAllowed.usn }); // Send back the correctly cased USN
+            res.json({ valid: true, usn: isAllowed.usn });
         } else {
             res.json({ valid: false, message: 'This USN is not authorized.' });
         }
@@ -54,8 +55,45 @@ app.get('/api/coding-problems', async (req, res) => { try { const problems = awa
 app.get('/api/coding-problems/:id', async (req, res) => { try { const problem = await CodingProblem.findById(req.params.id); if (!problem) return res.status(404).json({ message: "Problem not found" }); res.json(problem); } catch (error) { res.status(500).json({ message: "Error fetching problem details" }); } });
 app.post('/api/coding-problems/submit', async (req, res) => { const { studentId, problemId, submittedCode } = req.body; if (!studentId || !problemId || !submittedCode) return res.status(400).json({ message: "All fields are required." }); try { const existingSubmission = await CodeSubmission.findOne({ studentId, problemId }); if (existingSubmission) { return res.status(403).json({ message: "You have already submitted a solution for this problem." }); } const submission = new CodeSubmission({ studentId, problemId, submittedCode }); await submission.save(); res.status(201).json({ message: "Code submitted successfully!" }); } catch (error) { if (error.code === 11000) { return res.status(403).json({ message: "You have already submitted a solution for this problem." }); } res.status(500).json({ message: "Error saving submission" }); } });
 
-// --- Online Compiler Endpoint ---
-app.post('/api/compile', async (req, res) => { const { script, stdin } = req.body; const program = { script, stdin, language: "java", versionIndex: "4", clientId: process.env.JDOODLE_CLIENT_ID, clientSecret: process.env.JDOODLE_CLIENT_SECRET }; try { const response = await axios({ method: 'post', url: 'https://api.jdoodle.com/v1/execute', data: program }); res.json(response.data); } catch (error) { res.status(500).json({ output: "Error compiling code." }); } });
+// ========== UPDATED: Multi-Language Online Compiler Endpoint ==========
+app.post('/api/compile', async (req, res) => {
+    // Now we accept 'language' from the front-end
+    const { script, language, stdin } = req.body;
+
+    let langDetails = {};
+    // A switch statement to determine the correct parameters for JDoodle
+    switch (language) {
+        case 'python3':
+            langDetails = { language: 'python3', versionIndex: '4' }; // Python 3.9.4 on JDoodle
+            break;
+        case 'java':
+        default: // Default to Java if something unexpected is sent
+            langDetails = { language: 'java', versionIndex: '4' }; // JDK 17 on JDoodle
+            break;
+    }
+
+    const program = {
+        script: script,
+        stdin: stdin,
+        language: langDetails.language,
+        versionIndex: langDetails.versionIndex,
+        clientId: process.env.JDOODLE_CLIENT_ID,
+        clientSecret: process.env.JDOODLE_CLIENT_SECRET
+    };
+
+    try {
+        const response = await axios({
+            method: 'post',
+            url: 'https://api.jdoodle.com/v1/execute',
+            data: program
+        });
+        res.json(response.data);
+    } catch (error) {
+        console.error("Error with JDoodle API:", error.response ? error.response.data : error.message);
+        res.status(500).json({ output: "An error occurred while compiling your code." });
+    }
+});
+// ====================================================================
 
 // === Server Start ===
 app.listen(PORT, () => { console.log(`✅ Server is running on port ${PORT}`); });
