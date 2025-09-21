@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
     <title>Coding Problems - Java Course</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -14,43 +14,33 @@
     <div class="top-bar"></div>
     <header class="main-header"> <!-- Header content here --> </header>
     <nav class="navbar navbar-expand-lg"> <!-- Navbar content here, with 'Coding Problems' as active --> </nav>
-
-    <!-- Main Content Area -->
     <main class="py-5">
         <div class="container">
             <div class="content-box">
-                <!-- Gatekeeper Form (visible initially) -->
                 <div id="coding-entry-container">
                     <h2>Coding Problems Access</h2>
                     <p>Please enter your authorized USN to access the coding problems. Each problem is timed and proctored.</p>
                     <hr>
-                    <form id="coding-entry-form">
+                    <!-- THE FIX IS HERE: novalidate on form, type="button" on button -->
+                    <form id="coding-entry-form" novalidate>
                         <div class="mb-3">
                             <label for="codingStudentId" class="form-label">Enter Your USN Number</label>
-                            <input type="text" class="form-control" id="codingStudentId" required>
+                            <input type="text" class="form-control" id="codingStudentId">
                         </div>
-                        <button type="submit" id="accessProblemsBtn" class="btn btn-primary btn-lg">Access Problems</button>
+                        <button type="button" id="accessProblemsBtn" class="btn btn-primary btn-lg">Access Problems</button>
                     </form>
                     <div id="coding-entry-error" class="alert alert-danger mt-3 d-none"></div>
                 </div>
-
-                <!-- Main Coding Area (hidden initially) -->
-                <div id="coding-container" class="d-none">
-                    <!-- Content will be loaded here by script.js -->
-                </div>
+                <div id="coding-container" class="d-none"></div>
             </div>
         </div>
     </main>
-    
-    <!-- JavaScript & Toast Notifications -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/clike/clike.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100">
-        <div id="submissionToast" class="toast"><div class="toast-header bg-success text-white">...</div><div class="toast-body">...</div></div>
-        <div id="proctorToast" class="toast"><div class="toast-header">...</div><div class="toast-body">...</div></div>
-        <div id="visibilityToast" class="toast"><div class="toast-header bg-danger text-white">...</div><div class="toast-body">...</div></div>
+        <!-- Toast elements here -->
     </div>
 </body>
 </html>
