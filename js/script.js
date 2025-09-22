@@ -1,16 +1,16 @@
-// js/script.js (The Truly Final Production Version with All Features and Fixes)
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     let isSubmitting = false;
     let problemTimerInterval;
 
-    // --- Feature Flag Logic ---
+  
     const examAlertBox = document.getElementById('exam-alert-box');
     async function checkExamStatus() { if (!examAlertBox) return; try { const response = await fetch(`${liveServerUrl}/api/exam/status`); const data = await response.json(); if (data.isLive) { examAlertBox.classList.remove('d-none'); } } catch (error) { console.error("Could not check exam status:", error); } }
     if (examAlertBox) checkExamStatus();
 
-    // --- Background Image Changer ---
+
     const backgroundElement = document.querySelector('body.full-bg');
     if (backgroundElement) { const backgroundImages = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg']; let currentImageIndex = 0; backgroundElement.style.backgroundImage = `url('${backgroundImages[0]}')`; const changeBackgroundImage = () => { currentImageIndex = (currentImageIndex + 1) % backgroundImages.length; backgroundElement.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`; }; setInterval(changeBackgroundImage, 7000); }
 
