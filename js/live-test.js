@@ -42,8 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
         testContainer.classList.remove('d-none');
         studentInfo.textContent = `Student: ${name} (${id})`;
         activateProctoring();
-        const shuffledQuestions = shuffleArray(questions);
-        displayQuestions(shuffledQuestions);
+
+        let questionsToDisplay;
+        if (testName === 'infosys-mock-exam') {
+
+            questionsToDisplay = questions;
+        } else {
+            questionsToDisplay = shuffleArray(questions);
+        }
+        displayQuestions(questionsToDisplay);
+        
         startTimer();
     }
     
