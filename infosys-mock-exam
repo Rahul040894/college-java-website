@@ -1,0 +1,1307 @@
+{
+  "quizTitle": "Infosys Placement Preparation Paper (Elite Level)",
+  "questions": [
+    {
+      "id": 1,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "Pipe A can fill a tank in 10 hours. Pipe B can fill the same tank in 15 hours. Pipe C can empty the full tank. All three pipes were opened together, and it took 12 hours to fill the tank. How many hours would it take for pipe C alone to empty the full tank?",
+      "options": [
+        "10 hours",
+        "12 hours",
+        "15 hours",
+        "20 hours"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 2,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "A container has 80 litres of a solution of wine and water in the ratio 3:1. How many litres of the solution must be replaced with pure wine so that the final mixture has wine and water in the ratio 7:1?",
+      "options": [
+        "16 litres",
+        "20 litres",
+        "24 litres",
+        "32 litres"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 3,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "Two people A and B start from points P and Q respectively towards each other. They meet after 6 hours. If A had travelled at 2/3 of his usual speed and B had travelled at double his usual speed, they would have met after 5 hours. Find the speed of A.",
+      "options": [
+        "10 km/hr",
+        "12 km/hr",
+        "15 km/hr",
+        "18 km/hr"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 4,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "From a standard deck of 52 cards, three cards are drawn. What is the probability that there is at least one ace among them?",
+      "options": [
+        "552/2125",
+        "44/425",
+        "1 - (48*47*46)/(52*51*50)",
+        "1 - (48*47)/(52*51)"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 5,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "A solid metallic cylinder of base radius 3 cm and height 5 cm is melted to form cones, each of height 1 cm and base radius 1 mm. Find the number of cones formed.",
+      "options": [
+        "135",
+        "450",
+        "1350",
+        "13500"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 6,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "In how many different ways can the letters of the word 'CORPORATION' be arranged so that the vowels always come together?",
+      "options": [
+        "50400",
+        "5040",
+        "25200",
+        "1440"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 7,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "An amount becomes Rs. 8820 in 2 years and Rs. 9261 in 3 years at compound interest. What is the principal amount?",
+      "options": [
+        "Rs. 7500",
+        "Rs. 7800",
+        "Rs. 8000",
+        "Rs. 8200"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 8,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "A boat covers a certain distance downstream in 1 hour, while it comes back in 1.5 hours. If the speed of the stream is 3 km/hr, what is the speed of the boat in still water?",
+      "options": [
+        "12 km/hr",
+        "13 km/hr",
+        "14 km/hr",
+        "15 km/hr"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 9,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "A, B and C can do a piece of work in 20, 30 and 60 days respectively. In how many days can A do the work if he is assisted by B and C on every third day?",
+      "options": [
+        "10 days",
+        "12 days",
+        "15 days",
+        "18 days"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 10,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "What is the remainder when (1! + 2! + 3! + ... + 100!) is divided by 12?",
+      "options": [
+        "3",
+        "6",
+        "9",
+        "0"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 11,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "The marked price of an article is 50% above the cost price. When the marked price is increased by 20% and the selling price is increased by 20%, the profit doubles. If the original marked price is Rs. 300, what is the original selling price?",
+      "options": [
+        "Rs. 200",
+        "Rs. 250",
+        "Rs. 275",
+        "Rs. 280"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 12,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "The average age of 11 players of a cricket team is increased by 2 months when two of them aged 18 years and 20 years are replaced by two new players. The average age of the new players is:",
+      "options": [
+        "19 years 1 month",
+        "19 years 11 months",
+        "20 years 1 month",
+        "20 years 11 months"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 13,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "What is the highest power of 12 that can divide 100! (factorial 100)?",
+      "options": [
+        "48",
+        "50",
+        "97",
+        "24"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 14,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "A five-digit number is formed using the digits 1, 2, 3, 4, 5, 6, 8 (without repetition). What is the probability that the number formed is divisible by 4?",
+      "options": [
+        "1/4",
+        "3/7",
+        "4/11",
+        "2/7"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 15,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "A man invested a sum of money in two schemes, A and B, in the ratio 2:3. Scheme A offers 10% p.a. compound interest and Scheme B offers 20% p.a. simple interest. If he gets a total of Rs. 1205 from both schemes after 2 years, what was the total sum invested?",
+      "options": [
+        "Rs. 2000",
+        "Rs. 2500",
+        "Rs. 3000",
+        "Rs. 3500"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 16,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "A clock gains 5 minutes every hour. If it is set correctly at 12 noon on Sunday, what time will it show on the following Monday at 2 PM?",
+      "options": [
+        "4:10 PM",
+        "4:20 PM",
+        "4:30 PM",
+        "4:40 PM"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 17,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "The length, breadth and height of a room are in the ratio 3:2:1. If the breadth and height are halved while the length is doubled, then the total area of the four walls of the room will:",
+      "options": [
+        "remain the same",
+        "decrease by 13.64%",
+        "decrease by 15%",
+        "decrease by 30%"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 18,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "A trader mixes 26 kg of rice at Rs. 20 per kg with 30 kg of rice of other variety at Rs. 36 per kg and sells the mixture at Rs. 30 per kg. His profit percent is:",
+      "options": [
+        "No profit, no loss",
+        "5%",
+        "8%",
+        "10%"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 19,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "A person has to cover a distance of 6 km in 45 minutes. If he covers one-half of the distance in two-thirds of the total time; to cover the remaining distance in the remaining time, his speed in km/hr must be:",
+      "options": [
+        "6",
+        "8",
+        "12",
+        "15"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 20,
+      "section": "Aptitude",
+      "part": "Quantitative Ability",
+      "question": "What is the value of (1001)³?",
+      "options": [
+        "1003003001",
+        "1003003011",
+        "100303001",
+        "103003001"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 21,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "Statement: All graduates are professionals. All professionals are respectable. Conclusions: I. All graduates are respectable. II. All respectable persons are professionals.",
+      "options": [
+        "Only I follows",
+        "Only II follows",
+        "Both I and II follow",
+        "Neither I nor II follows"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 22,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "In a family, P is the father of Q. R is the son of S. T is the brother of P. Q is the sister of R. How is S related to T?",
+      "options": [
+        "Sister-in-law",
+        "Brother-in-law",
+        "Sister",
+        "Cannot be determined"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 23,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "Find the next term in the series: 3, 4, 12, 45, 196, ?",
+      "options": [
+        "985",
+        "1005",
+        "1025",
+        "1085"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 24,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "If 'SYSTEM' is coded as 'SYSMET', how is 'NEARER' coded?",
+      "options": [
+        "AENRER",
+        "AENRR",
+        "AENRRE",
+        "AENRER"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 25,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "Eight friends P, Q, R, S, T, U, V, W are sitting around a square table. Four sit at the corners facing the center, and four sit at the middle of the sides facing away from the center. R sits third to the left of P, who faces the center. U sits to the immediate left of R. V sits opposite U. S sits third to the right of V. T is not an immediate neighbor of P. Q does not face away from the center. Who sits to the immediate right of T?",
+      "options": [
+        "P",
+        "R",
+        "S",
+        "U"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 26,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "Statement: Should there be a mandatory retirement age for politicians in India? Arguments: I. Yes, it will create space for younger leaders with fresh ideas. II. No, the experience and wisdom of veteran politicians are invaluable for the country.",
+      "options": [
+        "Only argument I is strong",
+        "Only argument II is strong",
+        "Either I or II is strong",
+        "Both I and II are strong"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 27,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "In a class, among the students who passed, Amisha is 22nd from the top and Sajal, who is 5 ranks below Amisha, is 34th from the bottom. If the ratio of passed students to failed students is 4:1, how many students are in the class?",
+      "options": [
+        "60",
+        "75",
+        "90",
+        "100"
+      ],
+
+      "answer": "b"
+    },
+    {
+      "id": 28,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "Find the missing term in the series: `AZBY, CXDW, EVFU, ?`",
+      "options": [
+        "GTHS",
+        "GHTS",
+        "GSTH",
+        "GSH T"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 29,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "If 15th August 2011 was a Monday, what was the day of the week on 17th September 2011?",
+      "options": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 30,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "Which conclusion follows from the statements? Statements: I. All artists are whimsical. II. Some artists are drug addicts. III. Frustrated people are prone to become drug addicts.",
+      "options": [
+        "All frustrated people are whimsical.",
+        "Some artists are frustrated.",
+        "Some whimsical people are drug addicts.",
+        "Some drug addicts are not frustrated."
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 31,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "A cube is colored red on two opposite faces, blue on two adjacent faces and yellow on the two remaining faces. It is then cut into 64 smaller cubes of equal size. How many cubes have only one face colored blue and no other face colored?",
+      "options": [
+        "4",
+        "8",
+        "12",
+        "16"
+      ],
+
+      "answer": "c"
+    },
+    {
+      "id": 32,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "A is B's sister. C is B's mother. D is C's father. E is D's mother. Then, how is A related to D?",
+      "options": [
+        "Grandfather",
+        "Grandmother",
+        "Daughter",
+        "Granddaughter"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 33,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "How many such pairs of letters are there in the word 'STREAMING' each of which has as many letters between them in the word as in the English alphabet?",
+      "options": [
+        "None",
+        "One",
+        "Two",
+        "Three"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 34,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "Six books are kept one above the other. History book is just above the Civics book. The Maths book is between the Physics and Chemistry books. The English book is between the History and Physics books. Which book is at the bottom?",
+      "options": [
+        "Civics",
+        "History",
+        "Physics",
+        "Chemistry"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 35,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "A man said to a lady, 'Your mother's husband's sister is my aunt.' How is the lady related to the man?",
+      "options": [
+        "Daughter",
+        "Granddaughter",
+        "Sister",
+        "Aunt"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 36,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "In a row of girls, Kamya is fifth from the left and Preeti is sixth from the right. When they exchange their positions, Kamya becomes thirteenth from the left. What is Preeti's new position from the right?",
+      "options": [
+        "7th",
+        "11th",
+        "14th",
+        "18th"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 37,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "If the first and second letters in the word 'DEPRESSION' were interchanged, also the third and fourth letters, the fifth and sixth letters and so on, which of the following would be the seventh letter from the right?",
+      "options": [
+        "R",
+        "O",
+        "S",
+        "P"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 38,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "Find the next figure in the series. (This would be a visual question with a pattern of rotating/adding elements).",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 39,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "Find the odd one out: 25, 36, 49, 81, 121, 169, 225.",
+      "options": [
+        "36",
+        "49",
+        "169",
+        "225"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 40,
+      "section": "Aptitude",
+      "part": "Logical Reasoning",
+      "question": "If `>` denotes `+`, `<` denotes `-`, `+` denotes `÷`, `−` denotes `=`, `=` denotes `<` and `x` denotes `>`, which of the following is a correct statement?",
+      "options": [
+        "5 > 8 < 4 - 11 + 4 x 1",
+        "5 < 8 + 4 = 11 > 4 < 1",
+        "5 > 8 < 4 x 11 + 4 < 1",
+        "5 + 8 > 4 = 11 < 4 x 1"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 41,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "Choose the word that is most nearly the SAME in meaning to the word `QUIXOTIC`.",
+      "options": [
+        "Pragmatic",
+        "Idealistic",
+        "Malevolent",
+        "Phlegmatic"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 42,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "Choose the word that is most nearly OPPOSITE in meaning to the word `TURPITUDE`.",
+      "options": [
+        "Depravity",
+        "Probity",
+        "Baseness",
+        "Wickedness"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 43,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "Fill in the blank with the most appropriate word: The ______ of the desert, with its stark beauty and vast emptiness, has inspired countless artists and thinkers.",
+      "options": [
+        "cacophony",
+        "verisimilitude",
+        "topography",
+        "solitude"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 44,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "Find the part of the given sentence that has an error: (A) The number of students competing / (B) in the event are steadily increasing / (C) every year. / (D) No error.",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 45,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "The idiom 'to throw down the gauntlet' means:",
+      "options": [
+        "To accept defeat",
+        "To issue a challenge",
+        "To surrender",
+        "To face a difficult situation"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 46,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "Rearrange the jumbled parts (P, Q, R, S) to form a meaningful sentence: P: for the last half century Q: has been the dominant economic policy R: that the pursuit of self-interest S: of the United States",
+      "options": [
+        "PQRS",
+        "RQSP",
+        "RSPQ",
+        "QSPR"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 47,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "Choose the correct analogy: `INDIGENT : WEALTHY`",
+      "options": [
+        "ANGRY : RICH",
+        "NATIVE : AFFLUENT",
+        "GAWKY : GRACEFUL",
+        "SCHOLARLY : ERUDITE"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 48,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "Identify the correct spelling.",
+      "options": [
+        "Consciencious",
+        "Conscientious",
+        "Concientious",
+        "Conciencious"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 49,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "Choose the word which can be substituted for the given phrase: 'A person who is skilled in storytelling'.",
+      "options": [
+        "Raconteur",
+        "Tyro",
+        "Demagogue",
+        "Curator"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 50,
+      "section": "Aptitude",
+      "part": "Verbal Ability",
+      "question": "Which of the following sentences uses the subjunctive mood correctly?",
+      "options": [
+        "If I was you, I would take the job.",
+        "The requirement is that every student brings his own lunch.",
+        "I wish I was taller.",
+        "I suggest that he be present at the meeting."
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 51,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "Which statement about Java's `String` class is true?",
+      "options": [
+        "Strings are mutable and stored on the heap.",
+        "String literals are stored in a special memory area called the String Constant Pool.",
+        "The `==` operator always compares the content of two strings.",
+        "The `intern()` method adds a heap string to the method area."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 52,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is the primary purpose of the `volatile` keyword in Java concurrency?",
+      "options": [
+        "To ensure a variable is never cached by threads, guaranteeing visibility of its latest value.",
+        "To provide atomic operations on variables like `i++`.",
+        "To make a variable immutable.",
+        "To automatically synchronize access to the variable."
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 53,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is the difference between `Callable` and `Runnable` in the `java.util.concurrent` package?",
+      "options": [
+        "`Runnable` can return a value and throw a checked exception, `Callable` cannot.",
+        "`Callable` can return a value and throw a checked exception, `Runnable` cannot.",
+        "Both are interfaces for defining tasks, but `Callable` is deprecated.",
+        "There is no functional difference; `Callable` is just a newer name for `Runnable`."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 54,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "Which Garbage Collector in Java is designed for low-latency applications and works concurrently with the application threads for most of its cycle?",
+      "options": [
+        "Serial GC",
+        "Parallel GC",
+        "G1 GC",
+        "ZGC (Z Garbage Collector)"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 55,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is type erasure in Java Generics?",
+      "options": [
+        "A feature that allows generic types to be changed at runtime.",
+        "The process by which the compiler removes generic type information after compile-time type checking.",
+        "An error that occurs when an incorrect type is used in a generic collection.",
+        "A mechanism for creating generic arrays."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 56,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "Which of these is a key feature of `CompletableFuture` in Java 8+?",
+      "options": [
+        "It can only represent tasks that have already completed.",
+        "It allows chaining of asynchronous operations and can be explicitly completed.",
+        "It is a thread-safe version of the `StringBuilder` class.",
+        "It is used exclusively for creating daemon threads."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 57,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What happens if a class implements two interfaces that have default methods with the same signature?",
+      "options": [
+        "The class inherits the method from the first interface listed.",
+        "It results in a compile-time error, forcing the class to override the method.",
+        "The class inherits the method from the interface that was defined first.",
+        "It results in a runtime error when the method is called."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 58,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is the difference between `HashSet` and `LinkedHashSet`?",
+      "options": [
+        "`HashSet` maintains elements in a sorted order, while `LinkedHashSet` does not.",
+        "`LinkedHashSet` maintains the insertion order of elements, while `HashSet` does not.",
+        "`HashSet` allows duplicate elements, while `LinkedHashSet` does not.",
+        "`LinkedHashSet` is synchronized, while `HashSet` is not."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 59,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is Metaspace in the JVM (Java 8 and later)?",
+      "options": [
+        "The section of the heap reserved for very large objects.",
+        "A memory space in native memory for storing class metadata.",
+        "The stack memory allocated for each thread.",
+        "A cache for frequently accessed objects."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 60,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is the purpose of the `try-with-resources` statement?",
+      "options": [
+        "To ensure resources implementing `AutoCloseable` are automatically closed.",
+        "To catch and handle all exceptions without a `catch` block.",
+        "To allocate more memory to the `try` block.",
+        "To retry the code in the `try` block if it fails."
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 61,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "Which design pattern ensures a class has only one instance and provides a global point of access to it?",
+      "options": [
+        "Factory",
+        "Singleton",
+        "Observer",
+        "Decorator"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 62,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is the difference between `ReentrantLock` and `synchronized`?",
+      "options": [
+        "`ReentrantLock` is less flexible than `synchronized`.",
+        "`ReentrantLock` can provide fairness and timed lock-waits, which `synchronized` cannot.",
+        "`synchronized` is faster in all high-contention scenarios.",
+        "There is no significant difference."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 63,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "In Java Generics, what does `<? extends T>` mean?",
+      "options": [
+        "Any type that is a superclass of T.",
+        "Any type that is a subclass of T (or T itself), used for read-only access.",
+        "Only the type T.",
+        "An unbounded wildcard."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 64,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is a deadlock in multithreading?",
+      "options": [
+        "A situation where a thread loops infinitely.",
+        "A situation where two or more threads are blocked forever, each waiting for a resource held by another.",
+        "A situation where a thread consumes all available CPU time.",
+        "A situation where a thread throws an unhandled exception."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 65,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is the primary function of `serialVersionUID` in a `Serializable` class?",
+      "options": [
+        "To provide a version number for a class during serialization to ensure compatibility.",
+        "To uniquely identify each object instance.",
+        "To encrypt the serialized data.",
+        "To specify the serialization format."
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 66,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "Which of the following methods from the `Object` class is `final`?",
+      "options": [
+        "`equals()`",
+        "`hashCode()`",
+        "`toString()`",
+        "`getClass()`"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 67,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is a `CyclicBarrier` used for in Java concurrency?",
+      "options": [
+        "To allow a set of threads to all wait for each other to reach a common barrier point.",
+        "To limit access to a resource to a certain number of threads.",
+        "To allow a main thread to wait for a set of tasks to complete.",
+        "To exchange data between two threads at a synchronization point."
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 68,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What does the `Stream.flatMap()` operation do?",
+      "options": [
+        "It filters elements of a stream based on a predicate.",
+        "It transforms a stream of streams into a single, flattened stream.",
+        "It maps each element to a new value, like the `map()` operation.",
+        "It finds the first element of the stream that matches a condition."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 69,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is the effect of calling `System.gc()`?",
+      "options": [
+        "It forces the garbage collector to run immediately and clear all unused memory.",
+        "It is a suggestion to the JVM to run the garbage collector, but it's not guaranteed.",
+        "It returns the amount of free memory in the JVM.",
+        "It garbage collects only the young generation."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 70,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is a key difference between an `interface` and an `abstract class` in Java (post-Java 8)?",
+      "options": [
+        "An `abstract class` can have instance variables and constructors; an `interface` cannot.",
+        "An `interface` can be instantiated; an `abstract class` cannot.",
+        "A class can extend multiple `abstract classes`.",
+        "An `interface` cannot have `static` methods."
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 71,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is the purpose of the `assert` keyword?",
+      "options": [
+        "To handle checked exceptions.",
+        "To define a constant variable.",
+        "To test a boolean condition for debugging, which throws an `AssertionError` if false.",
+        "To create a synchronized block."
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 72,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "Which of these collections provides a thread-safe, sorted map?",
+      "options": [
+        "HashMap",
+        "TreeMap",
+        "ConcurrentHashMap",
+        "ConcurrentSkipListMap"
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 73,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is a 'memory leak' in the context of Java?",
+      "options": [
+        "A bug in the JVM that causes it to lose track of memory.",
+        "A situation where objects are no longer needed by the application but are still referenced, preventing the garbage collector from reclaiming their memory.",
+        "When the application requests more memory than is available from the OS.",
+        "An error caused by accessing an array outside of its bounds."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 74,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is the difference between `final`, `finally`, and `finalize`?",
+      "options": [
+        "`final` is a keyword to create constants, `finally` is a block for exception handling, and `finalize` is a method called before garbage collection.",
+        "They are all used for exception handling.",
+        "`final` and `finally` are keywords, but `finalize` is a design pattern.",
+        "`finally` is for declaring final classes, `final` is for exception handling, and `finalize` is for finishing a thread."
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 75,
+      "section": "Technical",
+      "part": "Core & Advanced Java Concepts",
+      "question": "What is method reference in Java 8?",
+      "options": [
+        "A reference to an object's memory address.",
+        "A compact way of referring to a method without executing it, often used in place of a lambda expression.",
+        "A special type of comment for documenting methods.",
+        "A pointer to a method, similar to C++."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 76,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output of this code?\n```java\npublic class Test {\n    public static void main(String[] args) {\n        try {\n            System.out.print(\"A\");\n            int result = 5 / 0;\n            System.out.print(\"B\");\n        } catch (Exception e) {\n            System.out.print(\"C\");\n        } finally {\n            System.out.print(\"D\");\n        }\n        System.out.print(\"E\");\n    }\n}\n```",
+      "options": [
+        "ACDE",
+        "ABDE",
+        "ACD",
+        "Compilation Error"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 77,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What will be printed by the following code?\n```java\nimport java.util.stream.Collectors;\nimport java.util.stream.Stream;\npublic class Test {\n    public static void main(String[] args) {\n        String result = Stream.of(\"apple\", \"banana\", \"cherry\")\n            .filter(s -> s.length() > 5)\n            .collect(Collectors.joining(\", \"));\n        System.out.println(result);\n    }\n}\n```",
+      "options": [
+        "apple, banana, cherry",
+        "banana, cherry",
+        "banana",
+        "cherry"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 78,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "Predict the output of this code:\n```java\nclass Parent {\n    public void display() { System.out.println(\"Parent\"); }\n}\nclass Child extends Parent {\n    public void display() { System.out.println(\"Child\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Parent p = new Child();\n        p.display();\n    }\n}\n```",
+      "options": [
+        "Parent",
+        "Child",
+        "Compilation Error",
+        "Runtime Error"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 79,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "Predict the output:\n```java\npublic class Test {\n    public static void main(String[] args) {\n        String s1 = \"hello\";\n        String s2 = new String(\"hello\").intern();\n        System.out.println(s1 == s2);\n    }\n}\n```",
+      "options": [
+        "true",
+        "false",
+        "Compilation Error",
+        "Depends on JVM"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 80,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output of the following code snippet?\n```java\npublic class Test {\n    static {\n        System.out.print(\"Static Block\");\n    }\n    public static void main(String[] args) {\n        System.out.print(\" Main Method\");\n    }\n}\n```",
+      "options": [
+        "Main Method",
+        "Static Block Main Method",
+        "Main Method Static Block",
+        "Compilation Error"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 81,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What does this snippet print?\n```java\nimport java.util.Optional;\npublic class Test {\n    public static void main(String[] args) {\n        Optional<String> value = Optional.of(\"Test\");\n        value.ifPresent(s -> System.out.println(s.length()));\n    }\n}\n```",
+      "options": [
+        "4",
+        "Test",
+        "Optional[Test]",
+        "No output"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 82,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output of this code?\n```java\npublic class Test {\n    public static void main(String[] args) {\n        try {\n            System.out.print(\"1\");\n            return;\n        } finally {\n            System.out.print(\"2\");\n        }\n    }\n}\n```",
+      "options": [
+        "1",
+        "2",
+        "12",
+        "21"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 83,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "Predict the output:\n```java\npublic class Test {\n    final int x = 10;\n    public void update() {\n        x = 12; // What happens here?\n    }\n    public static void main(String[] args) {\n        new Test().update();\n    }\n}\n```",
+      "options": [
+        "The code compiles and runs, printing nothing.",
+        "Compilation Error: cannot assign a value to a final variable.",
+        "Runtime Error: `IllegalStateException`.",
+        "The code compiles but does not change the value of x."
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 84,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output?\n```java\npublic class Test {\n    public static void main(String[] args) {\n        String s1 = \"Java\";\n        String s2 = \"Java\";\n        System.out.println(s1.equals(s2) + \" \" + (s1 == s2));\n    }\n}\n```",
+      "options": [
+        "true true",
+        "true false",
+        "false true",
+        "false false"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 85,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "Find the output:\n```java\nimport java.util.Arrays;\nimport java.util.List;\npublic class Test {\n    public static void main(String[] args) {\n        List<Integer> list = Arrays.asList(1, 2, 3);\n        try {\n            list.add(4);\n        } catch (UnsupportedOperationException e) {\n            System.out.println(\"Cannot add\");\n        }\n        System.out.println(list.size());\n    }\n}\n```",
+      "options": [
+        "Cannot add\n4",
+        "4",
+        "Cannot add\n3",
+        "Compilation Error"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 86,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output of this program?\n```java\ninterface I { default void print() { System.out.println(\"I\"); } }\ninterface J { default void print() { System.out.println(\"J\"); } }\nclass C implements I, J {\n    public void print() { System.out.println(\"C\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        I obj = new C();\n        obj.print();\n    }\n}\n```",
+      "options": [
+        "I",
+        "J",
+        "C",
+        "Compilation Error"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 87,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What does the following code print?\n```java\npublic class Test {\n    public static void main(String[] args) {\n        System.out.println(0.0 / 0.0);\n    }\n}\n```",
+      "options": [
+        "0.0",
+        "Infinity",
+        "NaN",
+        "`ArithmeticException`"
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 88,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output?\n```java\npublic class Test {\n    public static void main(String[] args) {\n        String s = \"test\";\n        s.toUpperCase();\n        System.out.println(s);\n    }\n}\n```",
+      "options": [
+        "test",
+        "TEST",
+        "null",
+        "Compilation Error"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 89,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "Predict the output of the following Java program.\n```java\nclass A {\n    int value = 10;\n}\nclass B extends A {\n    int value = 20;\n}\npublic class Main {\n    public static void main(String[] args) {\n        A a = new B();\n        System.out.println(a.value);\n    }\n}\n```",
+      "options": [
+        "10",
+        "20",
+        "Compilation Error",
+        "Runtime Error"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 90,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is printed by this code?\n```java\nimport java.util.stream.IntStream;\npublic class Test {\n    public static void main(String[] args) {\n        IntStream.range(1, 4).map(i -> i * 2).forEach(System.out::print);\n    }\n}\n```",
+      "options": [
+        "123",
+        "246",
+        "135",
+        "24"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 91,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output?\n```java\npublic class Test {\n    void print(String s) { System.out.println(\"String\"); }\n    void print(Object o) { System.out.println(\"Object\"); }\n    public static void main(String[] args) {\n        new Test().print(null);\n    }\n}\n```",
+      "options": [
+        "Object",
+        "String",
+        "Compilation Error: ambiguous call",
+        "NullPointerException"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 92,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "Predict the output.\n```java\npublic class Test {\n    public static void main(String[] args) {\n        Integer i1 = 128;\n        Integer i2 = 128;\n        System.out.println(i1 == i2);\n    }\n}\n```",
+      "options": [
+        "true",
+        "false",
+        "Compilation Error",
+        "Depends on the JVM"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 93,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output?\n```java\npublic class Test {\n    public static void main(String[] args) {\n        try {\n            throw new RuntimeException(\"Outer\");\n        } catch (RuntimeException e) {\n            try {\n                throw new RuntimeException(\"Inner\");\n            } finally {\n                System.out.println(\"Finally block\");\n            }\n        }\n    }\n}\n```",
+      "options": [
+        "Finally block",
+        "Finally block, then Inner exception is thrown",
+        "Finally block, then Outer exception is thrown",
+        "Compilation Error"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 94,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What will this program print?\n```java\nimport java.util.function.Predicate;\npublic class Test {\n    public static void main(String[] args) {\n        Predicate<String> p = s -> s.length() > 5;\n        System.out.println(p.test(\"Infosys\"));\n    }\n}\n```",
+      "options": [
+        "true",
+        "false",
+        "7",
+        "Compilation Error"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 95,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output of the following snippet?\n```java\npublic class Test {\n    public static void main(String[] args) {\n        System.out.println(\"Result: \" + 2 + 3 * 5);\n    }\n}\n```",
+      "options": [
+        "Result: 25",
+        "Result: 17",
+        "Result: 215",
+        "Compilation Error"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 96,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "Predict the output.\n```java\npublic class Test {\n    public static void main(String[] args) {\n        int i = 0;\n        boolean condition = false;\n        if (condition && (i++ > 0)) { /* empty */ }\n        if (condition || (i++ > 0)) { /* empty */ }\n        System.out.println(i);\n    }\n}\n```",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 97,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the final value of the list?\n```java\nimport java.util.ArrayList;\nimport java.util.List;\npublic class Test {\n    public static void main(String[] args) {\n        List<String> list = new ArrayList<>();\n        list.add(\"A\");\n        list.add(\"B\");\n        list.set(1, \"C\");\n        System.out.println(list);\n    }\n}\n```",
+      "options": [
+        "[A, B]",
+        "[A, C]",
+        "[C, B]",
+        "IndexOutOfBoundsException"
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 98,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output?\n```java\npublic class Test {\n    public static void main(String[] args) {\n        int i = Integer.MAX_VALUE;\n        System.out.println(i + 1 == Integer.MIN_VALUE);\n    }\n}\n```",
+      "options": [
+        "true",
+        "false",
+        "Compilation Error",
+        "ArithmeticException"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 99,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What will the following code print?\n```java\nimport java.util.stream.Collectors;\nimport java.util.stream.Stream;\npublic class Test {\n    public static void main(String[] args) {\n        long count = Stream.of(1, 2, 3, 4, 5).peek(System.out::print).count();\n        System.out.println(\" Count: \" + count);\n    }\n}\n```",
+      "options": [
+        "12345 Count: 5",
+        "Count: 5",
+        "12345",
+        "Compilation Error"
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 100,
+      "section": "Technical",
+      "part": "Code Snippet Analysis",
+      "question": "What is the output of this code snippet?\n```java\npublic class Test {\n    public static void main(String[] args) {\n        Thread t = new Thread(() -> System.out.println(\"Running\"));\n        t.run(); // Note: run() is called, not start()\n        System.out.println(\"Main\");\n    }\n}\n```",
+      "options": [
+        "Running\nMain",
+        "Main\nRunning",
+        "Output is not guaranteed",
+        "Compilation Error"
+      ],
+      "answer": "a"
+    }
+  ]
+}
