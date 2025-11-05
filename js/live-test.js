@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
-    const testName = 'infosys-mock-exam';
-    const testDurationMinutes = 120;
+    const testName = 'Infosys Screening Round - Section A';
+    const testDurationMinutes = 35;
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
     const completeContainer = document.getElementById('complete-container');
