@@ -1,0 +1,162 @@
+{
+  "testName": "Infosys Screening Round - Section B",
+  "questions": [
+    {
+      "question": "Directions: In each of the following questions, select one alternative in which the third statement is implied by the first two statements.\n\nAll elephants are wild, All lions are wild. So all lions are elephant",
+      "options": [
+        "All elephants are wild, All lions are wild. So all lions are elephant",
+        "All mangoes are red, Some apples are mangoes. So, all apples are red",
+        "All roads are boxes, All foxes are roads. So, all boxes are foxes",
+        "All XYZ can run, All ABC are XYZ. So, all ABC can run."
+      ],
+      "answer": "All XYZ can run, All ABC are XYZ. So, all ABC can run."
+    },
+    {
+      "question": "Directions: In each of the following questions, select one alternative in which the third statement is implied by the first two statements.",
+      "options": [
+        "All dogs are mad, All sick persons are mad. So, all sick persons are dogs",
+        "All orange are black ,All figs are oranges. So, all figs are black",
+        "All windows are dogs, some doors are dogs. So, all windows are doors.",
+        "No man can fly, No kite can fly. So, all men are kites"
+      ],
+      "answer": "All orange are black ,All figs are oranges. So, all figs are black"
+    },
+    {
+      "question": "Directions: In each of the following questions, select one alternative in which the third statement is implied by the first two statements.\n\nA) All beautiful things are sad, she is beautiful. She is sad.\nB) All nice things are flat. Tv s Are flat. Tv are nice things.\nC) Potatoes are stems. All stems are fruits. Potatoes are fruits.",
+      "options": [
+        "Only A",
+        "A and B",
+        "Only C",
+        "A and C"
+      ],
+      "answer": "A and C"
+    },
+    {
+      "question": "Directions: In each of the following questions, select one alternative in which the third statement is implied by the first two statements.\n\nA) All pinks are purple. All purple are violet. All violate are pinks\nB) No chord is scale. Some scales are minors. No chord is minor.\nC) Some pollution are dusts. Some dusts are harmful. Some pollution are harmful.\nD) No calcium is protein. All vitamins are calcium. No vitamin is protein.",
+      "options": [
+        "Only B",
+        "Only A and C",
+        "Only D",
+        "Only A and D",
+        "All A,B,C and D"
+      ],
+      "answer": "Only D"
+    },
+    {
+      "question": "Directions: In each of the following questions, select one alternative in which the third statement is implied by the first two statements.\n\nA) All colours are walls. No wall is plain. No colour is plain\nB) All sonic are cosmic. Some cosmic are superfast. All sonic are superfast.\nC) Every amount is refundable. Some amounts are retainable. Some refundable is retainable\nD) No one is novice. Some novice is shrewd. Some shrewd is not one.",
+      "options": [
+        "Only A and B",
+        "Only A,C and D",
+        "Only B and C",
+        "Only C and D",
+        "Only C"
+      ],
+      "answer": "Only C"
+    },
+    {
+      "question": "For which of the following years, the percentage rise/fall in production from the previous year is the maximum for Company Y?",
+      "options": [
+        "1997",
+        "1998",
+        "1999",
+        "2000"
+      ],
+      "answer": "1997"
+    },
+    {
+      "question": "What is the ratio of the average production of Company X in the period 1998-2000 to the average production of Company Y in the same period?",
+      "options": [
+        "1:1",
+        "15:17",
+        "23:25",
+        "27:29"
+      ],
+      "answer": "23:25"
+    },
+    {
+      "question": "The average production for five years was maximum for which company?",
+      "options": [
+        "X",
+        "Y",
+        "Z",
+        "X and Z both"
+      ],
+      "answer": "X and Z both"
+    },
+    {
+      "question": "In which year was the percentage of production of Company Z to the production of Company Y the maximum?",
+      "options": [
+        "1996",
+        "1997",
+        "1998",
+        "1999"
+      ],
+      "answer": "1996"
+    },
+    {
+      "question": "What is the percentage increase in the production of Company Y from 1996 to 1999?",
+      "options": [
+        "30%",
+        "45%",
+        "50%",
+        "60%"
+      ],
+      "answer": "60%"
+    },
+    {
+      "question": "Directions: (a) If the question can be answered with the help of statement (1) alone. (b) If the question can be answered with the help of statement (2) alone. (c) If the question can be answered with the help of both the statements. (d) If the question cannot be answered. (e) If the question can be answered with the help of either 1 or 2.\n\nWhich is the greatest among x, y and z?\n1) X:Y:Z = 3:4:5\n2) XYZ - Y² is positive integer.",
+      "options": [
+        "If the question can be answered with the help of statement (1) alone.",
+        "If the question can be answered with the help of statement (2) alone.",
+        "If the question can be answered with the help of both the statements, but not with help of either statement itself.",
+        "If the question cannot be answered with the help of both the given statements.",
+        "If the question can be answered with the help of either 1 or 2."
+      ],
+      "answer": "If the question can be answered with the help of statement (1) alone."
+    },
+    {
+      "question": "Directions: (a) If the question can be answered with the help of statement (1) alone. (b) If the question can be answered with the help of statement (2) alone. (c) If the question can be answered with the help of both the statements. (d) If the question cannot be answered. (e) If the question can be answered with the help of either 1 or 2.\n\nP and Q are integers. Is Q even?\n1) 4P + 6Q is even\n2) 4p + 7Q is even",
+      "options": [
+        "If the question can be answered with the help of statement (1) alone.",
+        "If the question can be answered with the help of statement (2) alone.",
+        "If the question can be answered with the help of both the statements, but not with help of either statement itself.",
+        "If the question cannot be answered with the help of both the given statements.",
+        "If the question can be answered with the help of either 1 or 2."
+      ],
+      "answer": "If the question can be answered with the help of statement (2) alone."
+    },
+    {
+      "question": "Directions: (a) If the question can be answered with the help of statement (1) alone. (b) If the question can be answered with the help of statement (2) alone. (c) If the question can be answered with the help of both the statements. (d) If the question cannot be answered. (e) If the question can be answered with the help of either 1 or 2.\n\nWhat was the cost price of the suitcase purchased by Richard?\n1) Richard got 20% concession on the labeled price.\n2) Richard sold the suitcase for Rs.2000 with 25% profit on the labeled price.",
+      "options": [
+        "If the question can be answered with the help of statement (1) alone.",
+        "If the question can be answered with the help of statement (2) alone.",
+        "If the question can be answered with the help of both the statements, but not with help of either statement itself.",
+        "If the question cannot be answered with the help of both the given statements.",
+        "If the question can be answered with the help of either 1 or 2."
+      ],
+      "answer": "If the question can be answered with the help of both the statements, but not with help of either statement itself."
+    },
+    {
+      "question": "Directions: (a) If the question can be answered with the help of statement (1) alone. (b) If the question can be answered with the help of statement (2) alone. (c) If the question can be answered with the help of both the statements. (d) If the question cannot be answered. (e) If the question can be answered with the help of either 1 or 2.\n\nAverage age of employees working in a department is 30 years. In the next year, ten workers will retire. What will be the average age in the next year?\n1) Retirement age is 60 years.\n2) There are 50 employees in the department.",
+      "options": [
+        "If the question can be answered with the help of statement (1) alone.",
+        "If the question can be answered with the help of statement (2) alone.",
+        "If the question can be answered with the help of both the statements, but not with help of either statement itself.",
+        "If the question cannot be answered with the help of both the given statements.",
+        "If the question can be answered with the help of either 1 or 2."
+      ],
+      "answer": "If the question can be answered with the help of both the statements, but not with help of either statement itself."
+    },
+    {
+      "question": "Directions: (a) If the question can be answered with the help of statement (1) alone. (b) If the question can be answered with the help of statement (2) alone. (c) If the question can be answered with the help of both the statements. (d) If the question cannot be answered. (e) If the question can be answered with the help of either 1 or 2.\n\nWhat was the interest rate on a sum of money?\n1) The sum fetched a total of Rs. 2522 as compound interest at the end of 3 years.\n2) The difference between the simple and the compound interest at the end of 2 years at the same rate was Rs.40.",
+      "options": [
+        "If the question can be answered with the help of statement (1) alone.",
+        "If the question can beanswered with the help of statement (2) alone.",
+        "If the question can be answered with the help of both the statements, but not with help of either statement itself.",
+        "If the question cannot be answered with the help of both the given statements.",
+        "If the question can be answered with the help of either 1 or 2."
+      ],
+      "answer": "If the question can be answered with the help of both the statements, but not with help of either statement itself."
+    }
+  ]
+}
