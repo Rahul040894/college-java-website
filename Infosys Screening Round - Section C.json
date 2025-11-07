@@ -1,0 +1,405 @@
+{
+  "testName": "Infosys Screening Round - Section C",
+  "questions": [
+    {
+      "question": "Sentence Correction: The proliferation of digital platforms have fundamentally altered the way we consume news, but it has also given rise to the rapid dissemination of misinformation.",
+      "options": [
+        "have fundamentally altered the way we consume news, but it has also given rise",
+        "has fundamentally altered the way we consume news, but they have also given rise",
+        "has fundamentally altered the way we consume news, but it has also given rise",
+        "have fundamentally altered the way we consume news, but they have also given rise"
+      ],
+      "answer": "has fundamentally altered the way we consume news, but it has also given rise"
+    },
+    {
+      "question": "Para-jumbles: Arrange the following sentences to form a coherent paragraph:\n1. This desensitization is a psychological defense mechanism against the constant barrage of traumatic images and stories.\n2. Consequently, individuals may find themselves less moved by events that would have once elicited a strong emotional response.\n3. Overexposure to media coverage of tragedies can lead to a phenomenon known as compassion fatigue.\n4. The emotional toll of being perpetually inundated with suffering can be immense, leading to a state of emotional numbness.",
+      "options": [
+        "3, 4, 1, 2",
+        "1, 2, 3, 4",
+        "3, 1, 4, 2",
+        "4, 1, 2, 3"
+      ],
+      "answer": "3, 4, 1, 2"
+    },
+    {
+      "question": "Critical Reasoning: Statement: In the past decade, the number of people choosing to work remotely has increased significantly. This trend has been accompanied by a rise in the number of co-working spaces. \nWhich of the following can be inferred from the statement?",
+      "options": [
+        "Co-working spaces are the only reason for the increase in remote work.",
+        "The traditional office is becoming obsolete.",
+        "There is a demand for flexible and collaborative workspaces among remote workers.",
+        "Remote work is more productive than traditional office work."
+      ],
+      "answer": "There is a demand for flexible and collaborative workspaces among remote workers."
+    },
+    {
+      "question": "Vocabulary: Choose the word that is most nearly opposite in meaning to the word 'ESOTERIC'.",
+      "options": [
+        "Abstruse",
+        "Commonplace",
+        "Arcane",
+        "Recondite"
+      ],
+      "answer": "Commonplace"
+    },
+    {
+      "question": "Sentence Completion: The speaker's ______ arguments failed to ______ the discerning audience, who saw through the superficial rhetoric.",
+      "options": [
+        "cogent, convince",
+        "specious, persuade",
+        "lucid, confuse",
+        "fallacious, dissuade"
+      ],
+      "answer": "specious, persuade"
+    },
+    {
+      "question": "Analogy: INDOLENT : SLOTH ::",
+      "options": [
+        "VORACIOUS : GLUTTON",
+        "TACITURN : ORATOR",
+        "FASTIDIOUS : FUSS",
+        "IMPECUNIOUS : WEALTH"
+      ],
+      "answer": "VORACIOUS : GLUTTON"
+    },
+    {
+      "question": "Sentence Correction: Neither the project manager nor the team members was aware of the impending deadline.",
+      "options": [
+        "Neither the project manager nor the team members was aware",
+        "Neither the project manager nor the team members were aware",
+        "Neither the project manager or the team members was aware",
+        "Neither the project manager nor the team member were aware"
+      ],
+      "answer": "Neither the project manager nor the team members were aware"
+    },
+    {
+      "question": "Para-jumbles: Arrange the following sentences to form a coherent paragraph:\n1. The implications of this discovery are profound, potentially rewriting our understanding of early human history.\n2. The artifact, initially dismissed as a mere rock, was later found to contain intricate carvings.\n3. A recent archaeological find in the remote mountains of Peru has challenged existing timelines of human settlement in the region.\n4. Advanced dating techniques revealed the carvings to be over 15,000 years old, predating previous estimates by several millennia.",
+      "options": [
+        "3, 2, 4, 1",
+        "1, 2, 3, 4",
+        "3, 4, 2, 1",
+        "2, 3, 4, 1"
+      ],
+      "answer": "3, 2, 4, 1"
+    },
+    {
+      "question": "Critical Reasoning: Argument: The recent increase in urban green spaces has been correlated with a decrease in reported stress levels among city dwellers. Therefore, to improve the mental well-being of its citizens, the city should invest in creating more parks and gardens. \nWhich of the following, if true, would most weaken the argument?",
+      "options": [
+        "The city has recently implemented a new public health campaign focused on stress reduction.",
+        "The cost of creating new green spaces is prohibitively high.",
+        "Many residents have expressed a desire for more recreational facilities, not just green spaces.",
+        "The decrease in reported stress levels is more pronounced in neighborhoods with older, more established parks."
+      ],
+      "answer": "The city has recently implemented a new public health campaign focused on stress reduction."
+    },
+    {
+      "question": "Vocabulary: Choose the word that is most similar in meaning to the word 'PERSPICACIOUS'.",
+      "options": [
+        "Obtuse",
+        "Astute",
+        "Vacuous",
+        "Gullible"
+      ],
+      "answer": "Astute"
+    },
+    {
+      "question": "Sentence Completion: Despite his initial ______, the young prodigy's ______ talent soon became evident to all.",
+      "options": [
+        "confidence, nascent",
+        "diffidence, burgeoning",
+        "arrogance, diminishing",
+        "aplomb, hidden"
+      ],
+      "answer": "diffidence, burgeoning"
+    },
+    {
+      "question": "Analogy: EPHEMERAL : PERMANENT ::",
+      "options": [
+        "TRANSIENT : FLEETING",
+        "ETERNAL : ENDURING",
+        "SERENE : AGITATED",
+        "ROBUST : HEALTHY"
+      ],
+      "answer": "SERENE : AGITATED"
+    },
+    {
+      "question": "Sentence Correction: Having finished their presentation, the audience was invited to ask questions by the speakers.",
+      "options": [
+        "Having finished their presentation, the audience was invited to ask questions by the speakers.",
+        "After the speakers finished their presentation, they invited the audience to ask questions.",
+        "The audience was invited to ask questions by the speakers, having finished their presentation.",
+        "Having finished their presentation, questions were invited from the audience by the speakers."
+      ],
+      "answer": "After the speakers finished their presentation, they invited the audience to ask questions."
+    },
+    {
+      "question": "Para-jumbles: Arrange the following sentences to form a coherent paragraph:\n1. This has led to a re-evaluation of its long-term viability as a primary energy source.\n2. Consequently, the economic feasibility of nuclear power is increasingly being called into question.\n3. The initial optimism surrounding nuclear energy has been tempered by concerns over safety and waste disposal.\n4. The prohibitive costs associated with building and decommissioning nuclear power plants have further exacerbated these concerns.",
+      "options": [
+        "3, 1, 4, 2",
+        "3, 4, 2, 1",
+        "1, 3, 4, 2",
+        "4, 2, 1, 3"
+      ],
+      "answer": "3, 4, 2, 1"
+    },
+    {
+      "question": "Critical Reasoning: Statement: A recent study found that employees who take regular breaks throughout the workday report higher levels of job satisfaction and productivity. \nWhich of the following conclusions is best supported by the statement?",
+      "options": [
+        "All employees should be required to take a certain number of breaks.",
+        "Taking breaks is the most effective way to increase productivity.",
+        "There is a positive association between taking breaks and employee well-being and performance.",
+        "Companies that do not encourage breaks are likely to have low morale."
+      ],
+      "answer": "There is a positive association between taking breaks and employee well-being and performance."
+    },
+    {
+      "question": "Vocabulary: Choose the word that is most nearly opposite in meaning to the word 'LACONIC'.",
+      "options": [
+        "Terse",
+        "Verbose",
+        "Succinct",
+        "Pithy"
+      ],
+      "answer": "Verbose"
+    },
+    {
+      "question": "Sentence Completion: The philosopher's work was known for its ______ and ______, making it accessible to a wide audience.",
+      "options": [
+        "obscurity, complexity",
+        "profundity, opacity",
+        "lucidity, clarity",
+        "density, impenetrability"
+      ],
+      "answer": "lucidity, clarity"
+    },
+    {
+      "question": "Analogy: MITIGATE : ASSUAGE ::",
+      "options": [
+        "EXACERBATE : WORSEN",
+        "ALLEVIATE : INTENSIFY",
+        "AMELIORATE : DETERIORATE",
+        "AGGRAVATE : SOOTHE"
+      ],
+      "answer": "EXACERBATE : WORSEN"
+    },
+    {
+      "question": "Sentence Correction: Each of the students are responsible for their own research project.",
+      "options": [
+        "Each of the students are responsible for their own",
+        "Each of the students is responsible for their own",
+        "Each of the students is responsible for his or her own",
+        "Each of the student are responsible for their own"
+      ],
+      "answer": "Each of the students is responsible for his or her own"
+    },
+    {
+      "question": "Para-jumbles: Arrange the following sentences to form a coherent paragraph:\n1. This, in turn, can lead to a more nuanced and empathetic understanding of different perspectives.\n2. Engaging with literature from diverse cultures can broaden one's worldview.\n3. It exposes readers to different ways of life, belief systems, and social structures.\n4. By stepping into the shoes of characters from unfamiliar backgrounds, readers can develop a greater appreciation for the complexity of the human experience.",
+      "options": [
+        "2, 3, 4, 1",
+        "1, 2, 3, 4",
+        "2, 4, 3, 1",
+        "4, 1, 2, 3"
+      ],
+      "answer": "2, 3, 4, 1"
+    },
+    {
+      "question": "Reading Comprehension: The concept of 'neuroplasticity'—the brain's ability to reorganize itself by forming new neural connections—has revolutionized our understanding of the human mind. For centuries, it was believed that the adult brain was a static, unchangeable entity. However, groundbreaking research over the past few decades has demonstrated that the brain is, in fact, remarkably malleable, capable of adapting and changing throughout an individual's life. This neuroplasticity is driven by a variety of factors, including experience, learning, and even injury. The implications of this are vast, offering new hope for the treatment of brain injuries and neurological disorders, as well as providing a deeper understanding of how we learn and remember.\n\nWhat is the central idea of the passage?",
+      "options": [
+        "The adult brain is a fixed and unchangeable organ.",
+        "Neuroplasticity is a rare phenomenon observed only in cases of brain injury.",
+        "The brain's ability to adapt and change has significant implications for medicine and psychology.",
+        "Learning and memory are processes independent of the brain's structure."
+      ],
+      "answer": "The brain's ability to adapt and change has significant implications for medicine and psychology."
+    },
+    {
+      "question": "Reading Comprehension: The concept of 'neuroplasticity'—the brain's ability to reorganize itself by forming new neural connections—has revolutionized our understanding of the human mind. For centuries, it was believed that the adult brain was a static, unchangeable entity. However, groundbreaking research over the past few decades has demonstrated that the brain is, in fact, remarkably malleable, capable of adapting and changing throughout an individual's life. This neuroplasticity is driven by a variety of factors, including experience, learning, and even injury. The implications of this are vast, offering new hope for the treatment of brain injuries and neurological disorders, as well as providing a deeper understanding of how we learn and remember.\n\nAccording to the passage, which of the following was a long-held belief about the adult brain?",
+      "options": [
+        "It was in a constant state of flux.",
+        "It was incapable of forming new neural connections.",
+        "It was highly adaptable to new experiences.",
+        "It was static and could not be altered."
+      ],
+      "answer": "It was static and could not be altered."
+    },
+    {
+      "question": "Critical Reasoning: Argument: The government's new policy of subsidizing electric vehicles is a step in the right direction to combat climate change. By making electric cars more affordable, the policy will encourage more people to switch from gasoline-powered vehicles, thereby reducing carbon emissions. \nWhich of the following assumptions does the argument depend on?",
+      "options": [
+        "The electricity used to charge the vehicles is generated from renewable sources.",
+        "The manufacturing process of electric vehicles is more environmentally friendly than that of gasoline-powered vehicles.",
+        "The primary reason people do not buy electric vehicles is their high cost.",
+        "The government has an unlimited budget for subsidies."
+      ],
+      "answer": "The primary reason people do not buy electric vehicles is their high cost."
+    },
+    {
+      "question": "Vocabulary: Choose the word that is most nearly opposite in meaning to the word 'PROFLIGATE'.",
+      "options": [
+        "Extravagant",
+        "Wasteful",
+        "Frugal",
+        "Prodigal"
+      ],
+      "answer": "Frugal"
+    },
+    {
+      "question": "Sentence Completion: The artist's work was a ______ of different styles and influences, creating a unique and ______ aesthetic.",
+      "options": [
+        "rejection, conventional",
+        "synthesis, eclectic",
+        "hodgepodge, uniform",
+        "pastiche, derivative"
+      ],
+      "answer": "synthesis, eclectic"
+    },
+    {
+      "question": "Analogy: OBDURATE : STUBBORN ::",
+      "options": [
+        "MALLEABLE : RIGID",
+        "COMPLIANT : ADAMANT",
+        "FLEXIBLE : PLIANT",
+        "TRACTABLE : INTRACTABLE"
+      ],
+      "answer": "FLEXIBLE : PLIANT"
+    },
+    {
+      "question": "Sentence Correction: The reason for the delay is because the lead actor fell ill.",
+      "options": [
+        "is because the lead actor fell ill",
+        "is that the lead actor fell ill",
+        "is due to the lead actor falling ill",
+        "is on account of the lead actor falling ill"
+      ],
+      "answer": "is that the lead actor fell ill"
+    },
+    {
+      "question": "Para-jumbles: Arrange the following sentences to form a coherent paragraph:\n1. This has led to concerns about the erosion of privacy and the potential for misuse of personal data.\n2. The rise of social media has fundamentally altered the nature of human interaction.\n3. It has created unprecedented opportunities for connection and information sharing.\n4. However, it has also blurred the lines between the public and private spheres.",
+      "options": [
+        "2, 3, 4, 1",
+        "2, 4, 3, 1",
+        "3, 2, 4, 1",
+        "4, 1, 2, 3"
+      ],
+      "answer": "2, 3, 4, 1"
+    },
+    {
+      "question": "Critical Reasoning: Statement: A new study reveals that people who regularly consume a Mediterranean diet have a lower risk of heart disease. \nWhich of the following, if true, would best support the conclusion that a Mediterranean diet is beneficial for heart health?",
+      "options": [
+        "People who follow a Mediterranean diet also tend to exercise more.",
+        "The study was funded by a company that sells olive oil, a key component of the Mediterranean diet.",
+        "The incidence of heart disease is lower in Mediterranean countries.",
+        "The study controlled for other lifestyle factors such as smoking and exercise."
+      ],
+      "answer": "The study controlled for other lifestyle factors such as smoking and exercise."
+    },
+    {
+      "question": "Vocabulary: Choose the word that is most similar in meaning to the word 'UBIQUITOUS'.",
+      "options": [
+        "Rare",
+        "Scarce",
+        "Omnipresent",
+        "Sporadic"
+      ],
+      "answer": "Omnipresent"
+    },
+    {
+      "question": "Sentence Completion: The politician's speech was filled with ______ and ______, designed to appeal to the emotions rather than the intellect.",
+      "options": [
+        "logic, reason",
+        "facts, statistics",
+        "platitudes, rhetoric",
+        "evidence, analysis"
+      ],
+      "answer": "platitudes, rhetoric"
+    },
+    {
+      "question": "Analogy: VERBOSE : SUCCINCT ::",
+      "options": [
+        "PROLIX : LACONIC",
+        "GARRULOUS : TALKATIVE",
+        "ELOQUENT : ARTICULATE",
+        "CONCISE : PITHY"
+      ],
+      "answer": "PROLIX : LACONIC"
+    },
+    {
+      "question": "Sentence Correction: The company's profits, which have been declining for the past two years, is a cause for concern.",
+      "options": [
+        "which have been declining for the past two years, is",
+        "which has been declining for the past two years, is",
+        "which have been declining for the past two years, are",
+        "which has been declining for the past two years, are"
+      ],
+      "answer": "which have been declining for the past two years, are"
+    },
+    {
+      "question": "Para-jumbles: Arrange the following sentences to form a coherent paragraph:\n1. This has significant implications for both individual investors and the broader economy.\n2. The advent of algorithmic trading has revolutionized financial markets.\n3. It has enabled trades to be executed at speeds unimaginable a few decades ago.\n4. However, it has also introduced new risks, such as the potential for flash crashes.",
+      "options": [
+        "2, 3, 4, 1",
+        "2, 4, 3, 1",
+        "3, 2, 4, 1",
+        "4, 1, 2, 3"
+      ],
+      "answer": "2, 3, 4, 1"
+    },
+    {
+      "question": "Critical Reasoning: Statement: The apathetic attitude of many citizens towards politics is a threat to democracy. When people do not participate in the political process, they cede their power to a small, often unrepresentative, elite. \nWhich of the following, if true, would most strengthen the argument?",
+      "options": [
+        "In recent elections, voter turnout has been at an all-time low.",
+        "Many people feel that their individual vote does not make a difference.",
+        "Politicians are often more responsive to the concerns of wealthy donors than to the needs of the general public.",
+        "A recent survey found that a majority of non-voters are uninformed about key political issues."
+      ],
+      "answer": "Politicians are often more responsive to the concerns of wealthy donors than to the needs of the general public."
+    },
+    {
+      "question": "Vocabulary: Choose the word that is most nearly opposite in meaning to the word 'GREGARIOUS'.",
+      "options": [
+        "Sociable",
+        "Affable",
+        "Aloof",
+        "Convivial"
+      ],
+      "answer": "Aloof"
+    },
+    {
+      "question": "Sentence Completion: The scientist's ______ research challenged the ______ of the established scientific community, leading to a paradigm shift.",
+      "options": [
+        "conventional, dogmas",
+        "heretical, orthodoxies",
+        "mainstream, heresies",
+        "unorthodox, consensus"
+      ],
+      "answer": "heretical, orthodoxies"
+    },
+    {
+      "question": "Analogy: SPORADIC : CONSTANT ::",
+      "options": [
+        "INTERMITTENT : REGULAR",
+        "INFREQUENT : OCCASIONAL",
+        "PERENNIAL : CEASELESS",
+        "EPISODIC : CONTINUOUS"
+      ],
+      "answer": "EPISODIC : CONTINUOUS"
+    },
+    {
+      "question": "Sentence Correction: If I was you, I would take the job offer.",
+      "options": [
+        "If I was you, I would take",
+        "If I were you, I would take",
+        "If I had been you, I would take",
+        "If I was you, I would have taken"
+      ],
+      "answer": "If I were you, I would take"
+    },
+    {
+      "question": "Critical Reasoning: Statement: The rise of automation threatens to displace a significant portion of the workforce. To mitigate the negative consequences of this trend, the government should implement a universal basic income (UBI). \nWhich of the following is an underlying assumption of the argument?",
+      "options": [
+        "UBI is the only solution to the problem of automation-induced unemployment.",
+        "The government has the financial resources to implement a UBI program.",
+        "A UBI would provide a sufficient safety net for those who lose their jobs to automation.",
+        "The implementation of UBI will not disincentivize people from working."
+      ],
+      "answer": "A UBI would provide a sufficient safety net for those who lose their jobs to automation."
+    }
+  ]
+}
