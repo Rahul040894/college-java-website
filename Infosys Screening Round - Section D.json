@@ -1,0 +1,505 @@
+{
+  "testName": "Infosys Screening Round - Section D",
+  "questions": [
+    {
+      "question": "Which of the following is the root class for all classes in Java?",
+      "options": [
+        "java.lang.System",
+        "java.lang.Class",
+        "java.lang.Object",
+        "java.lang.Root"
+      ],
+      "answer": "java.lang.Object"
+    },
+    {
+      "question": "What is the primary purpose of the 'finally' block in a try-catch-finally structure?",
+      "options": [
+        "To execute code only if an exception occurs.",
+        "To handle the exception.",
+        "To execute code regardless of whether an exception occurs or not.",
+        "To declare exceptions that a method might throw."
+      ],
+      "answer": "To execute code regardless of whether an exception occurs or not."
+    },
+    {
+      "question": "Which of these data structures uses the Last-In, First-Out (LIFO) principle?",
+      "options": [
+        "Queue",
+        "Stack",
+        "ArrayList",
+        "LinkedList"
+      ],
+      "answer": "Stack"
+    },
+    {
+      "question": "In Java, are String objects mutable or immutable?",
+      "options": [
+        "Mutable",
+        "Immutable",
+        "Both, depending on declaration",
+        "Neither"
+      ],
+      "answer": "Immutable"
+    },
+    {
+      "question": "What is the time complexity of the binary search algorithm in the worst-case scenario?",
+      "options": [
+        "O(n)",
+        "O(n^2)",
+        "O(log n)",
+        "O(1)"
+      ],
+      "answer": "O(log n)"
+    },
+    {
+      "question": "Which SQL clause is used to filter results after a GROUP BY clause has been applied?",
+      "options": [
+        "WHERE",
+        "FILTER",
+        "HAVING",
+        "CONDITION"
+      ],
+      "answer": "HAVING"
+    },
+    {
+      "question": "Which of the following is NOT a core principle of Object-Oriented Programming (OOP)?",
+      "options": [
+        "Encapsulation",
+        "Inheritance",
+        "Polymorphism",
+        "Compilation"
+      ],
+      "answer": "Compilation"
+    },
+    {
+      "question": "What is the difference between the '==' operator and the .equals() method when comparing objects in Java?",
+      "options": [
+        "There is no difference.",
+        "'==' compares object references, while .equals() compares the content.",
+        "'==' compares the content, while .equals() compares object references.",
+        "Both compare only object references."
+      ],
+      "answer": "'==' compares object references, while .equals() compares the content."
+    },
+    {
+      "question": "Which Java collection class does NOT allow duplicate elements?",
+      "options": [
+        "ArrayList",
+        "LinkedList",
+        "HashSet",
+        "Vector"
+      ],
+      "answer": "HashSet"
+    },
+    {
+      "question": "In the context of an Operating System, what is a deadlock?",
+      "options": [
+        "A process that has completed its execution.",
+        "A situation where two or more processes are blocked forever, waiting for each other.",
+        "A process that is waiting for I/O.",
+        "A high-priority process that never gives up the CPU."
+      ],
+      "answer": "A situation where two or more processes are blocked forever, waiting for each other."
+    },
+    {
+      "question": "What does the 'static' keyword mean when applied to a method in Java?",
+      "options": [
+        "The method can only be called once.",
+        "The method belongs to the class itself, not to any specific instance.",
+        "The method cannot be overridden.",
+        "The method is automatically synchronized."
+      ],
+      "answer": "The method belongs to the class itself, not to any specific instance."
+    },
+    {
+      "question": "Which SQL statement is used to extract data from a database?",
+      "options": [
+        "GET",
+        "OPEN",
+        "EXTRACT",
+        "SELECT"
+      ],
+      "answer": "SELECT"
+    },
+    {
+      "question": "What is runtime polymorphism in Java primarily achieved through?",
+      "options": [
+        "Method Overloading",
+        "Method Overriding",
+        "Constructor Overloading",
+        "Operator Overloading"
+      ],
+      "answer": "Method Overriding"
+    },
+    {
+      "question": "Which of these is NOT a valid way to create a thread in Java?",
+      "options": [
+        "By implementing the Runnable interface.",
+        "By extending the Thread class.",
+        "By creating an instance of the Executor class.",
+        "By extending the Applet class."
+      ],
+      "answer": "By extending the Applet class."
+    },
+    {
+      "question": "What is the purpose of a primary key in a database table?",
+      "options": [
+        "To uniquely identify each record in the table.",
+        "To link two tables together.",
+        "To sort the records in the table.",
+        "To allow duplicate records."
+      ],
+      "answer": "To uniquely identify each record in the table."
+    },
+    {
+      "question": "Which component of the Java ecosystem is responsible for executing the bytecode?",
+      "options": [
+        "JDK (Java Development Kit)",
+        "JRE (Java Runtime Environment)",
+        "JVM (Java Virtual Machine)",
+        "JDB (Java Debugger)"
+      ],
+      "answer": "JVM (Java Virtual Machine)"
+    },
+    {
+      "question": "What is the default value of a boolean variable in Java?",
+      "options": [
+        "true",
+        "false",
+        "0",
+        "null"
+      ],
+      "answer": "false"
+    },
+    {
+      "question": "Which of these is the correct syntax for a single-line comment in Java?",
+      "options": [
+        "/* comment */",
+        "// comment",
+        "<!-- comment -->",
+        "# comment"
+      ],
+      "answer": "// comment"
+    },
+    {
+      "question": "In networking, which protocol provides a connectionless, unreliable datagram service?",
+      "options": [
+        "TCP",
+        "UDP",
+        "HTTP",
+        "FTP"
+      ],
+      "answer": "UDP"
+    },
+    {
+      "question": "Can an 'abstract' class be instantiated in Java?",
+      "options": [
+        "Yes, always.",
+        "No, never.",
+        "Only if it has a constructor.",
+        "Only if it has no abstract methods."
+      ],
+      "answer": "No, never."
+    },
+    {
+      "question": "What is the difference between an abstract class and an interface in Java?",
+      "options": [
+        "An interface can have instance variables, while an abstract class cannot.",
+        "A class can implement multiple interfaces but can only extend one abstract class.",
+        "An abstract class can have a constructor, while an interface cannot.",
+        "Both B and C are correct."
+      ],
+      "answer": "Both B and C are correct."
+    },
+    {
+      "question": "Which SQL JOIN returns all records from the left table, and the matched records from the right table?",
+      "options": [
+        "INNER JOIN",
+        "RIGHT JOIN",
+        "FULL JOIN",
+        "LEFT JOIN"
+      ],
+      "answer": "LEFT JOIN"
+    },
+    {
+      "question": "What is the purpose of the 'super' keyword in Java?",
+      "options": [
+        "To refer to the current class instance.",
+        "To invoke a superclass's method or constructor.",
+        "To create a new instance of a class.",
+        "To declare a class as final."
+      ],
+      "answer": "To invoke a superclass's method or constructor."
+    },
+    {
+      "question": "Which data structure is most suitable for implementing a printer queue?",
+      "options": [
+        "Stack",
+        "Queue",
+        "Tree",
+        "Graph"
+      ],
+      "answer": "Queue"
+    },
+    {
+      "question": "What does JDBC stand for?",
+      "options": [
+        "Java Database Connectivity",
+        "Java Data Binding and Connection",
+        "Java Development and Business Connectivity",
+        "Java Database Compilation"
+      ],
+      "answer": "Java Database Connectivity"
+    },
+    {
+      "question": "If a class is declared as 'final', what does it mean?",
+      "options": [
+        "It cannot be instantiated.",
+        "It cannot be extended (inherited from).",
+        "All its methods are implicitly final.",
+        "It can only have one instance."
+      ],
+      "answer": "It cannot be extended (inherited from)."
+    },
+    {
+      "question": "What is the main advantage of using Generics in Java?",
+      "options": [
+        "It makes the code run faster.",
+        "It provides compile-time type safety.",
+        "It reduces the memory footprint of objects.",
+        "It allows for multiple inheritance."
+      ],
+      "answer": "It provides compile-time type safety."
+    },
+    {
+      "question": "What is the difference between a process and a thread in an OS?",
+      "options": [
+        "Processes share memory space, while threads have their own memory space.",
+        "Threads are heavyweight, while processes are lightweight.",
+        "Threads within the same process share the same memory space, while processes do not.",
+        "There is no difference."
+      ],
+      "answer": "Threads within the same process share the same memory space, while processes do not."
+    },
+    {
+      "question": "Which of these access modifiers provides the most restrictive access?",
+      "options": [
+        "public",
+        "protected",
+        "default",
+        "private"
+      ],
+      "answer": "private"
+    },
+    {
+      "question": "What is a constructor in Java?",
+      "options": [
+        "A method used to destroy an object.",
+        "A special method used to initialize an object when it is created.",
+        "A regular method that returns a value.",
+        "A keyword to define a constant."
+      ],
+      "answer": "A special method used to initialize an object when it is created."
+    },
+    {
+      "question": "Which SQL command is used to delete a table from a database?",
+      "options": [
+        "DELETE TABLE table_name",
+        "REMOVE TABLE table_name",
+        "DROP TABLE table_name",
+        "ERASE TABLE table_name"
+      ],
+      "answer": "DROP TABLE table_name"
+    },
+    {
+      "question": "What will be the output of 'System.out.println(10 / 0);' in Java?",
+      "options": [
+        "0",
+        "Infinity",
+        "Compilation Error",
+        "A runtime ArithmeticException"
+      ],
+      "answer": "A runtime ArithmeticException"
+    },
+    {
+      "question": "What is encapsulation?",
+      "options": [
+        "The ability of an object to take on many forms.",
+        "The mechanism of inheriting attributes from a parent class.",
+        "The bundling of data (attributes) and methods that operate on the data into a single unit (class).",
+        "The process of hiding implementation details from the user."
+      ],
+      "answer": "The bundling of data (attributes) and methods that operate on the data into a single unit (class)."
+    },
+    {
+      "question": "In which binary tree traversal is the root node visited last?",
+      "options": [
+        "Pre-order",
+        "In-order",
+        "Post-order",
+        "Level-order"
+      ],
+      "answer": "Post-order"
+    },
+    {
+      "question": "Which class would you use for a string that needs to be modified frequently?",
+      "options": [
+        "String",
+        "StringBuilder",
+        "StringConstant",
+        "StringReader"
+      ],
+      "answer": "StringBuilder"
+    },
+    {
+      "question": "What is the purpose of the 'break' statement in Java?",
+      "options": [
+        "To continue to the next iteration of a loop.",
+        "To exit the current loop or switch statement.",
+        "To return a value from a method.",
+        "To skip the rest of the code in the current method."
+      ],
+      "answer": "To exit the current loop or switch statement."
+    },
+    {
+      "question": "What does the HTTP protocol status code '404' indicate?",
+      "options": [
+        "OK",
+        "Internal Server Error",
+        "Not Found",
+        "Forbidden"
+      ],
+      "answer": "Not Found"
+    },
+    {
+      "question": "What is the contract between the hashCode() and equals() methods in Java?",
+      "options": [
+        "If two objects are equal according to equals(), they must have different hash codes.",
+        "If two objects have the same hash code, they must be equal according to equals().",
+        "If two objects are equal according to equals(), they must have the same hash code.",
+        "There is no contract between them."
+      ],
+      "answer": "If two objects are equal according to equals(), they must have the same hash code."
+    },
+    {
+      "question": "Which of these is a feature introduced in Java 8?",
+      "options": [
+        "Generics",
+        "Lambda Expressions",
+        "Enums",
+        "Annotations"
+      ],
+      "answer": "Lambda Expressions"
+    },
+    {
+      "question": "What is the main difference between 'DELETE' and 'TRUNCATE' in SQL?",
+      "options": [
+        "DELETE is faster than TRUNCATE.",
+        "TRUNCATE can be rolled back, but DELETE cannot.",
+        "DELETE is a DML command that removes rows one by one, while TRUNCATE is a DDL command that deallocates all pages.",
+        "There is no difference."
+      ],
+      "answer": "DELETE is a DML command that removes rows one by one, while TRUNCATE is a DDL command that deallocates all pages."
+    },
+    {
+      "question": "Can an interface have a constructor in Java?",
+      "options": [
+        "Yes, a default constructor is provided automatically.",
+        "Yes, but it must be declared as public.",
+        "No, an interface cannot have a constructor.",
+        "Only if it is a functional interface."
+      ],
+      "answer": "No, an interface cannot have a constructor."
+    },
+    {
+      "question": "What is 'Garbage Collection' in the context of Java?",
+      "options": [
+        "A process of manually deleting unused objects.",
+        "A system for cleaning up the project directory.",
+        "An automatic memory management process that reclaims memory occupied by unused objects.",
+        "A tool for finding syntax errors in code."
+      ],
+      "answer": "An automatic memory management process that reclaims memory occupied by unused objects."
+    },
+    {
+      "question": "What is the key difference between a HashMap and a HashTable in Java?",
+      "options": [
+        "HashMap is synchronized, while HashTable is not.",
+        "HashMap allows one null key and multiple null values, while HashTable does not allow any nulls.",
+        "HashTable is faster than HashMap.",
+        "HashMap is an interface, while HashTable is a class."
+      ],
+      "answer": "HashMap allows one null key and multiple null values, while HashTable does not allow any nulls."
+    },
+    {
+      "question": "Which of these statements is true about method overloading?",
+      "options": [
+        "It allows a class to have multiple methods with the same name, but different return types.",
+        "It allows a class to have multiple methods with the same name and parameters, but different implementation.",
+        "It is an example of runtime polymorphism.",
+        "It allows a class to have multiple methods with the same name, but different parameters."
+      ],
+      "answer": "It allows a class to have multiple methods with the same name, but different parameters."
+    },
+    {
+      "question": "What is a foreign key in a database?",
+      "options": [
+        "A key that uniquely identifies a record in any table.",
+        "A key used to link two tables together, which refers to the primary key of another table.",
+        "A key that is not the primary key.",
+        "A key that is indexed for faster searching."
+      ],
+      "answer": "A key used to link two tables together, which refers to the primary key of another table."
+    },
+    {
+      "question": "Which keyword is used to prevent a method from being overridden in a subclass?",
+      "options": [
+        "static",
+        "private",
+        "final",
+        "abstract"
+      ],
+      "answer": "final"
+    },
+    {
+      "question": "What is the purpose of the 'this' keyword in Java?",
+      "options": [
+        "To refer to the superclass instance.",
+        "To create a new object.",
+        "To refer to the current object instance.",
+        "To refer to a static method."
+      ],
+      "answer": "To refer to the current object instance."
+    },
+    {
+      "question": "Which sorting algorithm has a worst-case time complexity of O(n^2)?",
+      "options": [
+        "Merge Sort",
+        "Quick Sort",
+        "Bubble Sort",
+        "Heap Sort"
+      ],
+      "answer": "Bubble Sort"
+    },
+    {
+      "question": "In Java, what is the main difference between the `wait()` and `sleep()` methods?",
+      "options": [
+        "`wait()` is a method of the Thread class, while `sleep()` is from the Object class.",
+        "`wait()` releases the lock on the object, while `sleep()` does not.",
+        "`sleep()` releases the lock on the object, while `wait()` does not.",
+        "There is no significant difference."
+      ],
+      "answer": "`wait()` releases the lock on the object, while `sleep()` does not."
+    },
+    {
+      "question": "What is SQL Injection?",
+      "options": [
+        "A method to improve database performance.",
+        "A code injection technique that might destroy your database.",
+        "A way to write SQL queries in Java.",
+        "A type of database join."
+      ],
+      "answer": "A code injection technique that might destroy your database."
+    }
+  ]
+}
