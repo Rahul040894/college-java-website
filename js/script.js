@@ -1,4 +1,4 @@
-
+//script.js (Corrected with Automatic Server Wake-Up)
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
@@ -54,30 +54,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- MODIFIED handleCodingAccess FUNCTION ---
     async function handleCodingAccess(e) {
         if (e) e.preventDefault();
         const studentIdInput = document.getElementById('codingStudentId');
         const studentId = studentIdInput.value.trim();
-        if (!studentId) { showError('coding-entry-error', 'Please enter your USN.'); return; }
+        if (!studentId) {
+            showError('coding-entry-error', 'Please enter your USN.');
+            return;
+        }
+
         const accessBtn = document.getElementById('accessProblemsBtn');
-        accessBtn.disabled = true; accessBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Verifying...`;
-        try {
-            const response = await fetch(`${liveServerUrl}/api/validate-usn`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId }) });
+        accessBtn.disabled = true;
+        accessBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Verifying...`;
+
+        const attemptLogin = async () => {
+            const response = await fetch(`${liveServerUrl}/api/validate-usn`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ studentId })
+            });
+
+            // If server is waking up, fetch will throw an error. If server responds, even with an error code, it's awake.
+            if (!response.ok && response.status >= 500) { // Server responded but has an internal error
+                 throw new Error("Server error. Please try again later.");
+            }
+            
             const result = await response.json();
-            if (!result.valid) throw new Error(result.message || 'USN not authorized.');
+            if (!result.valid) {
+                throw new Error(result.message || 'USN not authorized.');
+            }
+            return result; // Success
+        };
+        
+        const retryWithDelay = (fn, retries = 1, delay = 25000) => new Promise((resolve, reject) => {
+            fn().then(resolve).catch(error => {
+                // We only retry for "Failed to fetch" (server is asleep).
+                // For other errors like "USN not authorized", we reject immediately.
+                if (retries > 0 && error.message.includes("Failed to fetch")) {
+                    console.log(`Server not awake. Retrying in ${delay / 1000}s...`);
+                    showError('coding-entry-error', "Server is waking up... Please wait.");
+                    accessBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Waking server...`;
+                    setTimeout(() => {
+                        retryWithDelay(fn, retries - 1, delay).then(resolve).catch(reject);
+                    }, delay);
+                } else {
+                    reject(error); // Reject on other errors or after all retries fail
+                }
+            });
+        });
+
+        try {
+            const result = await retryWithDelay(attemptLogin);
             localStorage.setItem('codingStudentId', result.usn);
             codingEntryContainer.classList.add('d-none');
             codingContainer.classList.remove('d-none');
             loadProblemList();
         } catch (error) {
             if (error.message.includes("Failed to fetch")) {
-                showError('coding-entry-error', "Could not connect to the server. It may be waking up. Please try again.");
+                 showError('coding-entry-error', "Could not connect to the server after retrying. Please check your connection and try again.");
             } else {
                 showError('coding-entry-error', error.message);
             }
-            accessBtn.disabled = false; accessBtn.innerHTML = `Access Problems`;
+            accessBtn.disabled = false;
+            accessBtn.innerHTML = `Access Problems`;
         }
     }
+    // --- END OF MODIFICATIONS ---
     
     async function loadProblemList() { isSubmitting = false; deactivateProctoring(); codingContainer.innerHTML = `<h2>Coding Problems</h2><p>Select a problem. Each has a 30-minute time limit and is proctored.</p><hr><div id="problem-list"><p>Loading...</p></div>`; try { const problemListContainer = document.getElementById('problem-list'); const response = await fetch(`${liveServerUrl}/api/coding-problems`); const problems = await response.json(); if (problems.length === 0) { problemListContainer.innerHTML = '<p>No coding problems have been added yet.</p>'; return; } problemListContainer.innerHTML = ''; problems.forEach(problem => { const problemLink = document.createElement('a'); problemLink.href = '#'; problemLink.className = 'list-group-item list-group-item-action'; problemLink.innerHTML = `<strong>${problem.title}</strong><span class="badge bg-secondary rounded-pill float-end">${problem.topic}</span>`; problemLink.onclick = (e) => { e.preventDefault(); loadSingleProblem(problem._id); }; problemListContainer.appendChild(problemLink); }); } catch (error) { console.error('Failed to load problem list:', error); codingContainer.innerHTML = '<p class="text-danger">Could not load problems.</p>'; } }
     
