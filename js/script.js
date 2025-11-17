@@ -1,4 +1,4 @@
-//script.js (Corrected with Automatic Server Wake-Up)
+//script.js (Updated for 15-Minute, Solve-One-of-Three Assessment)
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- MODIFIED handleCodingAccess FUNCTION ---
     async function handleCodingAccess(e) {
         if (e) e.preventDefault();
         const studentIdInput = document.getElementById('codingStudentId');
@@ -74,23 +73,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ studentId })
             });
-
-            // If server is waking up, fetch will throw an error. If server responds, even with an error code, it's awake.
-            if (!response.ok && response.status >= 500) { // Server responded but has an internal error
+            if (!response.ok && response.status >= 500) {
                  throw new Error("Server error. Please try again later.");
             }
-            
             const result = await response.json();
             if (!result.valid) {
                 throw new Error(result.message || 'USN not authorized.');
             }
-            return result; // Success
+            return result;
         };
         
         const retryWithDelay = (fn, retries = 1, delay = 25000) => new Promise((resolve, reject) => {
             fn().then(resolve).catch(error => {
-                // We only retry for "Failed to fetch" (server is asleep).
-                // For other errors like "USN not authorized", we reject immediately.
                 if (retries > 0 && error.message.includes("Failed to fetch")) {
                     console.log(`Server not awake. Retrying in ${delay / 1000}s...`);
                     showError('coding-entry-error', "Server is waking up... Please wait.");
@@ -99,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         retryWithDelay(fn, retries - 1, delay).then(resolve).catch(reject);
                     }, delay);
                 } else {
-                    reject(error); // Reject on other errors or after all retries fail
+                    reject(error);
                 }
             });
         });
@@ -120,21 +114,154 @@ document.addEventListener('DOMContentLoaded', () => {
             accessBtn.innerHTML = `Access Problems`;
         }
     }
-    // --- END OF MODIFICATIONS ---
     
-    async function loadProblemList() { isSubmitting = false; deactivateProctoring(); codingContainer.innerHTML = `<h2>Coding Problems</h2><p>Select a problem. Each has a 30-minute time limit and is proctored.</p><hr><div id="problem-list"><p>Loading...</p></div>`; try { const problemListContainer = document.getElementById('problem-list'); const response = await fetch(`${liveServerUrl}/api/coding-problems`); const problems = await response.json(); if (problems.length === 0) { problemListContainer.innerHTML = '<p>No coding problems have been added yet.</p>'; return; } problemListContainer.innerHTML = ''; problems.forEach(problem => { const problemLink = document.createElement('a'); problemLink.href = '#'; problemLink.className = 'list-group-item list-group-item-action'; problemLink.innerHTML = `<strong>${problem.title}</strong><span class="badge bg-secondary rounded-pill float-end">${problem.topic}</span>`; problemLink.onclick = (e) => { e.preventDefault(); loadSingleProblem(problem._id); }; problemListContainer.appendChild(problemLink); }); } catch (error) { console.error('Failed to load problem list:', error); codingContainer.innerHTML = '<p class="text-danger">Could not load problems.</p>'; } }
+    // --- MODIFIED TEXT IN THIS FUNCTION ---
+    async function loadProblemList() {
+        isSubmitting = false;
+        deactivateProctoring();
+        // Updated Title and Instructions
+        codingContainer.innerHTML = `<h2>Coding Assessment</h2><p>Please select and solve only ONE of the following three problems. You will have 15 minutes to complete your chosen problem.</p><hr><div id="problem-list"><p>Loading...</p></div>`;
+        try {
+            const problemListContainer = document.getElementById('problem-list');
+            const response = await fetch(`${liveServerUrl}/api/coding-problems`);
+            const problems = await response.json();
+            if (problems.length === 0) {
+                problemListContainer.innerHTML = '<p>No coding problems have been added yet.</p>';
+                return;
+            }
+            problemListContainer.innerHTML = '';
+            problems.forEach(problem => {
+                const problemLink = document.createElement('a');
+                problemLink.href = '#';
+                problemLink.className = 'list-group-item list-group-item-action';
+                problemLink.innerHTML = `<strong>${problem.title}</strong><span class="badge bg-secondary rounded-pill float-end">${problem.topic}</span>`;
+                problemLink.onclick = (e) => {
+                    e.preventDefault();
+                    loadSingleProblem(problem._id);
+                };
+                problemListContainer.appendChild(problemLink);
+            });
+        } catch (error) {
+            console.error('Failed to load problem list:', error);
+            codingContainer.innerHTML = '<p class="text-danger">Could not load problems.</p>';
+        }
+    }
     
-    async function loadSingleProblem(problemId) { codingContainer.innerHTML = `<p>Loading problem...</p>`; try { const response = await fetch(`${liveServerUrl}/api/coding-problems/${problemId}`); const problem = await response.json(); codingContainer.innerHTML = `<button id="backToListBtn" class="btn btn-sm btn-outline-secondary mb-3">&larr; Back to Problem List</button><div class="d-flex justify-content-between align-items-center"><h3>${problem.title}</h3><h4 id="problemTimer" class="badge bg-danger p-2">Time Left: 30:00</h4></div><p>${problem.description.replace(/\n/g, '<br>')}</p><hr><h5>Example:</h5><pre><strong>Input:</strong>\n${problem.exampleInput}\n\n<strong>Output:</strong>\n${problem.exampleOutput.replace(/<code>/g, '').replace(/<\/code>/g, '').replace(/<pre>/g, '').replace(/<\/pre>/g, '')}</pre><hr><div class="row"><div class="col-lg-8"><div class="d-flex align-items-center mb-2"><label for="languageSelectorProblem" class="form-label fw-bold me-2">Language:</label><select class="form-select" id="languageSelectorProblem" style="width: 150px;"><option value="java" selected>Java</option><option value="python3">Python</option></select></div><h5>Your Solution:</h5><div id="codeEditorDiv" class="mb-3"></div><h5>Standard Input (for testing):</h5><textarea id="stdInput" class="form-control" rows="3"></textarea></div><div class="col-lg-4"><h5>Test Output:</h5><pre id="outputArea" class="bg-dark text-white p-3 rounded" style="min-height: 300px; overflow-y: auto;"></pre></div></div><div class="mt-3"><button id="runCodeBtn" class="btn btn-success">Run Code</button> <button id="submitCodeBtn" class="btn btn-primary">Submit Final Code</button></div>`;
-        document.getElementById('backToListBtn').onclick = () => { deactivateProctoring(); loadProblemList(); };
-        const editor = CodeMirror(document.getElementById('codeEditorDiv'), { value: `public class Solution {\n    // Note: The class name must be 'Solution' for Java.\n    public static void main(String args[]) {\n        // Your solution here\n    }\n}`, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true }); editor.setSize(null, "400px"); activateEditorProctoring(editor);
-        const languageSelector = document.getElementById('languageSelectorProblem'); languageSelector.addEventListener('change', () => { const selectedLang = languageSelector.value; const newMode = selectedLang === 'java' ? 'text/x-java' : 'python'; const defaultCode = { java: `public class Solution {\n    // Note: The class name must be 'Solution' for Java.\n    public static void main(String args[]) {\n        // Your solution here\n    }\n}`, python3: `# Your Python solution here\n` }; editor.setOption('mode', newMode); editor.setValue(defaultCode[selectedLang]); });
-        const runCodeBtn = document.getElementById('runCodeBtn'); const submitCodeBtn = document.getElementById('submitCodeBtn');
-        const submissionCallback = () => { if(submitCodeBtn && !submitCodeBtn.disabled) submitCodeBtn.dispatchEvent(new Event('click')); };
-        activatePageProctoring(submissionCallback);
-        startProblemTimer(30, submissionCallback);
-        runCodeBtn.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = document.getElementById('stdInput').value; const selectedLang = languageSelector.value; runCodeBtn.disabled = true; submitCodeBtn.disabled = true; runCodeBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Running...`; document.getElementById('outputArea').textContent = 'Executing...'; try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, language: selectedLang, stdin: userInput }) }); const result = await response.json(); if(result.output) { document.getElementById('outputArea').textContent = result.output; } else if (result.error) { document.getElementById('outputArea').textContent = result.error; } } catch (error) { document.getElementById('outputArea').textContent = "Error connecting to compiler."; } finally { runCodeBtn.disabled = false; submitCodeBtn.disabled = false; runCodeBtn.innerHTML = `Run Code`; } });
-        submitCodeBtn.addEventListener('click', async (event) => { if (event) event.preventDefault(); if (isSubmitting) return; isSubmitting = true; deactivateProctoring(); const studentId = localStorage.getItem('codingStudentId'); if (!studentId) { alert('USN not found. Please go back and re-validate.'); isSubmitting = false; return; } const submittedCode = editor.getValue(); submitCodeBtn.disabled = true; runCodeBtn.disabled = true; submitCodeBtn.textContent = 'Submitting...'; try { const submitResponse = await fetch(`${liveServerUrl}/api/coding-problems/submit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, problemId, submittedCode }) }); const result = await submitResponse.json(); if (!submitResponse.ok) { alert(result.message); isSubmitting = false; loadProblemList(); return; } const submissionToast = new bootstrap.Toast(document.getElementById('submissionToast')); submissionToast.show(); setTimeout(() => { isSubmitting = false; loadProblemList(); }, 2000); } catch (error) { alert('An error occurred during submission.'); submitCodeBtn.disabled = false; runCodeBtn.disabled = false; submitCodeBtn.textContent = 'Submit Final Code'; isSubmitting = false; } });
-    } catch (error) { console.error('Failed to load problem:', error); codingContainer.innerHTML = '<p class="text-danger">Could not load the problem.</p>'; } }
-    function startProblemTimer(durationMinutes, submissionCallback) { let timeLeft = durationMinutes * 60; const timerElement = document.getElementById('problemTimer'); problemTimerInterval = setInterval(() => { timeLeft--; const minutes = Math.floor(timeLeft / 60); let seconds = timeLeft % 60; seconds = seconds < 10 ? '0' + seconds : seconds; if (timerElement) timerElement.textContent = `Time Left: ${minutes}:${seconds}`; if (timeLeft <= 0) { if (timerElement) timerElement.textContent = 'Time Up!'; handleCheatingAttempt(submissionCallback); } }, 1000); }
-    function showError(elementId, message) { const errorEl = document.getElementById(elementId); if (errorEl) { errorEl.textContent = message; errorEl.classList.remove('d-none'); } }
+    // --- MODIFIED TIMER IN THIS FUNCTION ---
+    async function loadSingleProblem(problemId) {
+        codingContainer.innerHTML = `<p>Loading problem...</p>`;
+        try {
+            const response = await fetch(`${liveServerUrl}/api/coding-problems/${problemId}`);
+            const problem = await response.json();
+            // Updated Timer Display to 15:00
+            codingContainer.innerHTML = `<button id="backToListBtn" class="btn btn-sm btn-outline-secondary mb-3">&larr; Back to Problem List</button><div class="d-flex justify-content-between align-items-center"><h3>${problem.title}</h3><h4 id="problemTimer" class="badge bg-danger p-2">Time Left: 15:00</h4></div><p>${problem.description.replace(/\n/g, '<br>')}</p><hr><h5>Example:</h5><pre><strong>Input:</strong>\n${problem.exampleInput}\n\n<strong>Output:</strong>\n${problem.exampleOutput.replace(/<code>/g, '').replace(/<\/code>/g, '').replace(/<pre>/g, '').replace(/<\/pre>/g, '')}</pre><hr><div class="row"><div class="col-lg-8"><div class="d-flex align-items-center mb-2"><label for="languageSelectorProblem" class="form-label fw-bold me-2">Language:</label><select class="form-select" id="languageSelectorProblem" style="width: 150px;"><option value="java" selected>Java</option><option value="python3">Python</option></select></div><h5>Your Solution:</h5><div id="codeEditorDiv" class="mb-3"></div><h5>Standard Input (for testing):</h5><textarea id="stdInput" class="form-control" rows="3"></textarea></div><div class="col-lg-4"><h5>Test Output:</h5><pre id="outputArea" class="bg-dark text-white p-3 rounded" style="min-height: 300px; overflow-y: auto;"></pre></div></div><div class="mt-3"><button id="runCodeBtn" class="btn btn-success">Run Code</button> <button id="submitCodeBtn" class="btn btn-primary">Submit Final Code</button></div>`;
+            
+            document.getElementById('backToListBtn').onclick = () => { deactivateProctoring(); loadProblemList(); };
+            
+            const editor = CodeMirror(document.getElementById('codeEditorDiv'), { value: `public class Solution {\n    // Note: The class name must be 'Solution' for Java.\n    public static void main(String args[]) {\n        // Your solution here\n    }\n}`, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true });
+            editor.setSize(null, "400px");
+            activateEditorProctoring(editor);
+            
+            const languageSelector = document.getElementById('languageSelectorProblem');
+            languageSelector.addEventListener('change', () => {
+                const selectedLang = languageSelector.value;
+                const newMode = selectedLang === 'java' ? 'text/x-java' : 'python';
+                const defaultCode = { java: `public class Solution {\n    // Note: The class name must be 'Solution' for Java.\n    public static void main(String args[]) {\n        // Your solution here\n    }\n}`, python3: `# Your Python solution here\n` };
+                editor.setOption('mode', newMode);
+                editor.setValue(defaultCode[selectedLang]);
+            });
+            
+            const runCodeBtn = document.getElementById('runCodeBtn');
+            const submitCodeBtn = document.getElementById('submitCodeBtn');
+            
+            const submissionCallback = () => { if(submitCodeBtn && !submitCodeBtn.disabled) submitCodeBtn.dispatchEvent(new Event('click')); };
+            activatePageProctoring(submissionCallback);
+            
+            // Updated Timer Duration to 15 minutes
+            startProblemTimer(15, submissionCallback);
+            
+            runCodeBtn.addEventListener('click', async () => {
+                const userCode = editor.getValue();
+                const userInput = document.getElementById('stdInput').value;
+                const selectedLang = languageSelector.value;
+                runCodeBtn.disabled = true; submitCodeBtn.disabled = true;
+                runCodeBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Running...`;
+                document.getElementById('outputArea').textContent = 'Executing...';
+                try {
+                    const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, language: selectedLang, stdin: userInput }) });
+                    const result = await response.json();
+                    if(result.output) { document.getElementById('outputArea').textContent = result.output; } else if (result.error) { document.getElementById('outputArea').textContent = result.error; }
+                } catch (error) {
+                    document.getElementById('outputArea').textContent = "Error connecting to compiler.";
+                } finally {
+                    runCodeBtn.disabled = false; submitCodeBtn.disabled = false;
+                    runCodeBtn.innerHTML = `Run Code`;
+                }
+            });
+            
+            submitCodeBtn.addEventListener('click', async (event) => {
+                if (event) event.preventDefault();
+                if (isSubmitting) return;
+                isSubmitting = true;
+                deactivateProctoring();
+                const studentId = localStorage.getItem('codingStudentId');
+                if (!studentId) {
+                    alert('USN not found. Please go back and re-validate.');
+                    isSubmitting = false;
+                    return;
+                }
+                const submittedCode = editor.getValue();
+                submitCodeBtn.disabled = true; runCodeBtn.disabled = true;
+                submitCodeBtn.textContent = 'Submitting...';
+                try {
+                    const submitResponse = await fetch(`${liveServerUrl}/api/coding-problems/submit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, problemId, submittedCode }) });
+                    const result = await submitResponse.json();
+                    if (!submitResponse.ok) {
+                        alert(result.message);
+                        isSubmitting = false;
+                        loadProblemList();
+                        return;
+                    }
+                    const submissionToast = new bootstrap.Toast(document.getElementById('submissionToast'));
+                    submissionToast.show();
+                    setTimeout(() => {
+                        isSubmitting = false;
+                        loadProblemList();
+                    }, 2000);
+                } catch (error) {
+                    alert('An error occurred during submission.');
+                    submitCodeBtn.disabled = false; runCodeBtn.disabled = false;
+                    submitCodeBtn.textContent = 'Submit Final Code';
+                    isSubmitting = false;
+                }
+            });
+        } catch (error) {
+            console.error('Failed to load problem:', error);
+            codingContainer.innerHTML = '<p class="text-danger">Could not load the problem.</p>';
+        }
+    }
+
+    function startProblemTimer(durationMinutes, submissionCallback) {
+        let timeLeft = durationMinutes * 60;
+        const timerElement = document.getElementById('problemTimer');
+        problemTimerInterval = setInterval(() => {
+            timeLeft--;
+            const minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            if (timerElement) timerElement.textContent = `Time Left: ${minutes}:${seconds}`;
+            if (timeLeft <= 0) {
+                if (timerElement) timerElement.textContent = 'Time Up!';
+                handleCheatingAttempt(submissionCallback);
+            }
+        }, 1000);
+    }
+
+    function showError(elementId, message) {
+        const errorEl = document.getElementById(elementId);
+        if (errorEl) {
+            errorEl.textContent = message;
+            errorEl.classList.remove('d-none');
+        }
+    }
 });
