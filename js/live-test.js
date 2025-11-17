@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
-    const testName = 'Infosys Screening Round - Section D';
-    const testDurationMinutes = 40;
+    // --- UPDATED FOR DYNAMIC EXAM ---
+    //const testName = 'dynamic-infosys-exam';
+    const testName = 'Assignment-1-100-questions';
+    const testDurationMinutes = 10;
+    // --- END OF UPDATES ---
+    
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
     const completeContainer = document.getElementById('complete-container');
@@ -43,14 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
         studentInfo.textContent = `Student: ${name} (${id})`;
         activateProctoring();
 
-        let questionsToDisplay;
-        if (testName === 'infosys-mock-exam') {
-
-            questionsToDisplay = questions;
-        } else {
-            questionsToDisplay = shuffleArray(questions);
-        }
-        displayQuestions(questionsToDisplay);
+        // --- MODIFIED LOGIC ---
+        // Shuffling is now handled by the backend. The frontend simply displays the 
+        // 10 random questions it receives from the server.
+        displayQuestions(questions);
+        // --- END OF MODIFICATION ---
         
         startTimer();
     }

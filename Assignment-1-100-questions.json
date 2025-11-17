@@ -1,0 +1,795 @@
+{
+  "testName": "Assignment-1-100-questions",
+  "questions": [
+    {
+      "question": "Which OOP principle refers to the bundling of data and the methods that operate on that data into a single unit?",
+      "options": [
+        "Inheritance",
+        "Encapsulation",
+        "Polymorphism",
+        "Abstraction"
+      ],
+      "answer": "Encapsulation"
+    },
+    {
+      "question": "Hiding complex implementation details and showing only the necessary features of an object is known as:",
+      "options": [
+        "Inheritance",
+        "Polymorphism",
+        "Abstraction",
+        "Encapsulation"
+      ],
+      "answer": "Abstraction"
+    },
+    {
+      "question": "Which of the following is NOT a valid Java keyword?",
+      "options": [
+        "transient",
+        "unsigned",
+        "strictfp",
+        "volatile"
+      ],
+      "answer": "unsigned"
+    },
+    {
+      "question": "What is the primary purpose of a code block `{...}` in Java?",
+      "options": [
+        "To declare a new class.",
+        "To group zero or more statements.",
+        "To create a multi-line comment.",
+        "To import a package."
+      ],
+      "answer": "To group zero or more statements."
+    },
+    {
+      "question": "Which of these is a valid identifier in Java?",
+      "options": [
+        "2variable",
+        "_myVariable",
+        "my-variable",
+        "final"
+      ],
+      "answer": "_myVariable"
+    },
+    {
+      "question": "The ability of an object to take on many forms is known as:",
+      "options": [
+        "Inheritance",
+        "Encapsulation",
+        "Polymorphism",
+        "Abstraction"
+      ],
+      "answer": "Polymorphism"
+    },
+    {
+      "question": "Which of the following is considered a separator in Java?",
+      "options": [
+        "+",
+        "if",
+        ";",
+        "true"
+      ],
+      "answer": ";"
+    },
+    {
+      "question": "A literal is a source code representation of a fixed value. Which of these is an integer literal?",
+      "options": [
+        "10.5",
+        "'A'",
+        "100L",
+        "\"Hello\""
+      ],
+      "answer": "100L"
+    },
+    {
+      "question": "Which of the three OOP principles allows a class to acquire the properties and behavior of another class?",
+      "options": [
+        "Inheritance",
+        "Encapsulation",
+        "Polymorphism",
+        "Abstraction"
+      ],
+      "answer": "Inheritance"
+    },
+    {
+      "question": "What is the correct syntax for a single-line comment in Java?",
+      "options": [
+        "/* comment */",
+        "// comment",
+        "<!-- comment -->",
+        "# comment"
+      ],
+      "answer": "// comment"
+    },
+    {
+      "question": "Which primitive data type is used to store single 16-bit Unicode characters?",
+      "options": [
+        "byte",
+        "string",
+        "char",
+        "character"
+      ],
+      "answer": "char"
+    },
+    {
+      "question": "What is the default value of a boolean variable in Java?",
+      "options": [
+        "true",
+        "false",
+        "0",
+        "null"
+      ],
+      "answer": "false"
+    },
+    {
+      "question": "What is the result of the following code snippet? `int x = 10; double y = x;`",
+      "options": [
+        "Compilation Error",
+        "Runtime Error",
+        "y will be 10.0",
+        "y will be 10"
+      ],
+      "answer": "y will be 10.0"
+    },
+    {
+      "question": "Which of the following is a correct way to declare a one-dimensional array of integers?",
+      "options": [
+        "int[] arr;",
+        "int arr[];",
+        "int []arr;",
+        "All of the above"
+      ],
+      "answer": "All of the above"
+    },
+    {
+      "question": "What is the process of converting a value from a larger data type to a smaller data type called?",
+      "options": [
+        "Widening Conversion",
+        "Narrowing Conversion (Casting)",
+        "Automatic Type Promotion",
+        "Type Inference"
+      ],
+      "answer": "Narrowing Conversion (Casting)"
+    },
+    {
+      "question": "What will be the output of `System.out.println(5 + 3 * 2);`?",
+      "options": [
+        "16",
+        "11",
+        "13",
+        "Compilation Error"
+      ],
+      "answer": "11"
+    },
+    {
+      "question": "Which operator has the highest precedence in Java?",
+      "options": [
+        "()",
+        "++",
+        "*",
+        "+"
+      ],
+      "answer": "()"
+    },
+    {
+      "question": "What is the output of `System.out.println(10 % 3);`?",
+      "options": [
+        "3",
+        "1",
+        "0",
+        "3.33"
+      ],
+      "answer": "1"
+    },
+    {
+      "question": "The `&&` and `||` operators are known as:",
+      "options": [
+        "Relational operators",
+        "Bitwise operators",
+        "Short-circuit logical operators",
+        "Assignment operators"
+      ],
+      "answer": "Short-circuit logical operators"
+    },
+    {
+      "question": "What is the result of the expression `int result = (5 > 3) ? 10 : 20;`?",
+      "options": [
+        "5",
+        "3",
+        "10",
+        "20"
+      ],
+      "answer": "10"
+    },
+    {
+      "question": "In the expression `byte b = 50; b = b * 2;`, what will happen?",
+      "options": [
+        "The code will compile successfully and b will be 100.",
+        "A compilation error will occur.",
+        "A runtime error will occur.",
+        "b will be truncated."
+      ],
+      "answer": "A compilation error will occur."
+    },
+    {
+      "question": "The `var` keyword in Java, used for local variable type inference, was introduced in which version?",
+      "options": [
+        "Java 8",
+        "Java 10",
+        "Java 11",
+        "Java 9"
+      ],
+      "answer": "Java 10"
+    },
+    {
+      "question": "What is the default value for elements in an array of integers?",
+      "options": [
+        "0",
+        "1",
+        "null",
+        "undefined"
+      ],
+      "answer": "0"
+    },
+    {
+      "question": "How do you get the number of elements in an array `arr`?",
+      "options": [
+        "arr.size()",
+        "arr.length()",
+        "arr.length",
+        "arr.capacity()"
+      ],
+      "answer": "arr.length"
+    },
+    {
+      "question": "Which of the following is not a primitive type?",
+      "options": [
+        "long",
+        "double",
+        "String",
+        "boolean"
+      ],
+      "answer": "String"
+    },
+    {
+      "question": "Which operator is used to test if two references refer to the same object?",
+      "options": [
+        "==",
+        ".equals()",
+        "&",
+        "|="
+      ],
+      "answer": "=="
+    },
+    {
+      "question": "The expression `x += 5;` is equivalent to which of the following?",
+      "options": [
+        "x = 5;",
+        "x = x + 5;",
+        "x = 5 + x;",
+        "Both b and c"
+      ],
+      "answer": "Both b and c"
+    },
+    {
+      "question": "What does the `!` operator do?",
+      "options": [
+        "It performs a bitwise NOT operation.",
+        "It is used for division.",
+        "It performs a logical NOT (inverts a boolean value).",
+        "It checks for inequality."
+      ],
+      "answer": "It performs a logical NOT (inverts a boolean value)."
+    },
+    {
+      "question": "Which operator cannot be used with boolean variables?",
+      "options": [
+        "==",
+        "&",
+        "|",
+        "<"
+      ],
+      "answer": "<"
+    },
+    {
+      "question": "What is the main difference between `&` and `&&`?",
+      "options": [
+        "There is no difference.",
+        "`&&` is a short-circuit operator, while `&` always evaluates both operands.",
+        "`&` is a short-circuit operator, while `&&` always evaluates both operands.",
+        "`&` is for integers and `&&` is for booleans."
+      ],
+      "answer": "`&&` is a short-circuit operator, while `&` always evaluates both operands."
+    },
+    {
+      "question": "In a `switch` statement, which keyword is used to specify the code to run if there is no case match?",
+      "options": [
+        "else",
+        "default",
+        "otherwise",
+        "case 0"
+      ],
+      "answer": "default"
+    },
+    {
+      "question": "Which loop will always execute its body at least once?",
+      "options": [
+        "for",
+        "while",
+        "do-while",
+        "for-each"
+      ],
+      "answer": "do-while"
+    },
+    {
+      "question": "What is the purpose of the `break` statement in a loop?",
+      "options": [
+        "To skip the current iteration and continue to the next.",
+        "To terminate the loop immediately.",
+        "To return a value from the method.",
+        "To pause the execution of the loop."
+      ],
+      "answer": "To terminate the loop immediately."
+    },
+    {
+      "question": "Which statement is best suited for iterating over all elements in an array or collection?",
+      "options": [
+        "while",
+        "do-while",
+        "The for-each loop",
+        "The traditional for loop"
+      ],
+      "answer": "The for-each loop"
+    },
+    {
+      "question": "What does the `continue` statement do?",
+      "options": [
+        "Terminates the loop.",
+        "Skips the rest of the statements in the current iteration and proceeds to the next iteration.",
+        "Restarts the entire loop from the beginning.",
+        "Exits the method."
+      ],
+      "answer": "Skips the rest of the statements in the current iteration and proceeds to the next iteration."
+    },
+    {
+      "question": "What is the correct syntax for a `for` loop?",
+      "options": [
+        "for (initialization; condition; iteration)",
+        "for (condition; initialization; iteration)",
+        "for (initialization; iteration; condition)",
+        "for (iteration; condition; initialization)"
+      ],
+      "answer": "for (initialization; condition; iteration)"
+    },
+    {
+      "question": "In a traditional `switch` statement, what happens if you forget a `break` statement in a case?",
+      "options": [
+        "A compilation error occurs.",
+        "The program will execute the code for that case and then fall through to the next case.",
+        "A runtime error occurs.",
+        "The switch statement terminates automatically."
+      ],
+      "answer": "The program will execute the code for that case and then fall through to the next case."
+    },
+    {
+      "question": "Which statement is used to exit from the current method?",
+      "options": [
+        "break",
+        "exit",
+        "return",
+        "continue"
+      ],
+      "answer": "return"
+    },
+    {
+      "question": "Can you use a local variable with type inference (`var`) in a for-each loop?",
+      "options": [
+        "Yes, it is a common use case.",
+        "No, it is not allowed.",
+        "Only if the collection is an array.",
+        "Only in Java 8 and below."
+      ],
+      "answer": "Yes, it is a common use case."
+    },
+    {
+      "question": "What will the following code print? `for(int i=0; i<3; i++) { if(i==1) continue; System.out.print(i); }`",
+      "options": [
+        "012",
+        "02",
+        "0",
+        "12"
+      ],
+      "answer": "02"
+    },
+    {
+      "question": "A class is a blueprint for creating:",
+      "options": [
+        "Methods",
+        "Variables",
+        "Objects",
+        "Packages"
+      ],
+      "answer": "Objects"
+    },
+    {
+      "question": "What is a special method used to initialize objects?",
+      "options": [
+        "Method",
+        "Initializer",
+        "Constructor",
+        "Finalizer"
+      ],
+      "answer": "Constructor"
+    },
+    {
+      "question": "Which keyword is used to refer to the current object instance within a method or constructor?",
+      "options": [
+        "this",
+        "self",
+        "current",
+        "super"
+      ],
+      "answer": "this"
+    },
+    {
+      "question": "What is the process of reclaiming the runtime unused memory automatically by the JVM called?",
+      "options": [
+        "Memory Allocation",
+        "Garbage Collection",
+        "Memory Defragmentation",
+        "Stack Unwinding"
+      ],
+      "answer": "Garbage Collection"
+    },
+    {
+      "question": "If a constructor is not explicitly defined in a class, what does Java provide?",
+      "options": [
+        "A compilation error.",
+        "A private constructor.",
+        "A default constructor with no parameters.",
+        "A static constructor."
+      ],
+      "answer": "A default constructor with no parameters."
+    },
+    {
+      "question": "How are objects of a class created?",
+      "options": [
+        "Using the `new` keyword.",
+        "Using the `create` keyword.",
+        "By just declaring the variable.",
+        "Using the `alloc` keyword."
+      ],
+      "answer": "Using the `new` keyword."
+    },
+    {
+      "question": "Can a constructor have a return type?",
+      "options": [
+        "Yes, it must be void.",
+        "Yes, it can be any type.",
+        "No, a constructor cannot have a return type.",
+        "Only if it is a private constructor."
+      ],
+      "answer": "No, a constructor cannot have a return type."
+    },
+    {
+      "question": "What is the correct way to declare an object of class `Car`?",
+      "options": [
+        "Car myCar = Car();",
+        "Car myCar = new Car();",
+        "new Car myCar;",
+        "object myCar = new Car();"
+      ],
+      "answer": "Car myCar = new Car();"
+    },
+    {
+      "question": "When is an object eligible for garbage collection?",
+      "options": [
+        "When it is created.",
+        "When it has no reachable references.",
+        "When it goes out of scope.",
+        "Both b and c are correct."
+      ],
+      "answer": "Both b and c are correct."
+    },
+    {
+      "question": "A method in Java must have a:",
+      "options": [
+        "Return type",
+        "Parameter list",
+        "Access modifier",
+        "All of the above"
+      ],
+      "answer": "All of the above"
+    },
+    {
+      "question": "What is it called when two or more methods within the same class have the same name but different parameter lists?",
+      "options": [
+        "Method Overriding",
+        "Method Overloading",
+        "Method Hiding",
+        "Method Chaining"
+      ],
+      "answer": "Method Overloading"
+    },
+    {
+      "question": "When an object is passed to a method, what is actually passed?",
+      "options": [
+        "A copy of the object.",
+        "The reference to the object.",
+        "The object's hash code.",
+        "The object's class."
+      ],
+      "answer": "The reference to the object."
+    },
+    {
+      "question": "A method that calls itself is known as a:",
+      "options": [
+        "Static method",
+        "Final method",
+        "Recursive method",
+        "Abstract method"
+      ],
+      "answer": "Recursive method"
+    },
+    {
+      "question": "Which access modifier provides the widest accessibility?",
+      "options": [
+        "private",
+        "default (package-private)",
+        "protected",
+        "public"
+      ],
+      "answer": "public"
+    },
+    {
+      "question": "A member declared with which keyword belongs to the class itself, rather than to any specific instance?",
+      "options": [
+        "final",
+        "static",
+        "abstract",
+        "volatile"
+      ],
+      "answer": "static"
+    },
+    {
+      "question": "A variable declared with which keyword cannot be changed once it has been assigned a value?",
+      "options": [
+        "static",
+        "const",
+        "final",
+        "volatile"
+      ],
+      "answer": "final"
+    },
+    {
+      "question": "Can a static method access non-static instance variables?",
+      "options": [
+        "Yes, directly.",
+        "Yes, but only if they are public.",
+        "No, not directly. It needs an object reference.",
+        "No, under no circumstances."
+      ],
+      "answer": "No, not directly. It needs an object reference."
+    },
+    {
+      "question": "A class defined within another class is known as a:",
+      "options": [
+        "Friend class",
+        "Child class",
+        "Nested or Inner class",
+        "Helper class"
+      ],
+      "answer": "Nested or Inner class"
+    },
+    {
+      "question": "What is the primary difference between method overloading and method overriding?",
+      "options": [
+        "Overloading is resolved at runtime, overriding at compile time.",
+        "Overloading occurs in the same class, overriding in a subclass.",
+        "They are the same concept.",
+        "Overriding uses different method names."
+      ],
+      "answer": "Overloading occurs in the same class, overriding in a subclass."
+    },
+    {
+      "question": "What is the return type of a method that does not return any value?",
+      "options": [
+        "null",
+        "int",
+        "void",
+        "empty"
+      ],
+      "answer": "void"
+    },
+    {
+      "question": "The mechanism that allows a subclass to provide a specific implementation of a method that is already provided by its superclass is called:",
+      "options": [
+        "Method Overloading",
+        "Method Overriding",
+        "Inheritance",
+        "Encapsulation"
+      ],
+      "answer": "Method Overriding"
+    },
+    {
+      "question": "Which keyword is used by a subclass to call a constructor or method of its superclass?",
+      "options": [
+        "this",
+        "parent",
+        "super",
+        "base"
+      ],
+      "answer": "super"
+    },
+    {
+      "question": "If a class `B` inherits from class `A`, and class `C` inherits from class `B`, this is an example of:",
+      "options": [
+        "Multiple Inheritance",
+        "Hierarchical Inheritance",
+        "Multilevel Inheritance",
+        "Hybrid Inheritance"
+      ],
+      "answer": "Multilevel Inheritance"
+    },
+    {
+      "question": "When an object of a subclass is created, which constructor is executed first?",
+      "options": [
+        "The subclass constructor.",
+        "The superclass constructor.",
+        "They are executed simultaneously.",
+        "The order is not guaranteed."
+      ],
+      "answer": "The superclass constructor."
+    },
+    {
+      "question": "The process of resolving a method call at runtime rather than compile time is known as:",
+      "options": [
+        "Static Binding",
+        "Dynamic Method Dispatch",
+        "Method Overloading",
+        "Early Binding"
+      ],
+      "answer": "Dynamic Method Dispatch"
+    },
+    {
+      "question": "A class declared with which keyword cannot be subclassed?",
+      "options": [
+        "static",
+        "abstract",
+        "private",
+        "final"
+      ],
+      "answer": "final"
+    },
+    {
+      "question": "Which class is the superclass of every other class in Java?",
+      "options": [
+        "Main",
+        "System",
+        "Object",
+        "Lang"
+      ],
+      "answer": "Object"
+    },
+    {
+      "question": "A class containing one or more abstract methods must be declared as:",
+      "options": [
+        "static",
+        "final",
+        "abstract",
+        "interface"
+      ],
+      "answer": "abstract"
+    },
+    {
+      "question": "Can you create an instance of an abstract class?",
+      "options": [
+        "Yes, using the `new` keyword.",
+        "No, it is not possible.",
+        "Only if it has no abstract methods.",
+        "Yes, but only within its own static methods."
+      ],
+      "answer": "No, it is not possible."
+    },
+    {
+      "question": "What happens if a subclass has a method with the same signature as a `final` method in the superclass?",
+      "options": [
+        "The subclass method overrides the superclass method.",
+        "A compilation error occurs.",
+        "A runtime error occurs.",
+        "The program compiles but the superclass method is always called."
+      ],
+      "answer": "A compilation error occurs."
+    },
+    {
+      "question": "Dynamic method dispatch is the mechanism that allows Java to support:",
+      "options": [
+        "Method Overloading",
+        "Compile-time Polymorphism",
+        "Runtime Polymorphism",
+        "Multiple Inheritance"
+      ],
+      "answer": "Runtime Polymorphism"
+    },
+    {
+      "question": "If a superclass reference variable refers to a subclass object, which version of an overridden method will be called?",
+      "options": [
+        "The superclass version.",
+        "The subclass version.",
+        "A compilation error occurs.",
+        "It depends on the access modifier."
+      ],
+      "answer": "The subclass version."
+    },
+    {
+      "question": "Does Java support multiple inheritance of classes?",
+      "options": [
+        "Yes, through the `implements` keyword.",
+        "Yes, through the `extends` keyword.",
+        "No, a class can only extend one superclass.",
+        "Only for abstract classes."
+      ],
+      "answer": "No, a class can only extend one superclass."
+    },
+    {
+      "question": "What is the purpose of the `super()` call in a constructor?",
+      "options": [
+        "To call a method of the superclass.",
+        "To call the constructor of the superclass.",
+        "To create an instance of the superclass.",
+        "To access a static variable of the superclass."
+      ],
+      "answer": "To call the constructor of the superclass."
+    },
+    {
+      "question": "Which method of the `Object` class is used to get a string representation of an object?",
+      "options": [
+        "toString()",
+        "getString()",
+        "hashCode()",
+        "getClass()"
+      ],
+      "answer": "toString()"
+    },
+    {
+      "question": "An abstract method is a method that is:",
+      "options": [
+        "Declared but has no implementation.",
+        "Declared as final.",
+        "Declared as private.",
+        "Returns a null value."
+      ],
+      "answer": "Declared but has no implementation."
+    },
+    {
+      "question": "Can you use `var` (Local Variable Type Inference) with instance variables of a class?",
+      "options": [
+        "Yes, it is allowed.",
+        "No, `var` is only for local variables inside methods, constructors, or initializers.",
+        "Only if the instance variable is final.",
+        "Only in abstract classes."
+      ],
+      "answer": "No, `var` is only for local variables inside methods, constructors, or initializers."
+    },
+    {
+      "question": "Which of these is a valid use of `super`?",
+      "options": [
+        "super.super.method()",
+        "super(args)",
+        "this.super()",
+        "All of the above"
+      ],
+      "answer": "super(args)"
+    },
+    {
+      "question": "If a superclass and a subclass both have a method with the same name and parameters, what is the relationship called?",
+      "options": [
+        "Overloading",
+        "Overriding",
+        "Hiding",
+        "Shadowing"
+      ],
+      "answer": "Overriding"
+    }
+  ]
+}

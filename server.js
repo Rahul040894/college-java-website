@@ -18,10 +18,19 @@ mongoose.connect(process.env.DATABASE_URL).then(() => console.log("✅ MongoDB C
 
 // === ALL DATABASE MODELS ===
 const Exam = mongoose.model('Exam', new mongoose.Schema({ testName: String, questions: [new mongoose.Schema({ question: String, options: [String], answer: String }, { _id: true })] }));
-const TestResult = mongoose.model('TestResult', new mongoose.Schema({ studentName: String, studentId: String, testName: String, score: Number, total: Number, startTime: Date, finishTime: Date, status: String }).index({ studentId: 1, testName: 1 }, { unique: true }));
+const TestResult = mongoose.model('TestResult', new mongoose.Schema({ studentName: String, studentId: String, testName: String, score: Number, total: Number, startTime: { type: Date, default: Date.now }, finishTime: Date, status: String }).index({ studentId: 1, testName: 1 }, { unique: true }));
 const AllowedUsn = mongoose.model('AllowedUsn', new mongoose.Schema({ usn: { type: String, required: true, unique: true } }));
 const CodingProblem = mongoose.model('CodingProblem', new mongoose.Schema({ title: String, description: String, exampleInput: String, exampleOutput: String, topic: String }));
 const CodeSubmission = mongoose.model('CodeSubmission', new mongoose.Schema({ studentId: String, problemId: { type: mongoose.Schema.Types.ObjectId, ref: 'CodingProblem' }, submittedCode: String, submissionTime: { type: Date, default: Date.now } }).index({ studentId: 1, problemId: 1 }, { unique: true }));
+
+// === UTILITY FUNCTION FOR SHUFFLING ===
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 // === API KEY POOLING SETUP ===
 const jDoodleCredentials = [];
@@ -44,7 +53,50 @@ app.post('/api/validate-usn', async (req, res) => {
     } catch (error) { res.status(500).json({ valid: false, message: 'Server error during validation.' }); }
 });
 
-app.post('/api/exam/start', async (req, res) => { const { studentName, studentId, testName } = req.body; try { const usnRegex = new RegExp(`^${studentId}$`, 'i'); const isAllowed = await AllowedUsn.findOne({ usn: usnRegex }); if (!isAllowed) { return res.status(403).json({ error: "This USN is not authorized." }); } const existingResult = await TestResult.findOne({ studentId: usnRegex, testName }); if (existingResult) { return res.status(403).json({ error: "This USN has already attempted this test." }); } const exam = await Exam.findOne({ testName }); if (!exam) return res.status(404).json({ error: "Exam not available." }); const authorizedUsn = isAllowed.usn; const newResult = new TestResult({ studentName, studentId: authorizedUsn, testName, total: exam.questions.length }); await newResult.save(); res.json({ questions: exam.questions.map(q => ({ id: q._id, question: q.question, options: q.options })), startTime: newResult.startTime }); } catch (error) { if (error.code === 11000) return res.status(403).json({ error: "This USN has already started the test." }); res.status(500).json({ error: "Server error starting test." }); } });
+// === MODIFIED /api/exam/start ENDPOINT ===
+app.post('/api/exam/start', async (req, res) => {
+    const { studentName, studentId, testName } = req.body;
+    try {
+        const usnRegex = new RegExp(`^${studentId}$`, 'i');
+        const isAllowed = await AllowedUsn.findOne({ usn: usnRegex });
+        if (!isAllowed) { return res.status(403).json({ error: "This USN is not authorized." }); }
+
+        const existingResult = await TestResult.findOne({ studentId: usnRegex, testName });
+        if (existingResult) { return res.status(403).json({ error: "This USN has already attempted this test." }); }
+        
+        const exam = await Exam.findOne({ testName });
+        if (!exam) return res.status(404).json({ error: "Exam not available." });
+
+        // --- NEW LOGIC FOR DYNAMIC QUESTION SELECTION ---
+        let questionsToSend = exam.questions; // Default to all questions.
+
+        // Check if this is the special dynamic exam
+        if (testName === 'dynamic-infosys-exam') {
+            if (exam.questions.length < 10) {
+                return res.status(500).json({ error: "Exam misconfigured: Not enough questions in the bank." });
+            }
+            // Shuffle the entire question bank and take the first 10 questions.
+            // Using [...exam.questions] creates a copy so the original array is not modified.
+            const shuffled = shuffleArray([...exam.questions]);
+            questionsToSend = shuffled.slice(0, 10);
+        }
+        // --- END OF NEW LOGIC ---
+
+        const authorizedUsn = isAllowed.usn;
+        // The 'total' is now based on the number of questions being sent to the student.
+        const newResult = new TestResult({ studentName, studentId: authorizedUsn, testName, total: questionsToSend.length });
+        await newResult.save();
+        
+        // Send only the selected questions to the frontend.
+        res.json({ questions: questionsToSend.map(q => ({ id: q._id, question: q.question, options: q.options })), startTime: newResult.startTime });
+
+    } catch (error) {
+        if (error.code === 11000) return res.status(403).json({ error: "This USN has already started the test." });
+        console.error("Error in /api/exam/start:", error); // Added for better debugging
+        res.status(500).json({ error: "Server error starting test." });
+    }
+});
+
 app.post('/api/exam/submit', async (req, res) => { const { studentId, testName, answers } = req.body; try { const usnRegex = new RegExp(`^${studentId}$`, 'i'); const result = await TestResult.findOne({ studentId: usnRegex, testName }); if (!result || result.status === 'finished') return res.status(403).json({ error: "Test already submitted." }); const exam = await Exam.findOne({ testName }); let score = 0; answers.forEach(ans => { const q = exam.questions.find(q => q._id.toString() === ans.id); if (q && q.answer === ans.answer) score++; }); result.score = score; result.status = 'finished'; result.finishTime = new Date(); await result.save(); res.json({ message: "Submitted successfully!", score: result.score, total: result.total }); } catch (error) { res.status(500).json({ error: "Server error submitting test." }); } });
 app.get('/api/coding-problems', async (req, res) => { try { const problems = await CodingProblem.find({}).select('title topic'); res.json(problems); } catch (error) { res.status(500).json({ message: "Error fetching problem list" }); } });
 app.get('/api/coding-problems/:id', async (req, res) => { try { const problem = await CodingProblem.findById(req.params.id); if (!problem) return res.status(404).json({ message: "Problem not found" }); res.json(problem); } catch (error) { res.status(500).json({ message: "Error fetching problem details" }); } });
