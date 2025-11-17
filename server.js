@@ -71,7 +71,7 @@ app.post('/api/exam/start', async (req, res) => {
         let questionsToSend = exam.questions; // Default to all questions.
 
         // Check if this is the special dynamic exam
-        if (testName === 'dynamic-infosys-exam') {
+        if (testName === 'Assignment-1-100-questions') {
             if (exam.questions.length < 10) {
                 return res.status(500).json({ error: "Exam misconfigured: Not enough questions in the bank." });
             }
