@@ -1,4 +1,4 @@
-//script.js (Updated for 15-Minute, Solve-One-of-Three Assessment)
+//script.js (Updated with clear alerts for copy/paste)
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
@@ -15,11 +15,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (backgroundElement) { const backgroundImages = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg']; let currentImageIndex = 0; backgroundElement.style.backgroundImage = `url('${backgroundImages[0]}')`; const changeBackgroundImage = () => { currentImageIndex = (currentImageIndex + 1) % backgroundImages.length; backgroundElement.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`; }; setInterval(changeBackgroundImage, 7000); }
 
     // --- Proctoring Logic ---
-    const proctorToast = document.getElementById('proctorToast') ? new bootstrap.Toast(document.getElementById('proctorToast')) : null;
-    const visibilityToast = document.getElementById('visibilityToast') ? new bootstrap.Toast(document.getElementById('visibilityToast')) : null;
-    const handleDisabledAction = (event) => { event.preventDefault(); if (proctorToast) proctorToast.show(); };
+    // --- MODIFICATION: Replaced toast with a direct alert for clarity ---
+    const handleDisabledAction = (event) => {
+        event.preventDefault();
+        alert("Copying, pasting, and right-clicking are disabled to ensure the integrity of the assessment.");
+    };
     const handleCheatingAttempt = (callback) => { if (!isSubmitting) { alert("Since you have navigated away from the test, your code is getting auto-submitted now! Attempt next question now!"); if (callback && typeof callback === 'function') callback(); } };
-    function activateEditorProctoring(editorInstance) { editorInstance.on('copy', (instance, event) => handleDisabledAction(event)); editorInstance.on('cut', (instance, event) => handleDisabledAction(event)); const editorWrapper = editorInstance.getWrapperElement(); editorWrapper.addEventListener('paste', handleDisabledAction); editorWrapper.addEventListener('contextmenu', handleDisabledAction); editorInstance.on('beforeChange', (instance, changeObj) => { if (changeObj.origin === 'paste') { changeObj.cancel(); if (proctorToast) proctorToast.show(); } }); }
+    
+    function activateEditorProctoring(editorInstance) {
+        editorInstance.on('copy', (instance, event) => handleDisabledAction(event));
+        editorInstance.on('cut', (instance, event) => handleDisabledAction(event));
+        const editorWrapper = editorInstance.getWrapperElement();
+        editorWrapper.addEventListener('paste', handleDisabledAction);
+        editorWrapper.addEventListener('contextmenu', handleDisabledAction);
+        editorInstance.on('beforeChange', (instance, changeObj) => {
+            // This is a backup to catch paste events within the editor itself
+            if (changeObj.origin === 'paste') {
+                changeObj.cancel();
+            }
+        });
+    }
+    // --- END OF MODIFICATION ---
+    
     function activatePageProctoring(submissionCallback) { const visibilityHandler = () => { if (document.hidden) handleCheatingAttempt(submissionCallback); }; const blurHandler = () => handleCheatingAttempt(submissionCallback); window.proctoringListeners = { visibilityHandler, blurHandler }; document.addEventListener('visibilitychange', window.proctoringListeners.visibilityHandler); window.addEventListener('blur', window.proctoringListeners.blurHandler); }
     function deactivateProctoring() { if (window.proctoringListeners) { document.removeEventListener('visibilitychange', window.proctoringListeners.visibilityHandler); document.removeEventListener('blur', window.proctoringListeners.blurHandler); window.proctoringListeners = null; } clearInterval(problemTimerInterval); }
 
@@ -115,11 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // --- MODIFIED TEXT IN THIS FUNCTION ---
     async function loadProblemList() {
         isSubmitting = false;
         deactivateProctoring();
-        // Updated Title and Instructions
         codingContainer.innerHTML = `<h2>Coding Assessment</h2><p>Please select and solve only ONE of the following three problems. You will have 15 minutes to complete your chosen problem.</p><hr><div id="problem-list"><p>Loading...</p></div>`;
         try {
             const problemListContainer = document.getElementById('problem-list');
@@ -147,13 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // --- MODIFIED TIMER IN THIS FUNCTION ---
     async function loadSingleProblem(problemId) {
         codingContainer.innerHTML = `<p>Loading problem...</p>`;
         try {
             const response = await fetch(`${liveServerUrl}/api/coding-problems/${problemId}`);
             const problem = await response.json();
-            // Updated Timer Display to 15:00
             codingContainer.innerHTML = `<button id="backToListBtn" class="btn btn-sm btn-outline-secondary mb-3">&larr; Back to Problem List</button><div class="d-flex justify-content-between align-items-center"><h3>${problem.title}</h3><h4 id="problemTimer" class="badge bg-danger p-2">Time Left: 15:00</h4></div><p>${problem.description.replace(/\n/g, '<br>')}</p><hr><h5>Example:</h5><pre><strong>Input:</strong>\n${problem.exampleInput}\n\n<strong>Output:</strong>\n${problem.exampleOutput.replace(/<code>/g, '').replace(/<\/code>/g, '').replace(/<pre>/g, '').replace(/<\/pre>/g, '')}</pre><hr><div class="row"><div class="col-lg-8"><div class="d-flex align-items-center mb-2"><label for="languageSelectorProblem" class="form-label fw-bold me-2">Language:</label><select class="form-select" id="languageSelectorProblem" style="width: 150px;"><option value="java" selected>Java</option><option value="python3">Python</option></select></div><h5>Your Solution:</h5><div id="codeEditorDiv" class="mb-3"></div><h5>Standard Input (for testing):</h5><textarea id="stdInput" class="form-control" rows="3"></textarea></div><div class="col-lg-4"><h5>Test Output:</h5><pre id="outputArea" class="bg-dark text-white p-3 rounded" style="min-height: 300px; overflow-y: auto;"></pre></div></div><div class="mt-3"><button id="runCodeBtn" class="btn btn-success">Run Code</button> <button id="submitCodeBtn" class="btn btn-primary">Submit Final Code</button></div>`;
             
             document.getElementById('backToListBtn').onclick = () => { deactivateProctoring(); loadProblemList(); };
@@ -177,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const submissionCallback = () => { if(submitCodeBtn && !submitCodeBtn.disabled) submitCodeBtn.dispatchEvent(new Event('click')); };
             activatePageProctoring(submissionCallback);
             
-            // Updated Timer Duration to 15 minutes
             startProblemTimer(15, submissionCallback);
             
             runCodeBtn.addEventListener('click', async () => {
@@ -222,6 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         loadProblemList();
                         return;
                     }
+                    // This assumes a toast element with id 'submissionToast' exists in your HTML.
+                    // If not, you might want to replace this with a simple alert('Submission successful!');
                     const submissionToast = new bootstrap.Toast(document.getElementById('submissionToast'));
                     submissionToast.show();
                     setTimeout(() => {
