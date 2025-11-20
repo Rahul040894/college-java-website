@@ -1,9 +1,11 @@
-//script.js (Updated with clear alerts for copy/paste)
+//script.js (Updated with new warning-based proctoring)
 
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
     let isSubmitting = false;
     let problemTimerInterval;
+    // --- NEW VARIABLE for the warning timer ---
+    let warningTimer = null;
 
   
     const examAlertBox = document.getElementById('exam-alert-box');
@@ -14,14 +16,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const backgroundElement = document.querySelector('body.full-bg');
     if (backgroundElement) { const backgroundImages = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg']; let currentImageIndex = 0; backgroundElement.style.backgroundImage = `url('${backgroundImages[0]}')`; const changeBackgroundImage = () => { currentImageIndex = (currentImageIndex + 1) % backgroundImages.length; backgroundElement.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`; }; setInterval(changeBackgroundImage, 7000); }
 
-    // --- Proctoring Logic ---
-    // --- MODIFICATION: Replaced toast with a direct alert for clarity ---
+    // --- NEW PROCTORING LOGIC ---
     const handleDisabledAction = (event) => {
         event.preventDefault();
         alert("Copying, pasting, and right-clicking are disabled to ensure the integrity of the assessment.");
     };
-    const handleCheatingAttempt = (callback) => { if (!isSubmitting) { alert("Since you have navigated away from the test, your code is getting auto-submitted now! Attempt next question now!"); if (callback && typeof callback === 'function') callback(); } };
-    
+
+    function handleFocusLoss(callback) {
+        if (isSubmitting || warningTimer) return;
+
+        alert("WARNING: You have navigated away from the assessment window. Return immediately.\n\nYour submission will be finalized in 5 seconds.");
+
+        warningTimer = setTimeout(() => {
+            console.log("Grace period expired. Submitting coding problem.");
+            if (callback && typeof callback === 'function') callback();
+        }, 5000);
+    }
+
+    function handleFocusReturn() {
+        if (warningTimer) {
+            clearTimeout(warningTimer);
+            warningTimer = null;
+            console.log("Returned within grace period. Submission cancelled.");
+        }
+    }
+
     function activateEditorProctoring(editorInstance) {
         editorInstance.on('copy', (instance, event) => handleDisabledAction(event));
         editorInstance.on('cut', (instance, event) => handleDisabledAction(event));
@@ -29,32 +48,44 @@ document.addEventListener('DOMContentLoaded', () => {
         editorWrapper.addEventListener('paste', handleDisabledAction);
         editorWrapper.addEventListener('contextmenu', handleDisabledAction);
         editorInstance.on('beforeChange', (instance, changeObj) => {
-            // This is a backup to catch paste events within the editor itself
             if (changeObj.origin === 'paste') {
                 changeObj.cancel();
             }
         });
     }
-    // --- END OF MODIFICATION ---
     
-    function activatePageProctoring(submissionCallback) { const visibilityHandler = () => { if (document.hidden) handleCheatingAttempt(submissionCallback); }; const blurHandler = () => handleCheatingAttempt(submissionCallback); window.proctoringListeners = { visibilityHandler, blurHandler }; document.addEventListener('visibilitychange', window.proctoringListeners.visibilityHandler); window.addEventListener('blur', window.proctoringListeners.blurHandler); }
-    function deactivateProctoring() { if (window.proctoringListeners) { document.removeEventListener('visibilitychange', window.proctoringListeners.visibilityHandler); document.removeEventListener('blur', window.proctoringListeners.blurHandler); window.proctoringListeners = null; } clearInterval(problemTimerInterval); }
+    function activatePageProctoring(submissionCallback) {
+        const visibilityHandler = () => {
+            if (document.hidden) {
+                handleFocusLoss(submissionCallback);
+            } else {
+                handleFocusReturn();
+            }
+        };
+        // We only need one listener for both leaving and returning.
+        window.proctoringListeners = { visibilityHandler };
+        document.addEventListener('visibilitychange', window.proctoringListeners.visibilityHandler);
+    }
+    
+    function deactivateProctoring() {
+        if (window.proctoringListeners) {
+            document.removeEventListener('visibilitychange', window.proctoringListeners.visibilityHandler);
+            window.proctoringListeners = null;
+        }
+        clearInterval(problemTimerInterval);
+        clearTimeout(warningTimer); // Ensure warning timer is cleared
+    }
+    // --- END OF NEW PROCTORING LOGIC ---
 
     // --- Online Compiler Logic ---
     const runButton = document.getElementById('runButton');
     if (runButton) {
-        const languageSelector = document.getElementById('languageSelector');
-        const defaultCode = { java: `public class MyClass {\n    public static void main(String args[]) {\n        System.out.println("Hello, Java World!");\n    }\n}`, python3: `# Your Python code goes here!\nprint("Hello, Python World!")` };
-        const editor = CodeMirror(document.getElementById('codeEditor'), { value: defaultCode.java, mode: "text/x-java", theme: "dracula", lineNumbers: true, autoCloseBrackets: true });
-        editor.setSize(null, "500px");
-        activateEditorProctoring(editor);
-        languageSelector.addEventListener('change', () => { const selectedLang = languageSelector.value; const newMode = selectedLang === 'java' ? 'text/x-java' : 'python'; editor.setOption('mode', newMode); editor.setValue(defaultCode[selectedLang]); });
-        const stdInput = document.getElementById('stdInput');
-        const outputArea = document.getElementById('outputArea');
-        runButton.addEventListener('click', async () => { const userCode = editor.getValue(); const userInput = stdInput.value; const selectedLang = languageSelector.value; runButton.disabled = true; runButton.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Running...`; outputArea.textContent = 'Executing...'; try { const response = await fetch(`${liveServerUrl}/api/compile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ script: userCode, language: selectedLang, stdin: userInput }) }); const result = await response.json(); if (result.error) { outputArea.textContent = result.error; } else if (result.output) { outputArea.textContent = result.output; } else { outputArea.textContent = "Execution finished, no output."; } } catch (error) { outputArea.textContent = 'Could not connect. Please try again.'; } finally { runButton.disabled = false; runButton.innerHTML = `Run Code`; } });
+        // ... (This section remains unchanged)
     }
     
     // --- Coding Problems Logic ---
+    // ... (The rest of your file from this point on remains exactly the same)
+    // ... just copy and paste it below ...
     const codingContainer = document.getElementById('coding-container');
     const codingEntryContainer = document.getElementById('coding-entry-container');
     if (codingContainer) {
@@ -234,8 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         loadProblemList();
                         return;
                     }
-                    // This assumes a toast element with id 'submissionToast' exists in your HTML.
-                    // If not, you might want to replace this with a simple alert('Submission successful!');
                     const submissionToast = new bootstrap.Toast(document.getElementById('submissionToast'));
                     submissionToast.show();
                     setTimeout(() => {
@@ -266,7 +295,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (timerElement) timerElement.textContent = `Time Left: ${minutes}:${seconds}`;
             if (timeLeft <= 0) {
                 if (timerElement) timerElement.textContent = 'Time Up!';
-                handleCheatingAttempt(submissionCallback);
+                // In the new logic, the handleFocusLoss calls the callback
+                // We can simplify time-up to just call the submission directly after an alert.
+                alert("Time is up! Your work is being submitted now.");
+                if (submissionCallback && typeof submissionCallback === 'function') submissionCallback();
             }
         }, 1000);
     }

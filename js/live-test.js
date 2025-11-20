@@ -1,11 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const liveServerUrl = 'https://my-java-course-backend.onrender.com';
-    // --- UPDATED FOR DYNAMIC EXAM ---
-    //const testName = 'dynamic-infosys-exam';
-    const testName = 'Assignment-1-100-questions';
-    const testDurationMinutes = 10;
-    // --- END OF UPDATES ---
-    
+    const testName = 'Assignment-1-100-questions'; // Ensure this is the correct test name
+    const testDurationMinutes = 10; // Ensure this is the correct duration
     const entryContainer = document.getElementById('entry-container');
     const testContainer = document.getElementById('test-container');
     const completeContainer = document.getElementById('complete-container');
@@ -16,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const examForm = document.getElementById('exam-form');
     let timerInterval;
     let isSubmitting = false;
+    // --- NEW VARIABLE for the warning timer ---
+    let warningTimer = null; 
 
     if (entryForm) {
         entryForm.addEventListener('submit', handleStartTest);
@@ -46,50 +44,64 @@ document.addEventListener('DOMContentLoaded', () => {
         testContainer.classList.remove('d-none');
         studentInfo.textContent = `Student: ${name} (${id})`;
         activateProctoring();
-
-        // --- MODIFIED LOGIC ---
-        // Shuffling is now handled by the backend. The frontend simply displays the 
-        // 10 random questions it receives from the server.
-        displayQuestions(questions);
-        // --- END OF MODIFICATION ---
-        
+        displayQuestions(questions); // Using the non-shuffled, 10-question logic
         startTimer();
     }
     
-    function handleCheatingAttempt() {
-        if (!isSubmitting) {
-            alert("You have navigated away from the test window. Your exam will be submitted.");
+    // --- NEW PROCTORING LOGIC ---
+    function handleFocusLoss() {
+        if (isSubmitting || warningTimer) return; // Don't trigger if already submitting or a warning is active
+
+        alert("WARNING: You have navigated away from the assessment window. Return immediately.\n\nYour test will be automatically submitted in 5 seconds.");
+        
+        warningTimer = setTimeout(() => {
+            console.log("Grace period expired. Submitting test.");
             handleSubmission();
+        }, 5000); // 5-second grace period
+    }
+
+    function handleFocusReturn() {
+        if (warningTimer) {
+            clearTimeout(warningTimer);
+            warningTimer = null;
+            console.log("Returned within grace period. Submission cancelled.");
         }
     }
+    
     function activateProctoring() {
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-        window.addEventListener('blur', handleCheatingAttempt);
-        document.documentElement.addEventListener('mouseleave', handleCheatingAttempt);
+        // Main listener for tab switching and minimizing
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                handleFocusLoss();
+            } else {
+                handleFocusReturn();
+            }
+        });
+        
+        // Removed 'mouseleave' listener for cursor control
+        
+        // Listeners for copy/paste etc. remain the same
         document.addEventListener('copy', handleDisabledAction);
         document.addEventListener('paste', handleDisabledAction);
         document.addEventListener('cut', handleDisabledAction);
         document.addEventListener('contextmenu', handleDisabledAction);
     }
-    function handleVisibilityChange() {
-        if (document.hidden) handleCheatingAttempt();
-    }
+    
     function handleDisabledAction(event) {
         event.preventDefault();
+        alert("Copying, pasting, and right-clicking are disabled to ensure the integrity of the assessment.");
     }
+    // --- END OF NEW PROCTORING LOGIC ---
     
     async function handleSubmission(e) {
         if (e) e.preventDefault();
         if (isSubmitting) return;
         isSubmitting = true;
+        
+        // Deactivate all timers and listeners
         clearInterval(timerInterval);
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-        window.removeEventListener('blur', handleCheatingAttempt);
-        document.documentElement.removeEventListener('mouseleave', handleCheatingAttempt);
-        document.removeEventListener('copy', handleDisabledAction);
-        document.removeEventListener('paste', handleDisabledAction);
-        document.removeEventListener('cut', handleDisabledAction);
-        document.removeEventListener('contextmenu', handleDisabledAction);
+        clearTimeout(warningTimer);
+        document.removeEventListener('visibilitychange', handleFocusLoss); // Clean up listener
         
         const submitBtn = document.getElementById('submitBtn');
         if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Submitting...`; }
@@ -146,13 +158,5 @@ document.addEventListener('DOMContentLoaded', () => {
         const entryError = document.getElementById('entry-error');
         entryError.textContent = message;
         entryError.classList.remove('d-none');
-    }
-
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
     }
 });
